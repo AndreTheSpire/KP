@@ -14,4 +14,11 @@ class EssentianController extends Controller
     {
         return view("pages.essential.Register");
     }
+    public function GoToAdmin()
+    {
+        return view("pages.admin.home",[
+            'title' => "Home"
+        ]);
+
+    }
 }

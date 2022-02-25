@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 Route::get('/login', 'EssentianController@GoToLogin');
 Route::get('register', 'EssentianController@GoToRegister');
+Route::get('/admin', 'EssentianController@GoToAdmin');
