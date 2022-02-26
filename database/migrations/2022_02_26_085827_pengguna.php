@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('pengguna_jeniskelamin', 225);
             $table->string('pengguna_peran');
             $table->string('pengguna_CV');
+            $table->string('pengguna_status_CV');
+            $table->string('pengguna_status_wawancara');
             $table->timestamps();
             $table->softDeletes();
         });
