@@ -74,13 +74,15 @@
         <label for="address" class="absolute left-2 transition-all bg-white px-1">
           Konfirmasi Password
         </label>
-
+        @error("pengguna_password")
+        <div class="text-red-500 text-xs text-left">{{ $message }}</div>
+        @enderror
       </div>
 
     <div class="relative h-10 input-component mb-3 empty">
         <input
           id="nohp"
-          type="number"
+          type="tel"
           name="pengguna_nohp"
           class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
           @error('pengguna_nemail') style="border: 2px solid red;" @enderror value="{{ old('no_hp')}}"
@@ -96,8 +98,8 @@
         <div class="px-2 ">Tanggal lahir</div>
         <input
           id="tanggal_lahir"
-          type="datetime-local"
-          name="pengguna_tanggal_lahir"
+          type="date"
+          name="pengguna_tanggallahir"
           class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1 "
           @error('tanggal_lahir') style="border: 2px solid red;" @enderror value="{{ old('tanggal_lahir')}}"
         />
@@ -124,7 +126,7 @@
       </div>
 
       <div class="relative h-10 input-component mb-5">
-        <select id="jenis_kelamin" name="pengguna_jenis_kelamin" class="h-full w-full border border-gray-300 px-2 transition-all border-blue rounded-sm py-1">
+        <select id="jenis_kelamin" name="pengguna_jeniskelamin" class="h-full w-full border border-gray-300 px-2 transition-all border-blue rounded-sm py-1">
             <option value="0">Laki-laki</option>
             <option value="1">Perempuan</option>
 
@@ -142,35 +144,16 @@
 
         </select>
         <label for="peran" class="absolute text-black left-2 transition-all bg-white px-1">
-         Peran
+         Posisi
         </label>
       </div>
-      @error("pengguna_password")
-
-    <div class="text-red-500 text-xs text-left">{{ $message }}</div>
-        @enderror
-
-        <div class="relative h-15 input-component mb-1 empty hidden" id="upload">
-            <div class="px-2 ">Upload KTP</div>
-            <input
-              id="upload_ktp"
-              type="file"
-              name="upload_ktp"
-              class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1 "
-              @error('upload_ktp') style="border: 2px solid red;" @enderror value="{{ old('upload_ktp')}}"
-            />
-            {{-- <label for="address" class="absolute left-2 transition-all bg-white px-1">
-              Upload CV
-            </label> --}}
-
-        </div>
 
         <div class="relative h-15 input-component mb-1 empty hidden" id="upload2">
             <div class="px-2 ">Upload CV</div>
             <input
               id="upload_cv"
               type="file"
-              name="upload_cv"
+              name="pengguna_CV"
               class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1 "
               @error('upload_cv') style="border: 2px solid red;" @enderror value="{{ old('upload_cv')}}"
             />

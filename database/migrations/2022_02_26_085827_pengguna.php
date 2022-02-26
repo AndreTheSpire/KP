@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('pengguna_alamat', 225);
             $table->string('pengguna_jeniskelamin', 225);
             $table->string('pengguna_peran');
-            $table->string('pengguna_KTP');
             $table->string('pengguna_CV');
             $table->timestamps();
             $table->softDeletes();
