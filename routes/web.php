@@ -18,4 +18,10 @@ Route::get('/', function () {
 });
 Route::get('/login', 'EssentianController@GoToLogin');
 Route::get('register', 'EssentianController@GoToRegister');
-Route::get('/admin', 'EssentianController@GoToAdmin');
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@GoToAdmin');
+    Route::get('/kelas', 'AdminController@GoToPembuatanDanPenetapanKelas');
+    Route::get('/guru', 'AdminController@GoToPenerimaanGuru');
+    Route::get('/murid', 'AdminController@GoToPenerimaanMurid');
+    Route::get('/transaksi', 'AdminController@GoToLaporanTransaksi');
+});

@@ -4,21 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tailwind CSS Sidebar UI </title>
+    <title>{{$title}} </title>
     <script src="https://cdn.tailwindcss.com/"></script>
 
   </head>
   <body>
+
     <div class="flex">
       <div class="flex flex-col w-1/4 h-screen px-4 py-8 overflow-y-auto border-r bg-orange-200">
-        <img src="{{ ('image/cettatf.png') }}" alt="" class="h-1/8">
+        <img src="{{url('/image/cettatf.png')}}" alt="" class="h-1/8">
+        
 
 
         <div class="flex flex-col justify-between mt-6">
           <aside>
             <ul>
               <li>
-                <a class="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md " href="#">
+                <a class="flex items-center px-4 py-2 text-gray-700 {{ $title === "Home" ? "bg-gray-100" : " " }}  rounded-md " href="/admin">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,7 +35,7 @@
 
 
               <li>
-                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="#">
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 {{ $title === "Penetapan" ? "bg-gray-100" : " " }} rounded-md hover:bg-gray-200" href="/admin/kelas">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -47,7 +49,7 @@
               </li>
 
               <li>
-                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="#">
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 {{ $title === "PenerimaanGuru" ? "bg-gray-100" : " " }} rounded-md hover:bg-gray-200" href="/admin/guru">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -60,7 +62,7 @@
                 </a>
               </li>
               <li>
-                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="#">
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 {{ $title === "PenerimaanMurid" ? "bg-gray-100" : " " }} rounded-md hover:bg-gray-200" href="/admin/murid">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -73,7 +75,7 @@
                 </a>
               </li>
               <li>
-                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="#">
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 {{ $title === "LaporanTransaksi" ? "bg-gray-100" : " " }} rounded-md hover:bg-gray-200" href="/admin/transaksi">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
