@@ -149,13 +149,13 @@
       </div>
 
         <div class="relative h-15 input-component mb-1 empty hidden" id="upload2">
-            <div class="px-2 ">Upload CV</div>
+            <div class="px-2 ">Upload CV & KTP</div>
             <input
               id="upload_cv"
               type="file"
-              name="pengguna_CV"
+              name="pengguna_CV_KTP"
               class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1 "
-              @error('upload_cv') style="border: 2px solid red;" @enderror value="{{ old('upload_cv')}}"
+              @error('pengguna_CV_KTP') style="border: 2px solid red;" @enderror value="{{ old('pengguna_CV_KTP')}}"
             />
             {{-- <label for="address" class="absolute left-2 transition-all bg-white px-1">
               Upload CV
