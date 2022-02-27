@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/login', 'EssentianController@GoToLogin');
 Route::get('register', 'EssentianController@GoToRegister');
+Route::post('doregister', 'EssentianController@DoRegister');
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@GoToAdmin');
     Route::get('/kelas', 'AdminController@GoToPembuatanDanPenetapanKelas');

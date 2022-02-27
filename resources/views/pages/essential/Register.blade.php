@@ -10,7 +10,7 @@
 
 @section('main')
 
-<form action="{{ url('/register/doregister') }}" method="get" class="flex justify-center h-screen items-center text-center">
+<form action="{{ url('doregister') }}" method="POST" class="flex justify-center h-screen items-center text-center" enctype="multipart/form-data">
     @csrf
     <div class='flex max-w-sm w-full justify-center bg-white shadow-md rounded-lg overflow-hidden mx-auto flex flex-col p-5'>
         <img src="{{ ('image/cettatf.png') }}" alt="" class="h-2/4">
