@@ -22,8 +22,10 @@ function sudahlogin()
 function getAuthUser()
 {
     if(sudahlogin()==false){
+
         return false;
     }else{
+
         if(Auth::guard('web')->check()){
             return Auth::guard('web')->user();
         }else if(Auth::guard('satpam_pengguna')->check()){

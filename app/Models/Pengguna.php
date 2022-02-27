@@ -39,4 +39,12 @@ class Pengguna extends Authenticatable
     {
         return $this->pengguna_password;
     }
+    public function getRoleTextAttribute()
+    {
+        if($this->pengguna_peran == "1"){
+            return 'guru';
+        }else{
+            return 'murid';
+        }
+    }
 }

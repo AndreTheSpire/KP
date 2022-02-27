@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/login', 'EssentianController@GoToLogin');
+Route::get('/dologin', 'EssentianController@DoLogin');
 Route::get('register', 'EssentianController@GoToRegister');
 Route::post('doregister', 'EssentianController@DoRegister');
 Route::prefix('admin')->group(function () {
@@ -25,4 +26,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/guru', 'AdminController@GoToPenerimaanGuru');
     Route::get('/murid', 'AdminController@GoToPenerimaanMurid');
     Route::get('/transaksi', 'AdminController@GoToLaporanTransaksi');
+});
+Route::prefix('murid')->group(function () {
+    Route::get('/', 'MuridController@GotoHome');
+
+});
+
+Route::prefix('guru')->group(function () {
+    Route::get('/', 'GuruController@GotoHome');
+
 });

@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'satpam_pengguna' => [
+            'driver' => 'session',
+            'provider' => 'Pengguna',
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'Pengguna' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Pengguna::class, // PASTIKAN INI MODELNYA KITA
         ],
 
         // 'users' => [

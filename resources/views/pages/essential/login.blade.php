@@ -11,7 +11,7 @@
 @section('main')
 
 <div class="flex justify-center h-screen items-center text-center">
-    <form action="/login/dologin" method="get" class='flex max-w-sm w-full justify-center bg-white shadow-md rounded-lg overflow-hidden mx-auto flex flex-col p-5' >
+    <form action="/dologin" method="get" class='flex max-w-sm w-full justify-center bg-white shadow-md rounded-lg overflow-hidden mx-auto flex flex-col p-5' >
         @csrf
         <img src="{{ ('image/cettatf.png') }}" alt="" class="h-2/4">
         <div class="relative h-10 input-component mb-5">
@@ -40,6 +40,17 @@
         </div>
 
         <button type="submit" name="login" class="bg-secondary-red text-black hover:bg-secondary-red-hover py-4 text-center px-17 md:px-12 md:py-4 rounded leading-tight text-xl md:text-base font-sans mt-4">Login</button>
+
+
+        @if(isset($gagalcek))
+        {{-- <div class="text-2xl">Login Gagal</div> --}}
+        @php
+             echo '<script type="text/javascript">
+            alert("Akun masih Terlock");
+            </script>';
+        @endphp
+        @endif
+
         @if(isset($gagal))
         {{-- <div class="text-2xl">Login Gagal</div> --}}
         @php

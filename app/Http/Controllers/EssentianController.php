@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class EssentianController extends Controller
@@ -15,6 +16,66 @@ class EssentianController extends Controller
     public function GoToRegister()
     {
         return view("pages.essential.Register");
+    }
+    public function DoLogin(Request $request)
+    {
+        $ceklogin=false;
+        $email=$request->input('email');
+        $password=$request->input('password');
+        $data_pengguna = Pengguna::all();
+
+        $credential = [
+            'pengguna_email' => $email,
+            'password' => $password
+        ];
+        // dd($data_pengguna);
+        // dd($credential);
+        // dd(Auth::guard('satpam_pengguna'));
+        if(Auth::guard('satpam_pengguna')->attempt($credential)){
+            if(getAuthUser()->role_text == 'guru'){
+                if(getAuthUser()->pengguna_status_wawancara=='1'){
+                    return redirect('/guru');
+                }else{
+                    return view("pages.essential.login",['gagalcek'=>true]);
+                }
+
+            }else{
+                return redirect('/murid');
+            }
+
+        }else{
+            return view("pages.essential.login",['gagal'=>true]);
+        }
+
+        // if($data_pengguna!=null){
+        //     foreach ($data_pengguna as $pgw ) { //cek login user
+        //         if($pgw->pengguna_email==$email && $pgw->pengguna_password==$password ){
+        //            $ceklogin=true;
+        //            $tempuser=$pgw;
+        //         }
+        //     }
+        // }
+
+        // if($ceklogin == false){
+        //     return view("pages.essential.login",['gagal'=>true]);
+        // }
+
+        // $request->session()->put('user_logged', $tempuser);
+
+
+        // if($tempuser['pengguna_peran']=="0"){
+        //     //bila user merupakan guru maka arahkan ke page guru
+        //     $pengguna_id = $tempuser->pengguna_id;
+        //     $tempuser = $tempuser;
+        //     $dataKelas = Kelas::where('pengguna_id','=',$pengguna_id)->get();
+        //     return redirect('/guru');
+        //     // return view('pages.guru.guruHome',['dataKelas'=>$dataKelas,'user_login'=>$tempuser]);
+        // }else if($tempuser['pengguna_peran']=="1"){
+        //     //bila user adalah murid maka arahkan ke page murid
+        //     $pengguna_id = $tempuser->pengguna_id;
+        //     $dataKelas = Kelas::where('pengguna_id','=',$pengguna_id)->get();
+        //     return redirect('/murid');
+        // }
     }
     public function DoRegister(Request $request)
     {
