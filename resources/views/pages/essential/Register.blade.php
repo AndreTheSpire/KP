@@ -38,7 +38,7 @@
         type="text"
         name="pengguna_email"
         class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
-        @error('pengguna_nemail') style="border: 2px solid red;" @enderror value="{{ old('pengguna_email')}}"
+        @error('pengguna_email') style="border: 2px solid red;" @enderror value="{{ old('pengguna_email')}}"
       />
       <label for="email" class="absolute left-2 transition-all bg-white px-1">
         E-mail
@@ -85,12 +85,12 @@
           type="tel"
           name="pengguna_nohp"
           class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
-          @error('pengguna_nemail') style="border: 2px solid red;" @enderror value="{{ old('no_hp')}}"
+          @error('pengguna_nohp') style="border: 2px solid red;" @enderror value="{{ old('pengguna_nohp')}}"
         />
         <label for="no_hp" class="absolute left-2 transition-all bg-white px-1">
           No Handphone
         </label>
-          @error("no_hp")
+          @error("pengguna_nohp")
           <div class="text-red-500 text-xs text-left">{{ $message }}</div>
           @enderror
       </div>
@@ -101,7 +101,7 @@
           type="date"
           name="pengguna_tanggallahir"
           class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1 "
-          @error('tanggal_lahir') style="border: 2px solid red;" @enderror value="{{ old('tanggal_lahir')}}"
+          @error('pengguna_tanggallahir') style="border: 2px solid red;" @enderror value="{{ old('pengguna_tanggallahir')}}"
         />
         {{-- <label for="address" class="absolute left-2 transition-all bg-white px-1">
           Upload CV
@@ -114,13 +114,13 @@
           type="text"
           name="pengguna_alamat"
           class=" w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
-          @error('pengguna_nama') style="border: 2px solid red;" @enderror
-          value="{{ old('alamat')}}"
+          @error('pengguna_alamat') style="border: 2px solid red;" @enderror
+          value="{{ old('pengguna_alamat')}}"
         />
         <label for="alamat" class="absolute left-2 transition-all bg-white px-1">
           Alamat
         </label>
-          @error("alamat")
+          @error("pengguna_alamat")
               <div class="text-red-500 text-xs text-left">{{ $message }}</div>
           @enderror
       </div>
@@ -160,7 +160,6 @@
             {{-- <label for="address" class="absolute left-2 transition-all bg-white px-1">
               Upload CV
             </label> --}}
-
         </div>
 
       {{-- <input type="hidden" name="penggutampilan" value='0'> --}}
