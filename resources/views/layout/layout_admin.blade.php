@@ -1,137 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <title>Admin | {{ $title }}</title>
-    <style>
-        .card-img-top {
-            width: 100%;
-            height: 10vw;
-            object-fit: cover;
-        }
-    </style>
-</head>
-<body>
-    {{-- @php
-        use App\Models\HTrans;
-        use App\Models\HRetur;
-        $jumlahBuktiTransfer = count(HTrans::where('status',1)->get());
-        $jumlahPengantaran = count(HTrans::where('status',2)->get());
-        $jumlahRetur = count(HRetur::where('status',0)->get());
-        $jumlahResend = count(HRetur::where('status',1)->get());
-    @endphp --}}
-    <div class="d-flex flex-row">
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100 sticky-top" style="width: 280px;">
-            <a href="/admin/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-4">Admin Page</span>
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="/admin/kategori" class="nav-link {{ $title === "Kategori" ? "active" : "text-white" }}">
-                Kategori
-                </a>
-            </li>
-            <li>
-                <a href="/admin/buku" class="nav-link {{ $title === "Buku" ? "active" : "text-white" }}">
-                Buku
-                </a>
-            </li>
-            {{-- <li>
-                <a href="/admin/promo" class="nav-link {{ $title === "Promo" ? "active" : "text-white" }}">
-                Promo
-                </a>
-            </li> --}}
-            <li>
-                <div class="position-relative">
-                    {{-- @if ($jumlahBuktiTransfer > 0)
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning" style="font-size: 15px">
-                            {{ $jumlahBuktiTransfer }}
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
-                    @endif --}}
-                    <a href="/admin/bukti-transfer" class="nav-link {{ $title === "Bukti Transfer" ? "active" : "text-white" }}">
-                        Konfirmasi Bukti Transfer
-                    </a>
-                </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{$title}} </title>
+    <script src="https://cdn.tailwindcss.com/"></script>
 
-            </li>
-            <li>
-                <div class="position-relative">
-                    {{-- @if ($jumlahPengantaran > 0)
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning" style="font-size: 15px">
-                            {{ $jumlahPengantaran }}
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
-                    @endif --}}
-                    <a href="/admin/pengantaran" class="nav-link {{ $title === "Pengantaran" ? "active" : "text-white" }}">
-                        Konfirmasi Pengantaran
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="position-relative">
-                    {{-- @if ($jumlahRetur > 0)
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning" style="font-size: 15px">
-                            {{ $jumlahRetur }}
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
-                    @endif --}}
-                    <a href="/admin/retur" class="nav-link {{ $title === "Retur" ? "active" : "text-white" }}">
-                        Konfirmasi Retur
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="position-relative">
-                    {{-- @if ($jumlahResend > 0)
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning" style="font-size: 15px">
-                            {{ $jumlahResend }}
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
-                    @endif --}}
-                    <a href="/admin/resend" class="nav-link {{ $title === "Resend" ? "active" : "text-white" }}">
-                        Konfirmasi Resend
-                    </a>
-                </div>
-            </li>
-            <li>
-                <a href="/admin/voucher" class="nav-link {{ $title === "Manajemen Kode Voucher" ? "active" : "text-white" }}">
-                Manajemen Kode Voucher
+  </head>
+  <body>
+
+    <div class="flex">
+      <div class="flex flex-col w-1/4 h-screen px-4 py-8 overflow-y-auto border-r bg-orange-200">
+        <img src="{{url('/image/cettatf.png')}}" alt="" class="h-1/8">
+        
+
+
+        <div class="flex flex-col justify-between mt-6">
+          <aside>
+            <ul>
+              <li>
+                <a class="flex items-center px-4 py-2 text-gray-700 {{ $title === "Home" ? "bg-gray-100" : " " }}  rounded-md " href="/admin">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+
+                  <span class="mx-4 font-medium">Dashboard</span>
+                  {{-- <span class="font-medium text-white bg-red-600 content-center w-7 h-7 rounded-full">99</span> --}}
                 </a>
-            </li>
-            <li>
-                <a href="/admin/laporanadmin/pemesanan" class="nav-link {{ $title === "Laporan Pemesanan" ? "active" : "text-white" }}">
-                Laporan Pemasukan
+              </li>
+
+
+
+              <li>
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 {{ $title === "Penetapan" ? "bg-gray-100" : " " }} rounded-md hover:bg-gray-200" href="/admin/kelas">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+
+                  <span class="mx-4 font-medium">Pembuatan dan Penetapan Kelas</span>
                 </a>
-            </li>
-            <li>
-                <a href="/admin/laporanadmin/retur" class="nav-link {{ $title === "Laporan Pengeluaran" ? "active" : "text-white" }}">
-                Laporan Pengeluaran
+              </li>
+
+              <li>
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 {{ $title === "PenerimaanGuru" ? "bg-gray-100" : " " }} rounded-md hover:bg-gray-200" href="/admin/guru">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+
+                  <span class="mx-4 font-medium">Penerimaan Guru</span>
                 </a>
-            </li>
+              </li>
+              <li>
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 {{ $title === "PenerimaanMurid" ? "bg-gray-100" : " " }} rounded-md hover:bg-gray-200" href="/admin/murid">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+
+                  <span class="mx-4 font-medium">Penerimaan Murid</span>
+                </a>
+              </li>
+              <li>
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 {{ $title === "LaporanTransaksi" ? "bg-gray-100" : " " }} rounded-md hover:bg-gray-200" href="/admin/transaksi">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+
+                  <span class="mx-4 font-medium">Laporan Transaksi Murid</span>
+                </a>
+              </li>
+
+              <li class="absolute bottom-10">
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 rounded-md hover:bg-gray-200" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+
+                  <span class="mx-4 font-medium">Log Out</span>
+                </a>
+              </li>
+
+
             </ul>
-            <hr>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <strong>admin</strong>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="/logout-admin">Sign out</a></li>
-                </ul>
-            </div>
+
+          </aside>
+
         </div>
-        <div class="container-fluid d-flex">
+      </div>
+      <div class="w-full h-full p-4 m-8 overflow-y-auto">
+        <div class="flex items-center justify-center p-40 border-4 border-dotted">
             @yield('container')
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <script src="sidebars.js"></script>
-</body>
+      </div>
+  </body>
 </html>
