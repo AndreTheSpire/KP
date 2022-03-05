@@ -6,7 +6,7 @@ use App\Models\Pengguna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class EssentianController extends Controller
 {
     public function GoToLogin()
@@ -36,7 +36,8 @@ class EssentianController extends Controller
                 if(getAuthUser()->pengguna_status_wawancara=='1'){
                     return redirect('/guru');
                 }else{
-                    return view("pages.essential.login",['gagalcek'=>true]);
+                    Alert::warning('PERINGATAN', 'Akun Anda Masih Dilock');
+                    return redirect('/login');
                 }
 
             }else{
@@ -44,7 +45,8 @@ class EssentianController extends Controller
             }
 
         }else{
-            return view("pages.essential.login",['gagal'=>true]);
+            Alert::error('ERROR', 'Akun Anda Belum Terdaftar');
+            return view("pages.essential.login");
         }
 
         // if($data_pengguna!=null){
@@ -125,6 +127,7 @@ class EssentianController extends Controller
         }
         // dd($request->all());
         $result->save();
+        Alert::success('Succes', 'Akun Anda berhasil didaftarkan');
         return back();
     }
 

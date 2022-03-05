@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', 'EssentianController@GoToLogin');
-Route::get('/dologin', 'EssentianController@DoLogin');
+Route::get('login', 'EssentianController@GoToLogin');
+Route::get('dologin', 'EssentianController@DoLogin');
 Route::get('register', 'EssentianController@GoToRegister');
 Route::post('doregister', 'EssentianController@DoRegister');
 Route::prefix('admin')->group(function () {
