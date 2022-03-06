@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -22,8 +23,10 @@ class AdminController extends Controller
     }
     public function GoToPenerimaanGuru()
     {
+        $data_guru = Pengguna::where('pengguna_status_CV','=','0','or','pengguna_status_wawancara','=','0')->get();
         return view("pages.admin.PenerimaanGuru",[
-            'title' => "PenerimaanGuru"
+            'title' => "PenerimaanGuru",
+            'data_guru' => $data_guru
         ]);
 
     }
