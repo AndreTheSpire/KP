@@ -30,6 +30,13 @@ class AdminController extends Controller
         ]);
 
     }
+    public function GoToDetailPenerimaanGuru()
+    {
+        return view("pages.admin.DetailPenerimaanGuru",[
+            'title' => "DetailPenerimaanGuru"
+        ]);
+
+    }
     public function GoToPenerimaanMurid()
     {
         return view("pages.admin.PenerimaanMurid",[

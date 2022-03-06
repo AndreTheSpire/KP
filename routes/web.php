@@ -24,6 +24,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@GoToAdmin');
     Route::get('/kelas', 'AdminController@GoToPembuatanDanPenetapanKelas');
     Route::get('/guru', 'AdminController@GoToPenerimaanGuru');
+    Route::get('/detailguru', 'AdminController@GoToDetailPenerimaanGuru');
     Route::get('/murid', 'AdminController@GoToPenerimaanMurid');
     Route::get('/transaksi', 'AdminController@GoToLaporanTransaksi');
 });
