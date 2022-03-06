@@ -39,12 +39,27 @@ class AdminController extends Controller
         ]);
 
     }
-    public function GoToDetailPenerimaanGuru()
+    public function GoToDetailPenerimaanCVGuru(Request $req)
     {
-        return view("pages.admin.DetailPenerimaanGuru",[
-            'title' => "DetailPenerimaanGuru"
+        // dd($req->id);
+        $data_detail = Pengguna::find($req->id);
+        // dd($data_detail);
+        return view("pages.admin.DetailPenerimaanCVGuru",[
+            'title' => "DetailPenerimaanGuru",
+            "data_detail" => $data_detail
         ]);
 
+    }
+    public function ConfirmCVGuru(Request $req)
+    {
+        $data_confirm = Pengguna::find($req->id);
+        $data_confirm->pengguna_status_CV = '1';
+        $data_confirm->save();
+        $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
+        return view("pages.admin.PenerimaanCVGuru",[
+            'title' => "PenerimaanCVGuru",
+            'data_guru' => $data_guru
+        ]);
     }
     public function GoToPenerimaanMurid()
     {

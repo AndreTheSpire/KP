@@ -22,7 +22,7 @@
                         <td class="border border-slate-600 text-center w-full">{{$data_daftar_guru->pengguna_nama}}</td>
                         <td class="border border-slate-600 text-center w-full">{{$data_daftar_guru->pengguna_email}}</td>
                         <td class="border border-slate-600 text-center w-full">{{$data_daftar_guru->pengguna_tanggallahir}}</td>
-                        <td class="border border-slate-600 text-center w-full"><a href="/admin/detailguru"><button class="bg-orange-600 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded-full" type="button">Detail</button></a></td>
+                        <td class="border border-slate-600 text-center w-full"><a href="/admin/detailcvguru/{{$data_daftar_guru->pengguna_id}}"><button class="bg-orange-600 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded-full" type="button">Detail</button></a></td>
                     </tr>
                 @endforeach
             </tbody>
