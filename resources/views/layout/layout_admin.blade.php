@@ -13,7 +13,7 @@
     <div class="flex">
       <div class="flex flex-col w-1/4 h-screen px-4 py-8 overflow-y-auto border-r bg-orange-200">
         <img src="{{url('/image/cettatf.png')}}" alt="" class="h-1/8">
-        
+
 
 
         <div class="flex flex-col justify-between mt-6">
@@ -110,9 +110,8 @@
         </div>
       </div>
       <div class="w-full h-full p-4 m-8 overflow-y-auto">
-        <div class="flex items-center justify-center p-40 border-4 border-dotted">
-            @yield('container')
-        </div>
+      @yield('container')
       </div>
+
   </body>
 </html>
