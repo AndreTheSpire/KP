@@ -3,7 +3,7 @@
 
 
 
-    <div class="font-bold text-center text-2xl">Daftar Guru Yang Mendaftar</div>
+    <div class="font-bold text-center text-2xl">Daftar Wawancara Guru Yang Mendaftar</div>
     <div class="flex items-center justify-center p-10 border-4 border-dotted ">
 
 
