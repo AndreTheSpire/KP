@@ -23,7 +23,7 @@ class AdminController extends Controller
     }
     public function GoToPenerimaanCVGuru()
     {
-        $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
+        $data_guru = Pengguna::where('pengguna_status_CV','=','0')->where('pengguna_status_wawancara','=','0')->get();
         return view("pages.admin.PenerimaanCVGuru",[
             'title' => "PenerimaanCVGuru",
             'data_guru' => $data_guru
@@ -32,7 +32,7 @@ class AdminController extends Controller
     }
     public function GoToPenerimaanWawancaraGuru()
     {
-        $data_guru = Pengguna::where('pengguna_status_CV','=','1','and','pengguna_status_wawancara','=','0')->get();
+        $data_guru = Pengguna::where('pengguna_status_CV','=','1')->where('pengguna_status_wawancara','=','0')->get();
         return view("pages.admin.PenerimaanWawancaraGuru",[
             'title' => "PenerimaanWawancaraGuru",
             'data_guru' => $data_guru
