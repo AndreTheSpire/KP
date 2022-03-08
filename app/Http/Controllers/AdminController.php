@@ -39,6 +39,17 @@ class AdminController extends Controller
         ]);
 
     }
+    public function GoToDetailPenerimaanWawancaraGuru(Request $req)
+    {
+        // dd($req->id);
+        $data_detail = Pengguna::find($req->id);
+        // dd($data_detail);
+        return view("pages.admin.DetailPenerimaanWawancaraGuru",[
+            'title' => "DetailPenerimaanGuru",
+            "data_detail" => $data_detail
+        ]);
+
+    }
     public function GoToDetailPenerimaanCVGuru(Request $req)
     {
         // dd($req->id);
@@ -58,6 +69,39 @@ class AdminController extends Controller
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
         return view("pages.admin.PenerimaanCVGuru",[
             'title' => "PenerimaanCVGuru",
+            'data_guru' => $data_guru
+        ]);
+    }
+    public function DeclineCVGuru(Request $req)
+    {
+        $data_confirm = Pengguna::find($req->id);
+        $data_confirm->pengguna_status_CV = '-1';
+        $data_confirm->save();
+        $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
+        return view("pages.admin.PenerimaanCVGuru",[
+            'title' => "PenerimaanCVGuru",
+            'data_guru' => $data_guru
+        ]);
+    }
+    public function ConfirmWawancaraGuru(Request $req)
+    {
+        $data_confirm = Pengguna::find($req->id);
+        $data_confirm->pengguna_status_wawancara = '1';
+        $data_confirm->save();
+        $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
+        return view("pages.admin.PenerimaanWawancaraGuru",[
+            'title' => "PenerimaanWawancaraGuru",
+            'data_guru' => $data_guru
+        ]);
+    }
+    public function DeclineWawancaraGuru(Request $req)
+    {
+        $data_confirm = Pengguna::find($req->id);
+        $data_confirm->pengguna_status_wawancara = '-1';
+        $data_confirm->save();
+        $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
+        return view("pages.admin.PenerimaanWawancaraGuru",[
+            'title' => "PenerimaanWawancaraGuru",
             'data_guru' => $data_guru
         ]);
     }

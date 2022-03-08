@@ -10,4 +10,5 @@
 
     <label>Apakah anda menerima {{$data_detail->pengguna_nama}} untuk diwawancarai ?</label><br>
     <a href="/admin/detailcvguru/{{$data_detail->pengguna_id}}/confirm"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Yes</button></a>
+    <a href="/admin/detailcvguru/{{$data_detail->pengguna_id}}/decline"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">No</button></a>
 @endsection

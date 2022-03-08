@@ -27,6 +27,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/guruWawancara', 'AdminController@GoToPenerimaanWawancaraGuru');
     Route::get('/detailcvguru/{id}', 'AdminController@GoToDetailPenerimaanCVGuru');
     Route::get('/detailcvguru/{id}/confirm', 'AdminController@ConfirmCVGuru');
+    Route::get('/detailcvguru/{id}/decline', 'AdminController@DeclineCVGuru');
+    Route::get('/detailwawancaraguru/{id}', 'AdminController@GoToDetailPenerimaanWawancaraGuru');
+    Route::get('/detailwawancaraguru/{id}/confirm', 'AdminController@ConfirmWawancaraGuru');
+    Route::get('/detailwawancaraguru/{id}/decline', 'AdminController@DeclineWawancaraGuru');
     Route::get('/murid', 'AdminController@GoToPenerimaanMurid');
     Route::get('/transaksi', 'AdminController@GoToLaporanTransaksi');
 });
