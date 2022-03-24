@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','EssentianController@GoToLogin');
 Route::get('login', 'EssentianController@GoToLogin');
 Route::get('dologin', 'EssentianController@DoLogin');
 Route::get('register', 'EssentianController@GoToRegister');

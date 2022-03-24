@@ -47,4 +47,8 @@ class Pengguna extends Authenticatable
             return 'murid';
         }
     }
+    public function routeNotificationForMail()
+    {
+        return $this->pengguna_email;
+    }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengguna;
+use App\Notifications\NotifikasiWawancara;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
@@ -67,10 +69,12 @@ class AdminController extends Controller
         $data_confirm->pengguna_status_CV = '1';
         $data_confirm->save();
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
+        Notification::send($data_confirm, new NotifikasiWawancara($data_confirm,"www.andre.com"));
         return view("pages.admin.PenerimaanCVGuru",[
             'title' => "PenerimaanCVGuru",
             'data_guru' => $data_guru
         ]);
+
     }
     public function DeclineCVGuru(Request $req)
     {
