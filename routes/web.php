@@ -21,6 +21,8 @@ Route::post('doregister', 'EssentianController@DoRegister');
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@GoToAdmin');
     Route::get('/kelas', 'AdminController@GoToPembuatanDanPenetapanKelas');
+    Route::get('/kelas/buatkelas', 'AdminController@GoToBuatKelas');
+    Route::post('/kelas/dobuatkelas', 'AdminController@DoBuatKelas');
     Route::get('/guruCV', 'AdminController@GoToPenerimaanCVGuru');
     Route::get('/guruWawancara', 'AdminController@GoToPenerimaanWawancaraGuru');
     Route::get('/detailcvguru/{id}', 'AdminController@GoToDetailPenerimaanCVGuru');
@@ -31,6 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/detailwawancaraguru/{id}/decline', 'AdminController@DeclineWawancaraGuru');
     Route::get('/murid', 'AdminController@GoToPenerimaanMurid');
     Route::get('/transaksi', 'AdminController@GoToLaporanTransaksi');
+    Route::get('download/{id}','AdminController@downloadfileCV');
 });
 Route::prefix('murid')->group(function () {
     Route::get('/', 'MuridController@GotoHome');

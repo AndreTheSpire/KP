@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengguna;
+use App\Notifications\NotifikasiiPenerimaan;
 use App\Notifications\NotifikasiWawancara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -17,6 +19,20 @@ class AdminController extends Controller
 
     }
     public function GoToPembuatanDanPenetapanKelas()
+    {
+        return view("pages.admin.PembuatanDanPenetapanKelas",[
+            'title' => "Penetapan"
+        ]);
+
+    }
+    public function GoToBuatKelas()
+    {
+        return view("pages.admin.PembuatanKelas",[
+            'title' => "Penetapan"
+        ]);
+
+    }
+    public function DoBuatKelas()
     {
         return view("pages.admin.PembuatanDanPenetapanKelas",[
             'title' => "Penetapan"
@@ -69,7 +85,7 @@ class AdminController extends Controller
         $data_confirm->pengguna_status_CV = '1';
         $data_confirm->save();
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
-        Notification::send($data_confirm, new NotifikasiWawancara($data_confirm,"www.andre.com"));
+        Notification::send($data_confirm, new NotifikasiWawancara($data_confirm,"www.andre.com",true));
         return view("pages.admin.PenerimaanCVGuru",[
             'title' => "PenerimaanCVGuru",
             'data_guru' => $data_guru
@@ -82,6 +98,7 @@ class AdminController extends Controller
         $data_confirm->pengguna_status_CV = '-1';
         $data_confirm->save();
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
+        Notification::send($data_confirm, new NotifikasiWawancara($data_confirm,"www.andre.com",false));
         return view("pages.admin.PenerimaanCVGuru",[
             'title' => "PenerimaanCVGuru",
             'data_guru' => $data_guru
@@ -93,6 +110,7 @@ class AdminController extends Controller
         $data_confirm->pengguna_status_wawancara = '1';
         $data_confirm->save();
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
+        Notification::send($data_confirm, new NotifikasiiPenerimaan($data_confirm,true));
         return view("pages.admin.PenerimaanWawancaraGuru",[
             'title' => "PenerimaanWawancaraGuru",
             'data_guru' => $data_guru
@@ -104,6 +122,7 @@ class AdminController extends Controller
         $data_confirm->pengguna_status_wawancara = '-1';
         $data_confirm->save();
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
+        Notification::send($data_confirm, new NotifikasiiPenerimaan($data_confirm,false));
         return view("pages.admin.PenerimaanWawancaraGuru",[
             'title' => "PenerimaanWawancaraGuru",
             'data_guru' => $data_guru
@@ -122,5 +141,10 @@ class AdminController extends Controller
             'title' => "LaporanTransaksi"
         ]);
 
+    }
+    public function downloadfileCV(Request $request)
+    {
+        $user = Pengguna::find($request->id);
+        return Storage::disk('local')->download("DataUser/$user->pengguna_CV_KTP");
     }
 }

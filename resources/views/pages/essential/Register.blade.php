@@ -153,7 +153,7 @@
             <input
               id="upload_cv"
               type="file"
-              name="pengguna_CV_KTP"
+              name="pengguna_CV_KTP_"
               class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1 "
               @error('pengguna_CV_KTP') style="border: 2px solid red;" @enderror value="{{ old('pengguna_CV_KTP')}}"
             />

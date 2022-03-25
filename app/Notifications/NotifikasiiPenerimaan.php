@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifikasiWawancara extends Notification
+class NotifikasiiPenerimaan extends Notification
 {
     use Queueable;
 
@@ -16,11 +16,10 @@ class NotifikasiWawancara extends Notification
      *
      * @return void
      */
-    public function __construct($param,$param2,$param3)
+    public function __construct($param,$param2,)
     {
         $this->pengguna=$param;
-        $this->link=$param2;
-        $this->status=$param3;
+        $this->status=$param2;
     }
     /**
      * Get the notification's delivery channels.
@@ -44,16 +43,14 @@ class NotifikasiWawancara extends Notification
         if($this->status==true){
             return (new MailMessage)
                     ->greeting('Halo '.$this->pengguna->pengguna_nama)
-                    ->line('anda berhasil diterima untuk diwawancari berikut adalah link wawancara: '.$this->link)
-                    ->line('semoga anda datang wawancara tepat waktu  ');
+                    ->line('anda berhasil diterima di tempat les zeta kami ')
+                    ->line('dimohon kerja samanya selama bekerja di kami  ');
         }else{
             return (new MailMessage)
                     ->greeting('Halo '.$this->pengguna->pengguna_nama)
                     ->line('mohon maaf anda kami anggap kurang mencukupi untuk menjadi guru di tempat kami ')
                     ->line('semoga beruntung lain kali ');
         }
-
-                    // ->markdown('mail.welcome.index', ['user' => $this->user]);
     }
 
     /**

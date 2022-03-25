@@ -103,21 +103,25 @@ class EssentianController extends Controller
         ]);
 
         $nama_file="kosong";
-        $file = $request->file('pengguna_CV_KTP');
+        $file = $request->file('pengguna_CV_KTP_');
         // dd($file);
         if($file==null){
 
         }else{
             $nama_file = $file->getClientOriginalName();
-            $request->file('pengguna_CV_KTP')->storeAs('DataUser/',$nama_file, 'local');
+            $request->file('pengguna_CV_KTP_')->storeAs('DataUser/',$nama_file, 'local');
         }
 
         $role=$request->input('pengguna_peran');
+        $nama=$nama_file;
+
         // dd($request->all());
-        $result = Pengguna::create($request->all()+ ['pengguna_CV_KTP' => $nama_file]+ ['pengguna_status_CV' => '0']+ ['pengguna_status_wawancara' => '0']);
+
+        $result = Pengguna::create($request->all()+ ['pengguna_CV_KTP' => $nama]+ ['pengguna_status_CV' => '0']+ ['pengguna_status_wawancara' => '0']);
         // dd($result);
         $password = Hash::make($request->pengguna_password);
         $result->pengguna_password=$password;
+        $result->pengguna_CV_KTP=$nama;
         if($role=='1'){
             $result->pengguna_status_CV="0";
             $result->pengguna_status_wawancara="0";
@@ -126,6 +130,7 @@ class EssentianController extends Controller
             $result->pengguna_status_wawancara="1";
         }
         // dd($request->all());
+        // dd($result);
         $result->save();
         Alert::success('Succes', 'Akun Anda berhasil didaftarkan');
         return back();
