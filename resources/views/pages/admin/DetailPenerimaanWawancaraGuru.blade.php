@@ -6,7 +6,7 @@
     <label>Email Guru : {{$data_detail->pengguna_email}}</label><br>
     <label>No.HP Guru : {{$data_detail->pengguna_nohp}}</label><br>
     <label>Alamat Guru : {{$data_detail->pengguna_alamat}}</label><br>
-    <label>Download CV : <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download CV</button></label><br><br>
+    <label>Download CV :  <a href="{{ url("/admin/download/$data_detail->pengguna_id") }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download CV</button></a></label><br><br>
 
     <label>Apakah anda menerima {{$data_detail->pengguna_nama}} sebagai guru resmi ?</label><br>
     <a href="/admin/detailwawancaraguru/{{$data_detail->pengguna_id}}/confirm"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Yes</button></a>

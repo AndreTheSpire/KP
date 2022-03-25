@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','EssentianController@GoToLogin');
 Route::get('login', 'EssentianController@GoToLogin');
+Route::get('logout', 'EssentianController@GoTologout');
 Route::get('dologin', 'EssentianController@DoLogin');
 Route::get('register', 'EssentianController@GoToRegister');
 Route::post('doregister', 'EssentianController@DoRegister');
+
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@GoToAdmin');
     Route::get('/kelas', 'AdminController@GoToPembuatanDanPenetapanKelas');
@@ -37,6 +39,7 @@ Route::prefix('admin')->group(function () {
 });
 Route::prefix('murid')->group(function () {
     Route::get('/', 'MuridController@GotoHome');
+    Route::get('/logout', 'MuridController@GotoHome');
 
 });
 

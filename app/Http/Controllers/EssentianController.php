@@ -13,6 +13,13 @@ class EssentianController extends Controller
     {
         return view("pages.essential.login");
     }
+    public function  GoTologout()
+    {
+        if(Auth::guard('satpam_pengguna')->check()){
+            Auth::guard('satpam_pengguna')->logout();
+        }
+        return view("pages.essential.login");
+    }
     public function GoToRegister()
     {
         return view("pages.essential.Register");
