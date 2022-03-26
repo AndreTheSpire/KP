@@ -10,6 +10,7 @@
   </head>
   <body>
 
+    
     <div class="flex">
       <div class="flex flex-col w-1/4 h-screen px-4 py-8 overflow-y-auto border-r bg-orange-200">
         <img src="{{url('/image/cettatf.png')}}" alt="" class="h-1/8">

@@ -5,7 +5,7 @@
 <div class="flex flex-col w-full h-auto bg-orange-200 ">
     <div class="flex w-full h-auto justify-end items-center">
         <div class="flex flex-row w-full h-auto py-3 justify-center items-center text-2xl font-bold">
-                Tambah Kelas
+                Detail Kelas
         </div>
     </div>
     <div class="flex w-full h-auto justify-end items-center">
@@ -20,21 +20,31 @@
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
                 <div class="md:col-span-6">
                 <label for="kelas_nama" class="text-xl text-black">Nama Kelas</label>
-                <input type="text" name="kelas_nama" id="kelas_nama" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('kelas_nama')}}" />
+                <input type="text" name="kelas_nama" id="kelas_nama" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$dataKelas->kelas_nama}}" />
                 @error("kelas_nama")
                     <div class="text-xs text-red-500">{{$message}}</div>
                 @enderror
                 </div>
                 <div class="md:col-span-6">
                 <label for="kelas_deskripsi"  class="text-xl text-black">Deskripsi</label>
-                <input type="text" name="kelas_deskripsi" id="kelas_deskripsi" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('kelas_deskripsi')}}" />
+                <input type="text" name="kelas_deskripsi" id="kelas_deskripsi" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$dataKelas->kelas_deskripsi}}" />
                 @error("kelas_deskripsi")
                     <div class="text-xs text-red-500">{{$message}}</div>
                 @enderror
                 </div>
+                <div class="md:col-span-6">
+                    <label for="guru_kelas"  class="text-xl text-black">Guru</label>
+                    <select id="peran" name="guru_kelas" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                        <option value="0">Guru 1</option>
+                        <option value="1">Guru 2</option>
+                    </select>
+                    @error("guru_kelas")
+                        <div class="text-xs text-red-500">{{$message}}</div>
+                    @enderror
+                </div>
                 <div class="md:col-span-3">
                 <label for="waktu_mulai"  class="text-xl text-black">Waktu Mulai</label>
-                <input type="datetime-local" name="waktu_mulai" id="waktu_mulai" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('waktu_mulai')}}" />
+                <input type="datetime-local" name="waktu_mulai" id="waktu_mulai" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$dataKelas->waktu_mulai}}" />
                 @error("waktu_mulai")
                     <div class="text-xs text-red-500">{{$message}}</div>
                 @enderror
@@ -42,7 +52,7 @@
 
                 <div class="md:col-span-3">
                 <label for="waktu_selesai"  class="text-xl text-black">Waktu Berakhir </label>
-                <input type="datetime-local" name="waktu_selesai" id="waktu_selesai" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('waktu_selesai')}}" placeholder="" />
+                <input type="datetime-local" name="waktu_selesai" id="waktu_selesai" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$dataKelas->waktu_selesai}}" placeholder="" />
                 @error("waktu_selesai")
                     <div class="text-xs text-red-500">{{$message}}</div>
                 @enderror

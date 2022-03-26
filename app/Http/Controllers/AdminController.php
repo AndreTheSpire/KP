@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Pengguna;
 use App\Notifications\NotifikasiiPenerimaan;
 use App\Notifications\NotifikasiWawancara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -20,23 +22,69 @@ class AdminController extends Controller
     }
     public function GoToPembuatanDanPenetapanKelas()
     {
+        $dataKelas = Kelas::get();
         return view("pages.admin.PembuatanDanPenetapanKelas",[
-            'title' => "Penetapan"
+            'title' => "Penetapan",
+            "dataKelas" => $dataKelas,
         ]);
 
+    }
+    public function GoDetailKelas(Request $request)
+    {
+        $dataKelas = Kelas::find($request->id);
+        $params['dataKelas'] = $dataKelas;
+        $params['title']="Penetapan";
+        return view('pages.admin.DetailKelas', $params);
     }
     public function GoToBuatKelas()
     {
         return view("pages.admin.PembuatanKelas",[
-            'title' => "Penetapan"
+            'title' => "Penetapan",
         ]);
 
     }
-    public function DoBuatKelas()
+    public function DoBuatKelas(Request $request)
     {
-        return view("pages.admin.PembuatanDanPenetapanKelas",[
-            'title' => "Penetapan"
+        /**
+         * Kodingan kodingan untuk kelas code
+         */
+        $request->validate([
+            'kelas_nama'=>'required',
+            'kelas_deskripsi'=>'required',
+            'waktu_mulai'=>'required',
+            'waktu_selesai'=>'required|after:waktu_mulai',
+        ],[
+            'kelas_nama.required'=>'kolom ini tidak boleh kosong',
+            'kelas_deskripsi.required'=>'kolom ini tidak boleh kosong',
+            'waktu_mulai.required'=>'kolom ini tidak boleh kosong',
+            'waktu_selesai.required'=>'kolom ini tidak boleh kosong',
+            'waktu_selesai.after'=>'kolom ini tidak boleh sebelum waktu mulai',
         ]);
+
+        $length = 6;
+        $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if ($length < 1) {
+            throw new \RangeException("Length must be a positive integer");
+        }
+        $pieces = [];
+        $max = mb_strlen($keyspace, '8bit') - 1;
+        for ($i = 0; $i < $length; ++$i) {
+            $pieces[] = $keyspace[random_int(0, $max)];
+        }
+        $kelas_kode = implode('', $pieces);
+
+
+        $pengguna_id =0;
+        $kelas_nama = explode(' ', $request->kelas_nama);
+        $hasil = Kelas::create($request->all() + ['pengguna_id' => $pengguna_id, 'kelas_kode' => $kelas_kode, 'status' => true]);
+        if ($hasil) {
+            Alert::success('Succes', 'berhasil menambah kelas');
+            return back();
+        } else {
+            Alert::success('Succes', 'gagal menambah kelas');
+            return back();
+        }
+
 
     }
     public function GoToPenerimaanCVGuru()
@@ -147,4 +195,5 @@ class AdminController extends Controller
         $user = Pengguna::find($request->id);
         return Storage::disk('local')->download("DataUser/$user->pengguna_CV_KTP");
     }
+
 }
