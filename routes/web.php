@@ -23,8 +23,9 @@ Route::post('doregister', 'EssentianController@DoRegister');
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@GoToAdmin');
     Route::get('/kelas', 'AdminController@GoToPembuatanDanPenetapanKelas');
-    Route::get('/kelas/{id}', 'AdminController@GoDetailKelas');
     Route::get('/kelas/buatkelas', 'AdminController@GoToBuatKelas');
+    Route::get('/kelas/{id}', 'AdminController@GoDetailKelas');
+    Route::post('/kelas/doupdatekelas', 'AdminController@DoUpdatekelas');
     Route::post('/kelas/dobuatkelas', 'AdminController@DoBuatKelas');
     Route::get('/guruCV', 'AdminController@GoToPenerimaanCVGuru');
     Route::get('/guruWawancara', 'AdminController@GoToPenerimaanWawancaraGuru');

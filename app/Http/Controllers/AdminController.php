@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Pengguna;
 use App\Notifications\NotifikasiiPenerimaan;
@@ -29,13 +30,6 @@ class AdminController extends Controller
         ]);
 
     }
-    public function GoDetailKelas(Request $request)
-    {
-        $dataKelas = Kelas::find($request->id);
-        $params['dataKelas'] = $dataKelas;
-        $params['title']="Penetapan";
-        return view('pages.admin.DetailKelas', $params);
-    }
     public function GoToBuatKelas()
     {
         return view("pages.admin.PembuatanKelas",[
@@ -43,6 +37,48 @@ class AdminController extends Controller
         ]);
 
     }
+    public function DoUpdatekelas(Request $request)
+    {
+        $request->validate([
+            'kelas_nama'=>'required',
+            'kelas_deskripsi'=>'required',
+            'waktu_mulai'=>'required',
+            'waktu_selesai'=>'required|after:waktu_mulai',
+        ],[
+            'kelas_nama.required'=>'kolom ini tidak boleh kosong',
+            'kelas_deskripsi.required'=>'kolom ini tidak boleh kosong',
+            'waktu_mulai.required'=>'kolom ini tidak boleh kosong',
+            'waktu_selesai.required'=>'kolom ini tidak boleh kosong',
+            'waktu_selesai.after'=>'kolom ini tidak boleh sebelum waktu mulai',
+        ]);
+
+        $id=$request->id_kelas;
+        $kelasupdate=Kelas::find($id);
+        $kelasupdate->kelas_nama=$request->kelas_nama;
+        $kelasupdate->pengguna_id=$request->guru_kelas;
+        $kelasupdate->waktu_mulai=$request->waktu_mulai;
+        $kelasupdate->waktu_selesai=$request->waktu_selesai;
+        $kelasupdate->save();
+        $pengguna_id =0;
+        if ($kelasupdate) {
+            Alert::success('Succes', 'berhasil mengupdate kelas');
+            return back();
+        } else {
+            Alert::success('Succes', 'gagal mengupdate kelas');
+            return back();
+        }
+
+    }
+    public function GoDetailKelas(Request $request)
+    {
+        $dataKelas = Kelas::find($request->id);
+        $dataGuru = Guru::get();
+        $params['dataKelas'] = $dataKelas;
+        $params['dataGuru'] = $dataGuru;
+        $params['title']="Penetapan";
+        return view('pages.admin.DetailKelas', $params);
+    }
+
     public function DoBuatKelas(Request $request)
     {
         /**
@@ -157,6 +193,11 @@ class AdminController extends Controller
         $data_confirm = Pengguna::find($req->id);
         $data_confirm->pengguna_status_wawancara = '1';
         $data_confirm->save();
+        $hasil=Guru::create([
+            'kelas_id'=>0,
+            'pengguna_id'=>$req->id,
+            'jeniskelas_id'=>0,
+        ]);
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
         Notification::send($data_confirm, new NotifikasiiPenerimaan($data_confirm,true));
         return view("pages.admin.PenerimaanWawancaraGuru",[
@@ -169,6 +210,7 @@ class AdminController extends Controller
         $data_confirm = Pengguna::find($req->id);
         $data_confirm->pengguna_status_wawancara = '-1';
         $data_confirm->save();
+
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
         Notification::send($data_confirm, new NotifikasiiPenerimaan($data_confirm,false));
         return view("pages.admin.PenerimaanWawancaraGuru",[
