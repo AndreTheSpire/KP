@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\KategoriKelas;
 use App\Models\Kelas;
+use App\Models\Pelajaran;
 use App\Models\Pengguna;
 use App\Notifications\NotifikasiiPenerimaan;
 use App\Notifications\NotifikasiWawancara;
@@ -18,6 +20,70 @@ class AdminController extends Controller
     {
         return view("pages.admin.home",[
             'title' => "Home"
+        ]);
+
+    }
+    public function GoToPelajaranKelas()
+    {
+        $dataPelajaran = Pelajaran::get();
+        return view("pages.admin.PelajaranKelas",[
+            'title' => "pelajaran",
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+
+    }
+    public function DoTambahPelajaran(Request $request)
+    {
+        /**
+         * Kodingan kodingan untuk kelas code
+         */
+        $request->validate([
+            'pelajaran_nama'=>'required',
+        ],[
+            'pelajaran_nama.required'=>'kolom ini tidak boleh kosong',
+        ]);
+
+
+        $hasil = Pelajaran::create($request->all());
+        if ($hasil) {
+            Alert::success('Succes', 'berhasil menambah pelajaran kelas');
+            return back();
+        } else {
+            Alert::success('Succes', 'gagal menambah pelajaran kelas');
+            return back();
+        }
+
+    }
+    public function DoTambahKategori(Request $request)
+    {
+        /**
+         * Kodingan kodingan untuk kelas code
+         */
+        $request->validate([
+            'kategorikelas_nama'=>'required',
+        ],[
+            'kategorikelas_nama.required'=>'kolom ini tidak boleh kosong',
+        ]);
+
+
+        $hasil = KategoriKelas::create($request->all());
+        if ($hasil) {
+            Alert::success('Succes', 'berhasil menambah Kategori Pelajaran');
+            return back();
+        } else {
+            Alert::success('Succes', 'gagal menambah Kategori Pelajaran');
+            return back();
+        }
+
+    }
+    public function GoToKategoriKelas()
+    {
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        return view("pages.admin.KategoriKelas",[
+            'title' => "kategori",
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
         ]);
 
     }

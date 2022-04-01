@@ -23,6 +23,10 @@ Route::post('doregister', 'EssentianController@DoRegister');
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@GoToAdmin');
     Route::get('/kelas', 'AdminController@GoToPembuatanDanPenetapanKelas');
+    Route::get('/pelajaran', 'AdminController@GoToPelajaranKelas');
+    Route::get('/kategori', 'AdminController@GoToKategoriKelas');
+    Route::post('/tambahpelajaran', 'AdminController@DoTambahPelajaran');
+    Route::post('/tambahkategori', 'AdminController@DoTambahKategori');
     Route::get('/kelas/buatkelas', 'AdminController@GoToBuatKelas');
     Route::get('/kelas/{id}', 'AdminController@GoDetailKelas');
     Route::post('/kelas/doupdatekelas', 'AdminController@DoUpdatekelas');
