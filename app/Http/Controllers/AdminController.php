@@ -98,8 +98,12 @@ class AdminController extends Controller
     }
     public function GoToBuatKelas()
     {
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
         return view("pages.admin.PembuatanKelas",[
             'title' => "Penetapan",
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
         ]);
 
     }

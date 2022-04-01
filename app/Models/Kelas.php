@@ -12,7 +12,7 @@ class Kelas extends Model
     use HasFactory;
     use SoftDeletes; // deleted_at
     use Notifiable;
-    
+
     protected $connection = "mysql";
     protected $table      = "kelas";
     protected $primaryKey = "kelas_id";
@@ -21,6 +21,8 @@ class Kelas extends Model
 
     protected $fillable = [
         'pengguna_id',
+        'pelajaran_id',
+        'kategorikelas_id',
         'kelas_kode',
         'kelas_nama',
         'kelas_deskripsi',
