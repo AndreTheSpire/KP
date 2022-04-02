@@ -75,6 +75,7 @@
                 </div>
                 <div class="md:col-span-3">
                 <label for="waktu_mulai"  class="text-xl text-black">Waktu Mulai</label>
+                <label>{{$dataKelas->waktu_mulai}}</label>
                 <input type="datetime-local" name="waktu_mulai" id="waktu_mulai" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$dataKelas->waktu_mulai}}" />
                 @error("waktu_mulai")
                     <div class="text-xs text-red-500">{{$message}}</div>
