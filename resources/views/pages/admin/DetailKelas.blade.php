@@ -46,6 +46,33 @@
                         <div class="text-xs text-red-500">{{$message}}</div>
                     @enderror
                 </div>
+                <div class="md:col-span-6">
+                    <label for="pelajaran_id"  class="text-xl text-black">Pelajaran</label>
+                    <select id="pelajaran_id" name="pelajaran_id" disabled="disabled" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" >
+
+                        <option value="{{$dataKelas->pelajaran_id}}">{{$dataKelas->Pelajaran->pelajaran_nama}}</option>
+
+
+
+                    </select>
+                    @error("pelajaran_id")
+                        <div class="text-xs text-red-500">{{$message}}</div>
+                    @enderror
+                </div>
+                <div class="md:col-span-6">
+                    <label for="kategorikelas_id"  class="text-xl text-black">Kategori</label>
+                    <select id="kategorikelas_id" name="kategorikelas_id" disabled="disabled" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                        {{-- @foreach ($dataKategori as $d)
+                        <option value="{{$d->kategorikelas_id}}">{{$d->kategorikelas_nama}}</option>
+                        @endforeach --}}
+                        <option value="{{$dataKelas->kategorikelas_id}}">{{$dataKelas->Kategori->kategorikelas_nama}}</option>
+
+
+                    </select>
+                    @error("kategorikelas_id")
+                        <div class="text-xs text-red-500">{{$message}}</div>
+                    @enderror
+                </div>
                 <div class="md:col-span-3">
                 <label for="waktu_mulai"  class="text-xl text-black">Waktu Mulai</label>
                 <input type="datetime-local" name="waktu_mulai" id="waktu_mulai" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$dataKelas->waktu_mulai}}" />

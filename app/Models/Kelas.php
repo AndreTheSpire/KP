@@ -35,6 +35,14 @@ class Kelas extends Model
     {
         return $this->belongsTo(Pengguna::class,'pengguna_id','pengguna_id');
     }
+    public function Kategori()
+    {
+        return $this->belongsTo(KategoriKelas::class,'kategorikelas_id','kategorikelas_id');
+    }
+    public function Pelajaran()
+    {
+        return $this->belongsTo(Pelajaran::class,'pelajaran_id','pelajaran_id');
+    }
 
     public function Murid()
     {
