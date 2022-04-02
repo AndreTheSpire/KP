@@ -142,7 +142,7 @@ class AdminController extends Controller
     public function GoDetailKelas(Request $request)
     {
         $dataKelas = Kelas::find($request->id);
-        $dataGuru = Guru::get();
+        $dataGuru = Guru::where('pelajaran_id','=',$dataKelas->pelajaran_id)->get();;
         $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
         $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
         // dd($waktuMulaiEdited);
