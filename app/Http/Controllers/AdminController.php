@@ -205,9 +205,10 @@ class AdminController extends Controller
     public function GoToPenerimaanWawancaraGuru()
     {
         $data_guru = Pengguna::where('pengguna_status_CV','=','1')->where('pengguna_status_wawancara','=','0')->get();
+
         return view("pages.admin.PenerimaanWawancaraGuru",[
             'title' => "PenerimaanWawancaraGuru",
-            'data_guru' => $data_guru
+            'data_guru' => $data_guru,
         ]);
 
     }
@@ -215,10 +216,12 @@ class AdminController extends Controller
     {
         // dd($req->id);
         $data_detail = Pengguna::find($req->id);
+        $data_pelajaran= Pelajaran::get();
         // dd($data_detail);
         return view("pages.admin.DetailPenerimaanWawancaraGuru",[
             'title' => "DetailPenerimaanGuru",
-            "data_detail" => $data_detail
+            "data_detail" => $data_detail,
+            'data_pelajaran'=>$data_pelajaran
         ]);
 
     }
@@ -266,7 +269,7 @@ class AdminController extends Controller
         $hasil=Guru::create([
             'kelas_id'=>0,
             'pengguna_id'=>$req->id,
-            'jeniskelas_id'=>0,
+            'pelajaran_id'=>$req->pelajaran_id,
         ]);
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
         Notification::send($data_confirm, new NotifikasiiPenerimaan($data_confirm,true));

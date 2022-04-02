@@ -17,7 +17,7 @@ class CreateGuruTable extends Migration
             $table->increments("guru_id");
             $table->foreignId("kelas_id");
             $table->foreignId("pengguna_id");
-            $table->foreignId("jeniskelas_id");
+            $table->foreignId("pelajaran_id");
             $table->timestamps();
             $table->softDeletes();
         });

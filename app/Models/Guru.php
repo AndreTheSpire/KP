@@ -18,6 +18,7 @@ class Guru extends Pivot
     protected $fillable = [
         'kelas_id',
         'pengguna_id',
+        'pelajaran_id',
         'jeniskelas_id'
     ];
 
