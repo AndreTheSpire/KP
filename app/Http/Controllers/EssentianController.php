@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KategoriKelas;
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -141,6 +142,12 @@ class EssentianController extends Controller
         $result->save();
         Alert::success('Succes', 'Akun Anda berhasil didaftarkan');
         return back();
+    }
+    public function storeKategori(Request $request)
+    {
+        $Kategori = KategoriKelas::where('pelajaran_id','=',$request->id)->get();
+
+        return json_encode($Kategori);
     }
 
 }

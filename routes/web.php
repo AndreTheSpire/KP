@@ -19,6 +19,8 @@ Route::get('logout', 'EssentianController@GoTologout');
 Route::get('dologin', 'EssentianController@DoLogin');
 Route::get('register', 'EssentianController@GoToRegister');
 Route::post('doregister', 'EssentianController@DoRegister');
+Route::get('dependantkategori/{id}', 'EssentianController@storeKategori');
+
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@GoToAdmin');

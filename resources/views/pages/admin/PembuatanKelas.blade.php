@@ -34,7 +34,7 @@
                 </div>
                 <div class="md:col-span-6">
                     <label for="pelajaran_id"  class="text-xl text-black">Pelajaran</label>
-                    <select id="pelajaran_id" name="pelajaran_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+                    <select id="pelajaran_id" name="pelajaran_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" onchange="getIndex()">
                         @foreach ($dataPelajaran as $d)
                         <option value="{{$d->pelajaran_id}}">{{$d->pelajaran_nama}}</option>
                         @endforeach
@@ -48,9 +48,9 @@
                 <div class="md:col-span-6">
                     <label for="kategorikelas_id"  class="text-xl text-black">Kategori</label>
                     <select id="kategorikelas_id" name="kategorikelas_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
-                        @foreach ($dataKategori as $d)
+                        {{-- @foreach ($dataKategori as $d)
                         <option value="{{$d->kategorikelas_id}}">{{$d->kategorikelas_nama}}</option>
-                        @endforeach
+                        @endforeach --}}
 
 
                     </select>
@@ -108,6 +108,39 @@
           border-color: rgba(37, 99, 235, 1);
         }
         </style>
+    <script>
+
+            // $('#pelajaran_id').on('change', function () {
+            //     console.log("masuk gak tuh!!!");
+            //     getIndex();
+            // });
+
+        const getIndex= ()=>{
+            console.log("masuk sini oii");
+            var e = document.getElementById("pelajaran_id");
+	        var result = e.options[e.selectedIndex].value;
+        $.ajax({
+            type : 'get',
+            url : '/dependantkategori/'+result,
+            success : function(data){
+                $('#kategorikelas_id').empty();
+                data = JSON.parse(data);
+                // console.log(data);
+                for (i = 0; i < data.length; i++) {
+                console.log(data[i].kategorikelas_nama);
+                $('#kategorikelas_id').append(new Option(data[i].kategorikelas_nama, data[i].kategorikelas_id))
+                }
+                // $('#kategorikelas_id').empty();
+                // console.log(data);
+                // $(data).each(function(x,y){
+                //     console.log(y);
+                //     $('#kategorikelas_id').append(new Option(y.kategorikelas_nama, y.kategorikelas_id))
+
+                // });
+            },
+        });
+    }
+        </script>
 
 
 @endsection
