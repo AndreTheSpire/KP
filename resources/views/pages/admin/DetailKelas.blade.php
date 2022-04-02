@@ -52,8 +52,6 @@
 
                         <option value="{{$dataKelas->pelajaran_id}}">{{$dataKelas->Pelajaran->pelajaran_nama}}</option>
 
-
-
                     </select>
                     @error("pelajaran_id")
                         <div class="text-xs text-red-500">{{$message}}</div>
@@ -75,8 +73,7 @@
                 </div>
                 <div class="md:col-span-3">
                 <label for="waktu_mulai"  class="text-xl text-black">Waktu Mulai</label>
-                <label>{{$dataKelas->waktu_mulai}}</label>
-                <input type="datetime-local" name="waktu_mulai" id="waktu_mulai" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$dataKelas->waktu_mulai}}" />
+                <input type="datetime-local" name="waktu_mulai" id="waktu_mulai" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$waktuMulaiEdited}}" />
                 @error("waktu_mulai")
                     <div class="text-xs text-red-500">{{$message}}</div>
                 @enderror
@@ -84,7 +81,7 @@
 
                 <div class="md:col-span-3">
                 <label for="waktu_selesai"  class="text-xl text-black">Waktu Berakhir </label>
-                <input type="datetime-local" name="waktu_selesai" id="waktu_selesai" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$dataKelas->waktu_selesai}}" placeholder="" />
+                <input type="datetime-local" name="waktu_selesai" id="waktu_selesai" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{$waktuSelesaiEdited}}" placeholder="" />
                 @error("waktu_selesai")
                     <div class="text-xs text-red-500">{{$message}}</div>
                 @enderror

@@ -143,7 +143,13 @@ class AdminController extends Controller
     {
         $dataKelas = Kelas::find($request->id);
         $dataGuru = Guru::get();
+        $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
+        $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
+        // dd($waktuMulaiEdited);
+        // dd($waktuSelesaiEdited);
         $params['dataKelas'] = $dataKelas;
+        $params['waktuMulaiEdited'] = $waktuMulaiEdited;
+        $params['waktuSelesaiEdited'] = $waktuSelesaiEdited;
         $params['dataGuru'] = $dataGuru;
         $params['title']="Penetapan";
         return view('pages.admin.DetailKelas', $params);
