@@ -35,6 +35,7 @@
                 <div class="md:col-span-6">
                     <label for="pelajaran_id"  class="text-xl text-black">Pelajaran</label>
                     <select id="pelajaran_id" name="pelajaran_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" onchange="getIndex()">
+                        <option value="0">Pilih Pelajaran</option>
                         @foreach ($dataPelajaran as $d)
                         <option value="{{$d->pelajaran_id}}">{{$d->pelajaran_nama}}</option>
                         @endforeach
