@@ -46,6 +46,17 @@
                     @enderror
                 </div>
                 <div class="md:col-span-6">
+                    <label for="guru_kelas"  class="text-xl text-black">Guru</label>
+                    <select id="guru_kelas" name="guru_kelas" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
+
+
+
+                    </select>
+                    @error("guru_kelas")
+                        <div class="text-xs text-red-500">{{$message}}</div>
+                    @enderror
+                </div>
+                <div class="md:col-span-6">
                     <label for="kategorikelas_id"  class="text-xl text-black">Kategori</label>
                     <select id="kategorikelas_id" name="kategorikelas_id" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
                         {{-- @foreach ($dataKategori as $d)
@@ -129,6 +140,26 @@
                 for (i = 0; i < data.length; i++) {
                 console.log(data[i].kategorikelas_nama);
                 $('#kategorikelas_id').append(new Option(data[i].kategorikelas_nama, data[i].kategorikelas_id))
+                }
+                // $('#kategorikelas_id').empty();
+                // console.log(data);
+                // $(data).each(function(x,y){
+                //     console.log(y);
+                //     $('#kategorikelas_id').append(new Option(y.kategorikelas_nama, y.kategorikelas_id))
+
+                // });
+            },
+        });
+        $.ajax({
+            type : 'get',
+            url : '/dependantguru/'+result,
+            success : function(data){
+                $('#guru_kelas').empty();
+                data = JSON.parse(data);
+                 console.log(data);
+                for (i = 0; i < data.length; i++) {
+                console.log(data[i].punya_user.pengguna_nama);
+                $('#guru_kelas').append(new Option(data[i].punya_user.pengguna_nama, data[i].punya_user.pengguna_id))
                 }
                 // $('#kategorikelas_id').empty();
                 // console.log(data);

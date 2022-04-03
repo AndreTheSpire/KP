@@ -7,11 +7,20 @@
     <div class="flex flex-col md:flex-row gap-2">
         <div class="flex flex-row flex-wrap my-2 m-1 lg:mx-auto">
             @foreach ($dataKelas as $kelas)
+                @php
+                    if($kelas->pengguna_id!=0){
+                        $penggunanama=$kelas->Guru->pengguna_nama;
+                    }else{
+                        $penggunanama="belum ada guru";
+                    }
+
+                @endphp
                 @include('components.kelasCard',
                 [
                     'kelas_id'=>$kelas->kelas_id,
                     'kelas_nama'=>$kelas->kelas_nama,
                     'kelas_deskripsi'=>$kelas->kelas_deskripsi,
+                    'kelas_guru'=>$penggunanama,
                     "waktuAwal"=>date('D H:i', strtotime($kelas->waktu_mulai)),
                     "waktuAkhir"=>date('D H:i', strtotime($kelas->waktu_selesai)),
                 ])

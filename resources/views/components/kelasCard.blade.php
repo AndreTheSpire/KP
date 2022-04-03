@@ -7,7 +7,7 @@
                 </div>
                 <div class="text-center px-2 py-4">
                     <h2 class="text-gray-800 text-3xl font-bold">{{$kelas_nama}}</h2>
-                    <p class="text-gray-400 mt-2 mb-2">zonk</p>
+                    <p class="text-gray-400 mt-2 mb-2">{{$kelas_guru}}</p>
                     <p class="text-black mt-2 mb-2">{{$waktuAwal ." - ". $waktuAkhir}}</p>
                     <hr>
                     <p class="mt-2 text-gray-600">{{$kelas_deskripsi}}</p>

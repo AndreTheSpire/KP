@@ -20,6 +20,7 @@ Route::get('dologin', 'EssentianController@DoLogin');
 Route::get('register', 'EssentianController@GoToRegister');
 Route::post('doregister', 'EssentianController@DoRegister');
 Route::get('dependantkategori/{id}', 'EssentianController@storeKategori');
+Route::get('dependantguru/{id}', 'EssentianController@storeGuru');
 
 
 Route::prefix('admin')->group(function () {

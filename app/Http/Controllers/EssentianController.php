@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
@@ -146,8 +147,12 @@ class EssentianController extends Controller
     public function storeKategori(Request $request)
     {
         $Kategori = KategoriKelas::where('pelajaran_id','=',$request->id)->get();
-
         return json_encode($Kategori);
+    }
+    public function storeGuru(Request $request)
+    {
+        $guru = Guru::where('pelajaran_id','=',$request->id)->with('punyaUser')->get();
+        return json_encode($guru);
     }
 
 }

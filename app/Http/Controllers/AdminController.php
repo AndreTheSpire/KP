@@ -186,7 +186,7 @@ class AdminController extends Controller
         $kelas_kode = implode('', $pieces);
 
 
-        $pengguna_id =0;
+        $pengguna_id =$request->guru_kelas;
         $kelas_nama = explode(' ', $request->kelas_nama);
         $hasil = Kelas::create($request->all() + ['pengguna_id' => $pengguna_id, 'kelas_kode' => $kelas_kode, 'status' => true]);
         if ($hasil) {
