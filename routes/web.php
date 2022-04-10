@@ -48,6 +48,7 @@ Route::prefix('admin')->group(function () {
 });
 Route::prefix('murid')->group(function () {
     Route::get('/', 'MuridController@GotoHome');
+    Route::post('/dodaftarmurid', 'MuridController@GodaftarMurid');
     Route::get('/logout', 'MuridController@GotoHome');
 
 });
