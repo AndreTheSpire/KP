@@ -16,11 +16,12 @@ class NotifikasiWawancara extends Notification
      *
      * @return void
      */
-    public function __construct($param,$param2,$param3)
+    public function __construct($param,$param2,$param3,$param4)
     {
         $this->pengguna=$param;
         $this->link=$param2;
         $this->status=$param3;
+        $this->tanggal=$param4;
     }
     /**
      * Get the notification's delivery channels.
@@ -44,12 +45,14 @@ class NotifikasiWawancara extends Notification
         if($this->status==true){
             return (new MailMessage)
                     ->greeting('Halo '.$this->pengguna->pengguna_nama)
-                    ->line('anda berhasil diterima untuk diwawancari berikut adalah link wawancara: '.$this->link)
+                    ->line('Selamat anda diterima untuk diwawancarai di bimbel kami. Berikut adalah detail dari wawancara : ')
+                    ->line('Tanggal dan Waktu Wawancara : '.$this->tanggal)
+                    ->line('Link Wawancara : '.$this->link)
                     ->line('semoga anda datang wawancara tepat waktu  ');
         }else{
             return (new MailMessage)
                     ->greeting('Halo '.$this->pengguna->pengguna_nama)
-                    ->line('mohon maaf anda kami anggap kurang mencukupi untuk menjadi guru di tempat kami ')
+                    ->line('Mohon maaf setelah kami melakukan review, anda kami anggap kurang mencukupi untuk menjadi guru di tempat kami ')
                     ->line('semoga beruntung lain kali ');
         }
 

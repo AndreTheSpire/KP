@@ -244,11 +244,15 @@ class AdminController extends Controller
     }
     public function ConfirmCVGuru(Request $req)
     {
+        $waktuWawancara = date('d-m-Y\TH:i', strtotime($req->waktu_wawancara));
+        $splitedWaktu = explode("T", $waktuWawancara);
+        $gabungSplited = $splitedWaktu[0]." ".$splitedWaktu[1];
+        // dd($waktuWawancara);
         $data_confirm = Pengguna::find($req->id);
         $data_confirm->pengguna_status_CV = '1';
         $data_confirm->save();
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
-        Notification::send($data_confirm, new NotifikasiWawancara($data_confirm,$req->zoom_link,true));
+        Notification::send($data_confirm, new NotifikasiWawancara($data_confirm,$req->zoom_link,true,$gabungSplited));
         return view("pages.admin.PenerimaanCVGuru",[
             'title' => "PenerimaanCVGuru",
             'data_guru' => $data_guru
@@ -261,7 +265,7 @@ class AdminController extends Controller
         $data_confirm->pengguna_status_CV = '-1';
         $data_confirm->save();
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
-        Notification::send($data_confirm, new NotifikasiWawancara($data_confirm,"www.andre.com",false));
+        Notification::send($data_confirm, new NotifikasiWawancara($data_confirm,"www.andre.com",false,$req->waktu_wawancara));
         return view("pages.admin.PenerimaanCVGuru",[
             'title' => "PenerimaanCVGuru",
             'data_guru' => $data_guru

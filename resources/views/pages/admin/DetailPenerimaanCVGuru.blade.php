@@ -89,7 +89,11 @@
                         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
                             <div class="md:col-span-6">
                                 <label for="zoom_link">Link Zoom</label>
-                                <input type="text" name="zoom_link" id="zoom_link" class="h-10 border border-neutral-400 mt-1 rounded px-4 w-full bg-gray-50" value="{{old('zoom_link')}}" />
+                                <input type="text" name="zoom_link" id="zoom_link" class="h-10 border border-neutral-400  mt-1 rounded px-4 w-full bg-gray-50" value="{{old('zoom_link')}}" />
+                            </div>
+                            <div class="md:col-span-6">
+                                <label for="waktu_wawancara">Waktu Wawancara</label>
+                                <input type="datetime-local" name="waktu_wawancara" id="waktu_wawancara" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('waktu_wawancara')}}" placeholder="" />
                             </div>
                             <div class="inline-flex items-end">
                                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mx-4 rounded">Submit</button>
