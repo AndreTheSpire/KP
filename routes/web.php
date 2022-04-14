@@ -29,7 +29,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/pelajaran', 'AdminController@GoToPelajaranKelas');
     Route::get('/kategori', 'AdminController@GoToKategoriKelas');
     Route::post('/tambahpelajaran', 'AdminController@DoTambahPelajaran');
+    Route::get('/{id}/deletepelajaran','AdminController@DoDeletePelajaran');
     Route::post('/tambahkategori', 'AdminController@DoTambahKategori');
+    Route::get('/{id}/deletekategori','AdminController@DoDeleteKategori');
     Route::get('/kelas/buatkelas', 'AdminController@GoToBuatKelas');
     Route::get('/kelas/{id}', 'AdminController@GoDetailKelas');
     Route::post('/kelas/doupdatekelas', 'AdminController@DoUpdatekelas');

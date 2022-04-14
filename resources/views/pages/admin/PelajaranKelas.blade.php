@@ -10,6 +10,8 @@
             <tr >
                 <th class="border border-slate-600 text-center w-full">ID Pelajaran</th>
                 <th class="border border-slate-600 text-center w-full">Nama Pelajaran</th>
+                <th class="border border-slate-600 text-center w-full">Edit</th>
+                <th class="border border-slate-600 text-center w-full">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +19,8 @@
                 <tr>
                     <td class="border border-slate-600 text-center w-full">{{$d->pelajaran_id}}</td>
                     <td class="border border-slate-600 text-center w-full">{{$d->pelajaran_nama}}</td>
+                    <td class="border border-slate-600 text-center w-full"><a href="/admin/{{$d->pelajaran_id}}/edit"><button>Edit</button></a></td>
+                    <td class="border border-slate-600 text-center w-full"><a href="/admin/{{$d->pelajaran_id}}/deletepelajaran"><button>Delete</button></a></td>
                 </tr>
             @endforeach
         </tbody>

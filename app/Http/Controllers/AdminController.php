@@ -32,6 +32,7 @@ class AdminController extends Controller
         ]);
 
     }
+
     public function DoTambahPelajaran(Request $request)
     {
         /**
@@ -54,6 +55,23 @@ class AdminController extends Controller
         }
 
     }
+
+    public function DoDeletePelajaran($id)
+    {
+        try {
+            $check = Pelajaran::where('pelajaran_id',$id)->delete();
+            $check1 = KategoriKelas::where('pelajaran_id',$id)->delete();
+        }
+        catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
+        $dataPelajaran = Pelajaran::get();
+        return view("pages.admin.PelajaranKelas",[
+            'title' => "pelajaran",
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+
     public function DoTambahKategori(Request $request)
     {
         /**
@@ -76,6 +94,24 @@ class AdminController extends Controller
         }
 
     }
+
+    public function DoDeleteKategori($id)
+    {
+        try {
+            $check = KategoriKelas::where('kategorikelas_id',$id)->delete();
+        }
+        catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        return view("pages.admin.KategoriKelas",[
+            'title' => "kategori",
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+
     public function GoToKategoriKelas()
     {
         $dataPelajaran = Pelajaran::get();

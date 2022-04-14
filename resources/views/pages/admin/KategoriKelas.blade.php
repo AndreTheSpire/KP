@@ -14,6 +14,8 @@
         <tr >
             <th class="border border-slate-600 text-center w-full">ID Kategori</th>
             <th class="border border-slate-600 text-center w-full">Nama Kategori</th>
+            <th class="border border-slate-600 text-center w-full">Edit</th>
+            <th class="border border-slate-600 text-center w-full">Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +24,8 @@
         <tr>
             <td class="border border-slate-600 text-center w-full">{{$k->kategorikelas_id}}</td>
             <td class="border border-slate-600 text-center w-full">{{$k->kategorikelas_nama}}</td>
+            <td class="border border-slate-600 text-center w-full"><a href="/admin/{{$k->kategorikelas_id}}/edit"><button>Edit</button></a></td>
+                    <td class="border border-slate-600 text-center w-full"><a href="/admin/{{$k->kategorikelas_id}}/deletekategori"><button>Delete</button></a></td>
         </tr>
         @else
 
