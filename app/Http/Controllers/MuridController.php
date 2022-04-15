@@ -23,6 +23,21 @@ class MuridController extends Controller
             "datakelasmurid" => $datakelasmurid,
         ]);
     }
+    public function GotoPembayaran()
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->get();
+        $dataPelajaran = Pelajaran::get();
+
+        return view("pages.Murid.pembayaran",[
+            "datapendaftaran" => $datapendaftaran,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+    public function GotoDetailPembayaran()
+    {
+
+    }
     public function GodaftarMurid(Request $request)
     {
         // $request->validate([

@@ -50,6 +50,8 @@ Route::prefix('admin')->group(function () {
 });
 Route::prefix('murid')->group(function () {
     Route::get('/', 'MuridController@GotoHome');
+    Route::get('/pembayaran', 'MuridController@GotoPembayaran');
+    Route::get('/detailpembayaran/{id}', 'MuridController@GotoDetailPembayaran');
     Route::post('/dodaftarmurid', 'MuridController@GodaftarMurid');
     Route::get('/logout', 'MuridController@GotoHome');
 

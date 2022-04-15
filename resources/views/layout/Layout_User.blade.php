@@ -17,7 +17,7 @@
             <div class="z-20">
                 @yield('navbar')
             </div>
-            <div class="flex bg-ocean-light h-screen my-5">
+            <div class="flex bg-ocean-light dark:bg-ocean-dark h-screen my-5">
                 <div class="flex flex-col w-1/4 h-3/4 px-4 py-8 overflow-y-auto border-r bg-stone-50 rounded-lg ">
                     <div class="flex border-double border-4 border-indigo-600">
                         <img src="{{url('/image/studentpp.jpg')}}" alt="" class="object-contain h-24 w-36">
@@ -90,7 +90,14 @@
     <dialog id="myModal" class="w-11/12 md:w-1/2 p-5  bg-white rounded-md ">
 
 
-                <h3 class="text-2xl font-bold text-center">Daftar Kelas</h3>
+        <div class="flex w-full h-auto justify-end items-center">
+            <div class="flex flex-row w-10/12 h-auto py-3 justify-center items-center text-2xl font-bold">
+                    Daftar kelas
+            </div>
+            <div onclick="document.getElementById('myModal').close();" class="flex w-1/12 h-auto justify-center cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+        </div>
                 <form action={{url("/murid/dodaftarmurid")}} method="POST">
                     @csrf
                     <div class="mt-4">

@@ -1,7 +1,5 @@
-@extends('layout.Layout_User')
-@section('navbar')
-    @include('pages.essential.navbaruser')
-@endsection
+@extends('layout.Layout_Murid')
+
 @section('content')
 
     <h1>hai user</h1>

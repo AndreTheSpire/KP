@@ -26,4 +26,12 @@ class PendaftaranMurid extends Model
     {
         return $this->belongsTo(Pengguna::class, 'pengguna_id', 'pengguna_id');
     }
+    public function PunyaKategori()
+    {
+        return $this->belongsTo(KategoriKelas::class, 'kategorikelas_id', 'kategorikelas_id');
+    }
+    public function PunyaPelajaran()
+    {
+        return $this->belongsTo(Pelajaran::class, 'pelajaran_id', 'pelajaran_id');
+    }
 }
