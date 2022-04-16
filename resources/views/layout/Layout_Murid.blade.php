@@ -13,9 +13,11 @@
 @include('sweetalert::alert')
 
 @yield('navbar')
+@yield('headerfill')
 
 <!-- strat wrapper -->
 <div class="h-screen flex flex-row flex-wrap">
+
 
    @yield('sidebar')
 

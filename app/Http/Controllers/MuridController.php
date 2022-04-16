@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\KategoriKelas;
 use App\Models\Pelajaran;
 use App\Models\PendaftaranMurid;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MuridController extends Controller
@@ -30,13 +32,94 @@ class MuridController extends Controller
         $dataPelajaran = Pelajaran::get();
 
         return view("pages.Murid.pembayaran",[
+            'title' => "semua",
             "datapendaftaran" => $datapendaftaran,
             "dataPelajaran" => $dataPelajaran,
         ]);
     }
-    public function GotoDetailPembayaran()
+    public function GotoPembayaransemua()
     {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->get();
+        $dataPelajaran = Pelajaran::get();
+        // dd($datapendaftaran);
+        return view("pages.Murid.pembayaran",[
+            'title' => "semua",
+            "datapendaftaran" => $datapendaftaran,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+    public function GotoPembayaranbelum()
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',-1)->get();
+        $dataPelajaran = Pelajaran::get();
 
+        return view("pages.Murid.pembayaran",[
+            'title' => "belum",
+            "datapendaftaran" => $datapendaftaran,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+    public function GotoPembayaranmenunggu()
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',0)->get();
+        $dataPelajaran = Pelajaran::get();
+
+        return view("pages.Murid.pembayaran",[
+            'title' => "menunggu",
+            "datapendaftaran" => $datapendaftaran,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+    public function GotoPembayaransukes()
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',1)->get();
+        $dataPelajaran = Pelajaran::get();
+
+        return view("pages.Murid.pembayaran",[
+            'title' => "sukses",
+            "datapendaftaran" => $datapendaftaran,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+    public function GotoPembayarangagal()
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',2)->get();
+        $dataPelajaran = Pelajaran::get();
+
+        return view("pages.Murid.pembayaran",[
+            'title' => "gagal",
+            "datapendaftaran" => $datapendaftaran,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+    public function GotoDetailPembayaran(Request $request)
+    {
+        $datadetail = PendaftaranMurid::find($request->id);
+        $dataPelajaran = Pelajaran::get();
+        // dd($waktuMulaiEdited);
+        // dd($waktuSelesaiEdited);
+        return view('pages.Murid.detailpembayaran', [
+            'title' => "zonk",
+            'datadetail'=>$datadetail,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+    public function Gokirimbuktitfd(Request $request)
+    {
+        $datadetail = PendaftaranMurid::find($request->id);
+        $dataPelajaran = Pelajaran::get();
+        // dd($waktuMulaiEdited);
+        // dd($waktuSelesaiEdited);
+        return view('pages.Murid.detailpembayaran', [
+            'title' => "zonk",
+            'datadetail'=>$datadetail,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
     }
     public function GodaftarMurid(Request $request)
     {
@@ -52,12 +135,18 @@ class MuridController extends Controller
         //     'waktu_selesai.required'=>'kolom ini tidak boleh kosong',
         //     'waktu_selesai.after'=>'kolom ini tidak boleh sebelum waktu mulai',
         // ]);
-
+        $today = Carbon::now();
+        $today=$today->toDateTimeString();
+        $tanggaltoday = explode(' ', $today)[0];
+        $total=PendaftaranMurid::count();
+        $tanggaltoday=explode('-', $tanggaltoday);
+        $total=$total+1;
         $pengguna_id =$request->guru_kelas;
         $kelas_nama = explode(' ', $request->kelas_nama);
-        $hasil= PendaftaranMurid::create($request->all()+ ['pendaftaranmurid_status' => -1, 'pendaftaranmurid_buktibayar' => "kosong"]);
+        $id=$request->pelajaran_id."".$request->kategorikelas_id."".$tanggaltoday[2].$tanggaltoday[1].$tanggaltoday[0]."".str_pad($total, 3, "0", STR_PAD_LEFT);;
+        $hasil= PendaftaranMurid::create($request->all()+ ['pendaftaranmurid_id' => $id,'pendaftaranmurid_status' => -1, 'pendaftaranmurid_buktibayar' => "kosong"]);
         if ($hasil) {
-            Alert::success('Succes', 'berhasil mendaftar kelas! silahkan cek email anda');
+            Alert::success('Succes', 'berhasil mendaftar kelas! silahkan cek halaman pembayaran untuk melengkapi pembayaran');
             return back();
         } else {
             Alert::success('Succes', 'gagal mendaftar kelas');

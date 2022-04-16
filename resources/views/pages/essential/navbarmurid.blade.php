@@ -22,7 +22,7 @@
     <div id="navbar" class="animated md:hidden md:fixed md:top-0 md:w-full md:left-0 md:mt-16 md:border-t md:border-b md:border-gray-200 md:p-10 md:bg-white flex-1 pl-3 flex flex-row flex-wrap justify-between items-center md:flex-col md:items-center">
       <!-- left -->
       <div class="text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly md:pb-10 md:mb-10 md:border-b md:border-gray-200">
-        <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="#" title="email"><i class="fad fa-home"></i> Home</a>
+        <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="/murid" title="email"><i class="fad fa-home"></i> Home</a>
         <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="#" title="email"><i class="fad fa-users"></i> Kelas</a>
         <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="#" title="email"><i class="fa fa-list-ul"></i> To-Do</a>
 

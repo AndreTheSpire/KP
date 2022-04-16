@@ -50,8 +50,13 @@ Route::prefix('admin')->group(function () {
 });
 Route::prefix('murid')->group(function () {
     Route::get('/', 'MuridController@GotoHome');
-    Route::get('/pembayaran', 'MuridController@GotoPembayaran');
+    Route::get('/pembayaran', 'MuridController@GotoPembayaransemua');
+    Route::get('/pembayaranbelum', 'MuridController@GotoPembayaranbelum');
+    Route::get('/pembayaranmenunggu', 'MuridController@GotoPembayaranmenunggu');
+    Route::get('/pembayaransukses', 'MuridController@GotoPembayaransukes');
+    Route::get('/pembayarangagal', 'MuridController@GotoPembayarangagal');
     Route::get('/detailpembayaran/{id}', 'MuridController@GotoDetailPembayaran');
+    Route::post('/dokirimbuktitf/{id}', 'MuridController@Gokirimbuktitfd');
     Route::post('/dodaftarmurid', 'MuridController@GodaftarMurid');
     Route::get('/logout', 'MuridController@GotoHome');
 

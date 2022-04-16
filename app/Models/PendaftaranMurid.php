@@ -15,6 +15,7 @@ class PendaftaranMurid extends Model
     public $timestamps    = true; //created_at & updated_at
 
     protected $fillable = [
+        "pendaftaranmurid_id",
         'pengguna_id',
         'pelajaran_id',
         'kategorikelas_id',

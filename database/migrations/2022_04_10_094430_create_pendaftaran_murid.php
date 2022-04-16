@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('PendaftaranMurid', function (Blueprint $table) {
-            $table->increments('pendaftaranmurid_id');
+            $table->string('pendaftaranmurid_id');
             $table->foreignId("pengguna_id");
             $table->foreignId("kategorikelas_id");
             $table->foreignId("pelajaran_id");
