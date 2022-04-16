@@ -1,5 +1,13 @@
 @extends('layout.Layout_Murid')
 
+@section('navbar')
+    @include('pages.essential.navbarmurid')
+@endsection
+
+@section('sidebar')
+    @include('pages.essential.sidebarmurid')
+@endsection
+
 @section('content')
 
 <table class="table-fixed border-collapse border border-slate-500 w-4/5">
