@@ -1,5 +1,5 @@
 <!-- start navbar -->
-<div class="md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-2 border-b border-gray-300">
+<div class="md:fixed md:w-full md:top-0 md:z-20 flex sticky top-0 flex-row flex-wrap items-center bg-white p-2 border-b border-gray-300">
 
     <!-- logo -->
     <div class="flex-none ml-20 w-40 flex flex-row items-center">

@@ -45,6 +45,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/detailwawancaraguru/{id}/confirm', 'AdminController@ConfirmWawancaraGuru');
     Route::get('/detailwawancaraguru/{id}/decline', 'AdminController@DeclineWawancaraGuru');
     Route::get('/murid', 'AdminController@GoToPenerimaanMurid');
+    Route::get('/murid/{id}', 'AdminController@GoToDetailPenerimaanMurid');
     Route::get('/transaksi', 'AdminController@GoToLaporanTransaksi');
     Route::get('download/{id}','AdminController@downloadfileCV');
 });
@@ -59,6 +60,7 @@ Route::prefix('murid')->group(function () {
     Route::post('/dokirimbuktitf/{id}', 'MuridController@Gokirimbuktitfd');
     Route::post('/dodaftarmurid', 'MuridController@GodaftarMurid');
     Route::get('/logout', 'MuridController@GotoHome');
+    Route::get('downloadbuktitf/{id}','MuridController@downloadfilebuktitf');
 
 });
 

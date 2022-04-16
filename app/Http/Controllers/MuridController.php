@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MuridController extends Controller
@@ -112,14 +113,38 @@ class MuridController extends Controller
     public function Gokirimbuktitfd(Request $request)
     {
         $datadetail = PendaftaranMurid::find($request->id);
-        $dataPelajaran = Pelajaran::get();
-        // dd($waktuMulaiEdited);
-        // dd($waktuSelesaiEdited);
-        return view('pages.Murid.detailpembayaran', [
-            'title' => "zonk",
-            'datadetail'=>$datadetail,
-            "dataPelajaran" => $dataPelajaran,
-        ]);
+        $nama_file="kosong";
+        $file = $request->file('pendaftaranmurid_buktibayar');
+        // dd($file);
+        if($file==null){
+
+            $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+            $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->get();
+            $dataPelajaran = Pelajaran::get();
+            return view('pages.Murid.pembayaran', [
+                'title' => "semua",
+                'datapendaftaran'=>$datapendaftaran,
+                "dataPelajaran" => $dataPelajaran,
+            ]);
+        }else{
+            $nama_file = $file->getClientOriginalName();
+            $request->file('pendaftaranmurid_buktibayar')->storeAs('DataRegistrasi/',$nama_file, 'local');
+            $nama=$nama_file;
+            $datadetail->pendaftaranmurid_buktibayar=$nama;
+            $datadetail->pendaftaranmurid_status=0;
+            $datadetail->save();
+            $dataPelajaran = Pelajaran::get();
+            // dd($waktuMulaiEdited);
+            // dd($waktuSelesaiEdited);
+            $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+            $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->get();
+            return view('pages.Murid.pembayaran', [
+                'title' => "semua",
+                'datapendaftaran'=>$datapendaftaran,
+                "dataPelajaran" => $dataPelajaran,
+            ]);
+        }
+
     }
     public function GodaftarMurid(Request $request)
     {
@@ -152,5 +177,10 @@ class MuridController extends Controller
             Alert::success('Succes', 'gagal mendaftar kelas');
             return back();
         }
+    }
+    public function downloadfilebuktitf(Request $request)
+    {
+        $register = PendaftaranMurid::find($request->id);
+        return Storage::disk('local')->download("DataRegistrasi/$register->pendaftaranmurid_buktibayar");
     }
 }

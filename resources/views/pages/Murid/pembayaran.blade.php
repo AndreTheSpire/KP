@@ -5,8 +5,8 @@
 @endsection
 
 @section('headerfill')
-<div class="md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-6 bg-gray-100 flex flex-row flex-wrap">
-    <div class="flex-1 pl-4 text-2xl text-bold">Pembayaran</div>
+<div class="ml-6 md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-6 bg-gray-100 flex flex-row flex-wrap">
+    <div class="flex-1 pl-4 text-3xl text-bold">Pembayaran</div>
     <div class="border-2">
         <input type="text" name="" id="" placeholder="Search">
         <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>

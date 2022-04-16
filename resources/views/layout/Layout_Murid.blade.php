@@ -9,7 +9,7 @@
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <title>Cetta</title>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 relative">
 @include('sweetalert::alert')
 
 @yield('navbar')

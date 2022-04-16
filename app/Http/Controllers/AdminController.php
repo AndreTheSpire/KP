@@ -6,6 +6,7 @@ use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
 use App\Models\Pelajaran;
+use App\Models\PendaftaranMurid;
 use App\Models\Pengguna;
 use App\Notifications\NotifikasiiPenerimaan;
 use App\Notifications\NotifikasiWawancara;
@@ -339,10 +340,27 @@ class AdminController extends Controller
     }
     public function GoToPenerimaanMurid()
     {
+        $datapendaftaran = PendaftaranMurid::get();
+        $dataPelajaran = Pelajaran::get();
+        // dd($datapendaftaran);
         return view("pages.admin.PenerimaanMurid",[
-            'title' => "PenerimaanMurid"
+            'title' => "PenerimaanMurid",
+            "datapendaftaran" => $datapendaftaran,
+            "dataPelajaran" => $dataPelajaran,
         ]);
 
+    }
+    public function GoToDetailPenerimaanMurid(Request $request)
+    {
+        $datadetail = PendaftaranMurid::find($request->id);
+        $dataPelajaran = Pelajaran::get();
+        // dd($waktuMulaiEdited);
+        // dd($waktuSelesaiEdited);
+        return view('pages.admin.detailpembayaran', [
+            'title' => "zonk",
+            'datadetail'=>$datadetail,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
     }
     public function GoToLaporanTransaksi()
     {

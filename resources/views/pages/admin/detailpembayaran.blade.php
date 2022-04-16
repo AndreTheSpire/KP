@@ -1,34 +1,14 @@
-@extends('layout.Layout_Murid')
-
-@section('navbar')
-    @include('pages.essential.navbarmurid')
-@endsection
-
-@section('headerfill')
-<div class="ml-6 md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-6 bg-gray-100 flex flex-row flex-wrap">
-    <div class="flex-1 pl-4 text-3xl text-bold">Pembayaran</div>
-    <div class="border-2">
-        <input type="text" name="" id="" placeholder="Search">
-        <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-
-    </div>
-
-</div>
-
-@endsection
-
-@section('sidebar')
-    @include('pages.essential.sidebarpembayaran')
-@endsection
-
-@section('content')
+@extends('layout.Layout_admin')
 
 
-<form class="w-full" action={{url("/murid/dokirimbuktitf/$datadetail->pendaftaranmurid_id")}} method="POST" enctype="multipart/form-data">
+@section('container')
+
+
+<div class="w-full">
     @csrf
     <div class="flex items-center mb-3 w-full">
         <div class="w-1/4">
-          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4 text-2xl text-black" for="inline-full-name">
+          <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4 text-2xl text-black" for="inline-full-name">
             Detail Pembayaran
           </label>
         </div>
@@ -36,7 +16,7 @@
       <hr class="border-2 mb-3">
     <div class="flex items-center mb-6 w-full">
         <div class="w-1/4">
-          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-id">
+          <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-full-id">
             ID Registrasi
           </label>
         </div>
@@ -46,7 +26,7 @@
       </div>
     <div class="flex items-center mb-6 w-full">
       <div class="w-1/4">
-        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
+        <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-full-name">
           Nama lengkap
         </label>
       </div>
@@ -56,7 +36,7 @@
     </div>
     <div class="flex items-center mb-6 w-full">
       <div class="w-1/4">
-        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-email">
+        <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-email">
           Email
         </label>
       </div>
@@ -66,7 +46,7 @@
     </div>
     <div class="flex items-center mb-6 w-full">
         <div class="w-1/4">
-          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-pelajaran">
+          <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-pelajaran">
             Pelajaran
           </label>
         </div>
@@ -76,7 +56,7 @@
     </div>
     <div class="flex items-center mb-6 w-full">
         <div class="w-1/4">
-          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-kategori">
+          <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-kategori">
             Kategori
           </label>
         </div>
@@ -102,7 +82,7 @@
 
     <div class="flex items-center mb-6 w-full">
         <div class="w-1/4">
-          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-status">
+          <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-status">
             status pendaftaran
           </label>
         </div>
@@ -112,12 +92,17 @@
     </div>
     <div class="flex items-center mb-6 w-full">
         <div class="w-1/4">
-          <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-buktitf">
+          <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-buktitf">
             Bukti pembayaran
           </label>
         </div>
         <div class="w-3/4">
-          <input {{ $datadetail->pendaftaranmurid_status==-1 ? '' : 'disabled' }} class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-buktitf" type="file" name="pendaftaranmurid_buktibayar" value="{{$datadetail->pendaftaranmurid_buktibayar}}">
+            <a href="{{ url("/murid/downloadbuktitf/$datadetail->pendaftaranmurid_id") }}">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold font-bold h-6 px-4 m-2 rounded inline-flex items-center">
+                <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+                <span>Download</span>
+            </button>
+            </a>
         </div>
     </div>
     {{-- <div class="md:flex md:items-center mb-6">
@@ -129,15 +114,22 @@
         </span>
       </label>
     </div> --}}
-    <div class="md:flex md:items-center">
-      <div class="md:w-1/3"></div>
-      <div class="md:w-2/3">
-        <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-          Kirim bukti Tranfer
-        </button>
-      </div>
+    <label class="flex justify-center text-2xl font-bold">Apakah anda menerima {{$datadetail->punyaUser->pengguna_nama}} sebagai murid ?</label><br>
+        <div class="flex justify-center">
+            <button class="bg-green-500 hover:bg-green-700 text-white py-2 px-4 mx-4 rounded" onclick="document.getElementById('myModal').showModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </button>
+            <a href="/admin/detailcvguru/1/decline">
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </a>
+        </div>
     </div>
-  </form>
 
 
 
