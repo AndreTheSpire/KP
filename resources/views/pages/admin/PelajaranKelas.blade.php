@@ -57,26 +57,6 @@
           </div>
         </div>
       </div>
-    {{-- <div class="flex items-center justify-center p-10 border-4 border-dotted ">
-    <table class="table-fixed border-collapse border border-slate-500 w-4/5">
-        <thead class="border-b bg-gray-800">
-            <tr >
-                <th class="text-sm font-medium text-white text-center px-6 py-4">ID Pelajaran</th>
-                <th class="text-sm font-medium text-white text-center px-6 py-4">Nama Pelajaran</th>
-                <th class="text-sm font-medium text-white text-center px-6 py-4">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($dataPelajaran as $d)
-                <tr>
-                    <td class="text-sm font-medium text-black text-center px-6 py-4">{{$d->pelajaran_id}}</td>
-                    <td class="text-sm font-medium text-black text-center px-6 py-4">{{$d->pelajaran_nama}}</td>
-                    <td class="text-sm font-medium text-black text-center px-6 py-4"><button><a href="/admin/{{$d->pelajaran_id}}/edit">Edit</a></button> <a href="/admin/{{$d->pelajaran_id}}/deletepelajaran"><button>Delete</button></a></td>
-                    <td class="text-sm font-medium text-black text-center px-6 py-4"></td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table> --}}
     </div>
 
     <style>
