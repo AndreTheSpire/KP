@@ -39,7 +39,7 @@
                             <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">{{$d->kelas_nama}}</td>
                             <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">{{date('D H:i', strtotime($d->waktu_mulai))}}</td>
                             <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">{{date('D H:i', strtotime($d->waktu_selesai))}}</td>
-                            <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">{{$d->Guru->pengguna_nama}}</td>
+                            <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">{{$d->Guru->punyaUser->pengguna_nama}}</td>
 
                             <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">
                                 <a href="/admin/kelas/{{$d->kelas_id}}/">

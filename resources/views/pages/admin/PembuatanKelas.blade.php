@@ -160,7 +160,7 @@
                  console.log(data);
                 for (i = 0; i < data.length; i++) {
                 console.log(data[i].punya_user.pengguna_nama);
-                $('#guru_kelas').append(new Option(data[i].punya_user.pengguna_nama, data[i].punya_user.pengguna_id))
+                $('#guru_kelas').append(new Option(data[i].punya_user.pengguna_nama, data[i].guru_id))
                 }
                 // $('#kategorikelas_id').empty();
                 // console.log(data);

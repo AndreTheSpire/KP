@@ -31,6 +31,8 @@
                 <td class="border border-slate-600 text-center w-full">Pembayaran Sukses</td>
                 @elseif ($k->pendaftaranmurid_status==2)
                 <td class="border border-slate-600 text-center w-full">Pembayaran Gagal</td>
+                @elseif ($k->pendaftaranmurid_status==3)
+                <td class="border border-slate-600 text-center w-full">Berhasil masuk kelas</td>
                 @endif
                 <td class="border border-slate-600 text-center w-full"><a href="/admin/murid/{{$k->pendaftaranmurid_id}}"><button class="bg-orange-600 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded-full" type="button">Detail</button></a></td>
 

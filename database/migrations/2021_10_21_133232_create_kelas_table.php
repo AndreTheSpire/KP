@@ -15,7 +15,7 @@ class CreateKelasTable extends Migration
     {
         Schema::create('Kelas', function (Blueprint $table) {
             $table->increments('kelas_id');
-            $table->foreignId('pengguna_id');
+            $table->foreignId('guru_id');
             $table->foreignId('pelajaran_id');
             $table->foreignId('kategorikelas_id');
             $table->string('kelas_kode')->unique();

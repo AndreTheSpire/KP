@@ -25,46 +25,15 @@
       <p class="flex justify-between items-center uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">Kelas <button class="border-2 border-rose-600 text-blue px-3 font-bold rounded text-center float-right"  onclick="document.getElementById('myModal').showModal()">+</button>  </p>
 
       <!-- link -->
-      <a href="./email.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+      @foreach ($datasebagaimurid as $k)
+      <a href="/murid/kelas/{{$k->kelas_id}}/" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
         <i class="fa fa-envelope-open-text text-xs mr-2"></i>
-        email
+        {{$k->punyaKelas->kelas_nama}}
       </a>
+      @endforeach
       <!-- end link -->
 
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-comments text-xs mr-2"></i>
-        chat
-      </a>
-      <!-- end link -->
 
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-shield-check text-xs mr-2"></i>
-        todo
-      </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-calendar-edit text-xs mr-2"></i>
-        calendar
-      </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-file-invoice-dollar text-xs mr-2"></i>
-        invoice
-      </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-folder-open text-xs mr-2"></i>
-        file manager
-      </a>
-      <!-- end link -->
 
 
       <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">UI Elements</p>

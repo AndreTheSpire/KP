@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
+use App\Models\Murid;
 use App\Models\Pelajaran;
 use App\Models\PendaftaranMurid;
 use App\Models\Pengguna;
@@ -223,9 +224,9 @@ class AdminController extends Controller
         $kelas_kode = implode('', $pieces);
 
 
-        $pengguna_id =$request->guru_kelas;
+        $guru_id =$request->guru_kelas;
         $kelas_nama = explode(' ', $request->kelas_nama);
-        $hasil = Kelas::create($request->all() + ['pengguna_id' => $pengguna_id, 'kelas_kode' => $kelas_kode, 'status' => true]);
+        $hasil = Kelas::create($request->all() + ['guru_id' => $guru_id, 'kelas_kode' => $kelas_kode, 'status' => true]);
         if ($hasil) {
             Alert::success('Succes', 'berhasil menambah kelas');
             return back();
@@ -344,7 +345,6 @@ class AdminController extends Controller
         $data_confirm->pengguna_status_wawancara = '1';
         $data_confirm->save();
         $hasil=Guru::create([
-            'kelas_id'=>0,
             'pengguna_id'=>$req->id,
             'pelajaran_id'=>$req->pelajaran_id,
         ]);
@@ -370,7 +370,7 @@ class AdminController extends Controller
     }
     public function GoToPenerimaanMurid()
     {
-        $datapendaftaran = PendaftaranMurid::get();
+        $datapendaftaran = PendaftaranMurid::where('pendaftaranmurid_status','<','1')->get();
         $dataPelajaran = Pelajaran::get();
         // dd($datapendaftaran);
         return view("pages.admin.PenerimaanMurid",[
@@ -396,8 +396,20 @@ class AdminController extends Controller
     }
     public function GoPenetapanKelasmurid(Request $request)
     {
-
-        dd("wow");
+        $data_confirm = PendaftaranMurid::find($request->idpendaftaran);
+        $data_confirm->pendaftaranmurid_status = '3';
+        $data_confirm->save();
+        $hasil=Murid::create([
+            'kelas_id'=>$request->id,
+            'pengguna_id'=>$data_confirm->pengguna_id,
+        ]);
+        if ($hasil) {
+            Alert::success('Succes', 'berhasil menambah kelas');
+            return back();
+        } else {
+            Alert::success('Succes', 'gagal menambah kelas');
+            return back();
+        }
     }
     public function GoToDetailPenerimaanMurid(Request $request)
     {

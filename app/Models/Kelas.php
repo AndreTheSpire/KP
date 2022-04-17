@@ -20,7 +20,7 @@ class Kelas extends Model
     public $timestamps    = true; //created_at & updated_at
 
     protected $fillable = [
-        'pengguna_id',
+        'guru_id',
         'pelajaran_id',
         'kategorikelas_id',
         'kelas_kode',
@@ -33,7 +33,7 @@ class Kelas extends Model
 
     public function Guru()
     {
-        return $this->belongsTo(Pengguna::class,'pengguna_id','pengguna_id');
+        return $this->belongsTo(Guru::class,'guru_id','guru_id');
     }
     public function Kategori()
     {
