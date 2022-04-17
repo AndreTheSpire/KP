@@ -98,6 +98,9 @@
         else if ($datadetail->pendaftaranmurid_status==2){
             $status="Gagal Mendaftar";
         }
+        else if ($datadetail->pendaftaranmurid_status==3){
+            $status="Sukses Masuk Kelas";
+        }
     @endphp
 
     <div class="flex items-center mb-6 w-full">

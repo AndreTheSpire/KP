@@ -1,0 +1,111 @@
+@extends('layout.Layout_admin')
+
+
+@section('container')
+
+
+<div class="w-full">
+    @csrf
+    <div class="flex items-center mb-3 w-full">
+        <div class="w-1/4">
+          <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4 text-2xl text-black" for="inline-full-name">
+            Penetapan kelas
+          </label>
+        </div>
+      </div>
+      <hr class="border-2 mb-3">
+    <div class="flex items-center mb-6 w-full">
+        <div class="w-1/4">
+          <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-full-id">
+            Kode Kelas
+          </label>
+        </div>
+        <div class="w-3/4">
+          <input disabled="disabled" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-id" type="text" value="{{$datadetail->kelas_kode}}">
+        </div>
+      </div>
+    <div class="flex items-center mb-6 w-full">
+      <div class="w-1/4">
+        <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-full-name">
+          Nama Kelas
+        </label>
+      </div>
+      <div class="w-3/4">
+        <input disabled="disabled" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" value="{{$datadetail->kelas_nama}}">
+      </div>
+    </div>
+    <div class="flex items-center mb-6 w-full">
+        <div class="w-1/4">
+          <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-pelajaran">
+            Pelajaran Kelas
+          </label>
+        </div>
+        <div class="w-3/4">
+          <input disabled="disabled" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-pelajaran" type="text" value="{{$datadetail->Pelajaran->pelajaran_nama}}">
+        </div>
+    </div>
+    <div class="flex items-center mb-6 w-full">
+        <div class="w-1/4">
+          <label class="block text-gray-500 font-bold mb-1 md:mb-0 pr-4" for="inline-kategori">
+            Kategori Kelas
+          </label>
+        </div>
+        <div class="w-3/4">
+          <input disabled="disabled" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-kategori" type="text" value="{{$datadetail->Kategori->kategorikelas_nama}}">
+        </div>
+    </div>
+    </div>
+    @php
+    $x=0;
+    @endphp
+    <div class="flex flex-col">
+        @foreach ($datacalonmurid as $d)
+            @php
+                $x++;
+            @endphp
+            <div class="overflow-x-auto">
+            <div class="py-4 inline-block min-w-full ">
+                <div class="overflow-hidden">
+                <table class="min-w-full text-center">
+                    <thead class="border-b bg-gray-800">
+                    <tr>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">No</th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Nama Murid</th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Action</th>
+                    </tr>
+                    </thead class="border-b">
+                    <tbody>
+
+                        @foreach ($datacalonmurid as $k)
+                                <tr class="bg-white border-b">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$x}}</td>
+                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$k->PunyaUser->pengguna_nama}}</td>
+                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <a href="/admin/kelas/{{$datadetail->kelas_kode}}/penetapan/{{$k->pengguna_id}}">
+                                            <button class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 mx-4 rounded">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                </svg>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+
+
+                        @endforeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            </div>
+        @endforeach
+      </div>
+
+
+
+
+
+@endsection
+@section('footer')
+
+@endsection

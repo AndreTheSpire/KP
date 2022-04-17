@@ -10,7 +10,7 @@
 
   </head>
   <body >
-
+    @include('sweetalert::alert')
 
     <div class="flex relative">
       <div class="flex flex-col w-2/6 h-screen px-4 sticky top-0 py-8 overflow-y-auto border-r bg-orange-200">

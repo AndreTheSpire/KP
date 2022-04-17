@@ -296,6 +296,36 @@ class AdminController extends Controller
         ]);
 
     }
+    public function ConfirmDetailPenerimaanMurid(Request $request)
+    {
+        $data_confirm = PendaftaranMurid::find($request->id);
+        $data_confirm->pendaftaranmurid_status = '1';
+        $data_confirm->save();
+        $datapendaftaran = PendaftaranMurid::get();
+        $dataPelajaran = Pelajaran::get();
+        // dd($datapendaftaran);
+        Alert::success('Succes', 'pendaftaran '.$data_confirm->punyaUser->pengguna_nama." berhasil diverifikasi");
+        return view("pages.admin.PenerimaanMurid",[
+            'title' => "PenerimaanMurid",
+            "datapendaftaran" => $datapendaftaran,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+    public function DeclineDetailPenerimaanMurid(Request $request)
+    {
+        $data_confirm = PendaftaranMurid::find($request->id);
+        $data_confirm->pendaftaranmurid_status = '2';
+        $data_confirm->save();
+        $datapendaftaran = PendaftaranMurid::get();
+        $dataPelajaran = Pelajaran::get();
+        // dd($datapendaftaran);
+        Alert::success('Succes', 'pendaftaran '.$data_confirm->punyaUser->pengguna_nama." berhasil ditolak");
+        return view("pages.admin.PenerimaanMurid",[
+            'title' => "PenerimaanMurid",
+            "datapendaftaran" => $datapendaftaran,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
     public function DeclineCVGuru(Request $req)
     {
         $data_confirm = Pengguna::find($req->id);
@@ -349,6 +379,25 @@ class AdminController extends Controller
             "dataPelajaran" => $dataPelajaran,
         ]);
 
+    }
+    public function GoPenetapanKelas(Request $request)
+    {
+        $datadetail = Kelas::find($request->id);
+        $dataPelajaran = Pelajaran::get();
+        $datacalonmurid=PendaftaranMurid::where('pendaftaranmurid_status','=',1)->where('pelajaran_id','=',$datadetail->pelajaran_id)->where('kategorikelas_id','=',$datadetail->kategorikelas_id)->get();
+        // dd($waktuMulaiEdited);
+        // dd($waktuSelesaiEdited);
+        return view('pages.admin.Penetapankelas', [
+            'title' => "zonk",
+            'datadetail'=>$datadetail,
+            "dataPelajaran" => $dataPelajaran,
+            "datacalonmurid"=>$datacalonmurid,
+        ]);
+    }
+    public function GoPenetapanKelasmurid(Request $request)
+    {
+
+        dd("wow");
     }
     public function GoToDetailPenerimaanMurid(Request $request)
     {

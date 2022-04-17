@@ -34,6 +34,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/{id}/deletekategori','AdminController@DoDeleteKategori');
     Route::get('/kelas/buatkelas', 'AdminController@GoToBuatKelas');
     Route::get('/kelas/{id}', 'AdminController@GoDetailKelas');
+    Route::get('/kelas/{id}/penetapan', 'AdminController@GoPenetapanKelas');
+    Route::get('/kelas/{id}/penetapan/{idpengguna}', 'AdminController@GoPenetapanKelasmurid');
     Route::post('/kelas/doupdatekelas', 'AdminController@DoUpdatekelas');
     Route::post('/kelas/dobuatkelas', 'AdminController@DoBuatKelas');
     Route::get('/guruCV', 'AdminController@GoToPenerimaanCVGuru');
@@ -46,6 +48,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/detailwawancaraguru/{id}/decline', 'AdminController@DeclineWawancaraGuru');
     Route::get('/murid', 'AdminController@GoToPenerimaanMurid');
     Route::get('/murid/{id}', 'AdminController@GoToDetailPenerimaanMurid');
+    Route::get('/murid/{id}/confirm', 'AdminController@ConfirmDetailPenerimaanMurid');
+    Route::get('/murid/{id}/decline', 'AdminController@DeclineDetailPenerimaanMurid');
     Route::get('/transaksi', 'AdminController@GoToLaporanTransaksi');
     Route::get('download/{id}','AdminController@downloadfileCV');
 });
