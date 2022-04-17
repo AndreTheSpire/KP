@@ -2,10 +2,8 @@
 @section('container')
 @include('sweetalert::alert')
     <div class="flex justify-between">
-        <button class="btn inline-block h-10 w-16 px-6 mx-4 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" onclick="document.getElementById('myModal').showModal()">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-            </svg>
+        <button class="btn inline-block h-10 w-auto px-6 mx-4 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" onclick="document.getElementById('myModal').showModal()">
+            Tambah Pelajaran
         </button>
         <div class="mb-3 xl:w-96">
           <div class="input-group relative flex flex-wrap items-stretch mb-4 rounded">
