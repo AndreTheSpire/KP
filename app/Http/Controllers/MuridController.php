@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\KategoriKelas;
+use App\Models\Kelas;
+use App\Models\Murid;
 use App\Models\Pelajaran;
 use App\Models\PendaftaranMurid;
 use Carbon\Carbon;
@@ -19,11 +22,12 @@ class MuridController extends Controller
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
         $datakelasmurid=PendaftaranMurid::where('pengguna_id','=',$iduser)->get();
         return view("pages.Murid.home",[
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
-            "datakelasmurid" => $datakelasmurid,
+            "datasebagaimurid"=> $datasebagaimurid,
         ]);
     }
     public function GotoPembayaran()
@@ -178,6 +182,39 @@ class MuridController extends Controller
             return back();
         }
     }
+
+    public function GoToKelas()
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataMurid = Murid::where('pengguna_id','=',$iduser)->get();
+        $dataPelajaran = Pelajaran::get();
+        return view("pages.Murid.kelas",[
+            'title' => "Penetapan",
+            "dataMurid" => $dataMurid,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+
+    }
+    public function GoDetailKelas(Request $request)
+    {
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $dataGuru = Guru::where('pelajaran_id','=',$dataKelas->pelajaran_id)->get();;
+        $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
+        $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
+        return view("pages.Murid.DetailKelas",[
+            'title' => "semua",
+            "dataKelas"=>$dataKelas,
+            "waktuMulaiEdited"=>$waktuMulaiEdited,
+            "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+
     public function downloadfilebuktitf(Request $request)
     {
         $register = PendaftaranMurid::find($request->id);

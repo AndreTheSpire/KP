@@ -35,7 +35,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/kelas/buatkelas', 'AdminController@GoToBuatKelas');
     Route::get('/kelas/{id}', 'AdminController@GoDetailKelas');
     Route::get('/kelas/{id}/penetapan', 'AdminController@GoPenetapanKelas');
-    Route::get('/kelas/{id}/penetapan/{idpengguna}', 'AdminController@GoPenetapanKelasmurid');
+    Route::get('/kelas/{id}/penetapan/{idpendaftaran}', 'AdminController@GoPenetapanKelasmurid');
     Route::post('/kelas/doupdatekelas', 'AdminController@DoUpdatekelas');
     Route::post('/kelas/dobuatkelas', 'AdminController@DoBuatKelas');
     Route::get('/guruCV', 'AdminController@GoToPenerimaanCVGuru');
@@ -63,6 +63,8 @@ Route::prefix('murid')->group(function () {
     Route::get('/detailpembayaran/{id}', 'MuridController@GotoDetailPembayaran');
     Route::post('/dokirimbuktitf/{id}', 'MuridController@Gokirimbuktitfd');
     Route::post('/dodaftarmurid', 'MuridController@GodaftarMurid');
+    Route::get('/kelas', 'MuridController@GoToKelas');
+    Route::get('/kelas/{id}', 'MuridController@GoDetailKelas');
     Route::get('/logout', 'MuridController@GotoHome');
     Route::get('downloadbuktitf/{id}','MuridController@downloadfilebuktitf');
 

@@ -59,46 +59,76 @@
     $x=0;
     @endphp
     <div class="flex flex-col">
+        @if(count($datacalonmurid)==0)
+
+        <div class="overflow-x-auto">
+        <div class="py-4 inline-block min-w-full ">
+            <div class="overflow-hidden">
+            <table class="min-w-full text-center">
+                <thead class="border-b bg-gray-800">
+                <tr>
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4">No</th>
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4">Nama Murid</th>
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4">Action</th>
+                </tr>
+                </thead class="border-b">
+                <tbody>
+
+                            <tr class="bg-white border-b">
+
+                                <td colspan="3" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Tidak ada Data</td>
+                            </tr>
+
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+
+
+        @else
         @foreach ($datacalonmurid as $d)
-            @php
-                $x++;
-            @endphp
-            <div class="overflow-x-auto">
-            <div class="py-4 inline-block min-w-full ">
-                <div class="overflow-hidden">
-                <table class="min-w-full text-center">
-                    <thead class="border-b bg-gray-800">
-                    <tr>
-                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">No</th>
-                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Nama Murid</th>
-                        <th scope="col" class="text-sm font-medium text-white px-6 py-4">Action</th>
-                    </tr>
-                    </thead class="border-b">
-                    <tbody>
+        @php
+            $x++;
+        @endphp
+        <div class="overflow-x-auto">
+        <div class="py-4 inline-block min-w-full ">
+            <div class="overflow-hidden">
+            <table class="min-w-full text-center">
+                <thead class="border-b bg-gray-800">
+                <tr>
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4">No</th>
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4">Nama Murid</th>
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4">Action</th>
+                </tr>
+                </thead class="border-b">
+                <tbody>
 
-                        @foreach ($datacalonmurid as $k)
-                                <tr class="bg-white border-b">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$x}}</td>
-                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$k->PunyaUser->pengguna_nama}}</td>
-                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        <a href="/admin/kelas/{{$datadetail->kelas_kode}}/penetapan/{{$k->pengguna_id}}">
-                                            <button class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 mx-4 rounded">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                                </svg>
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
+                    @foreach ($datacalonmurid as $k)
+                            <tr class="bg-white border-b">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$x}}</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$k->PunyaUser->pengguna_nama}}</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    <a href="/admin/kelas/{{$datadetail->kelas_id}}/penetapan/{{$k->pendaftaranmurid_id}}">
+                                        <button class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 mx-4 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            </svg>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
 
 
-                        @endforeach
-                    </tbody>
-                </table>
-                </div>
+                    @endforeach
+                </tbody>
+            </table>
             </div>
-            </div>
-        @endforeach
+        </div>
+        </div>
+    @endforeach
+        @endif
+
       </div>
 
 
