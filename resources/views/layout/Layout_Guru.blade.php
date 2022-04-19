@@ -112,6 +112,70 @@
             </form>
 
 </dialog>
+
+<dialog id="myModal2" class="w-1/2 md:w-1/2 p-5  bg-white rounded-md ">
+
+    <div class="flex w-full h-auto justify-end items-center">
+        <div class="flex flex-row w-full h-auto py-3 text-2xl font-bold">
+            <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center">
+                <div class="w-8 h-8 overflow-hidden rounded-full">
+                  <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+                </div>
+
+                <div class="ml-2 capitalize flex grid grid-rows-2 ">
+                  <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">{{Auth::guard('satpam_pengguna')->user()->pengguna_nama}}</h1>
+
+                    <h1 class="text-sm text-gray-600 m-0 p-0 leading-none">Guru</h1>
+                  </div>
+            </div>
+
+        </div>
+        <div onclick="document.getElementById('myModal2').close();" class="flex w-1/12 h-auto justify-center cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </div>
+    </div>
+            <form action={{url("/murid/dodaftarmurid")}} method="POST">
+                @csrf
+                <div class="mt-4">
+                    <div>
+                        <label class="block" for="Name">Name<label>
+                                <input type="text" placeholder="Name"
+                                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" disabled="disabled" value="{{Auth::guard('satpam_pengguna')->user()->pengguna_nama}}">
+                    </div>
+                    <div class="mt-4">
+                        <label class="block" for="email">Email<label>
+                                <input type="text" placeholder="Email"
+                                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" disabled="disabled" value="{{Auth::guard('satpam_pengguna')->user()->pengguna_email}}">
+                    </div>
+                    <input type="hidden" name="pengguna_id"
+                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="{{Auth::guard('satpam_pengguna')->user()->pengguna_id}}">
+                    <div class="mt-4">
+                        <label class="block">Pelajaran<label>
+                                <select id="pelajaran_id" name="pelajaran_id"
+                                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" onchange="getIndex()">
+                                    <option value="0">Pilih Pelajaran</option>
+                                    @foreach ($dataPelajaran as $d)
+                                    <option value="{{$d->pelajaran_id}}">{{$d->pelajaran_nama}}</option>
+                                    @endforeach
+                                </select>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block">Kategori<label>
+                                <select id="kategorikelas_id" name="kategorikelas_id"
+                                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" >
+
+                                </select>
+                    </div>
+
+                    <div class="flex">
+                        <button class="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Daftar
+                            Kelas</button>
+                    </div>
+
+                </div>
+            </form>
+
+</dialog>
 <script>
 
     // $('#pelajaran_id').on('change', function () {

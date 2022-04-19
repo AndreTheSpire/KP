@@ -26,7 +26,7 @@
 
         <div class="ml-4 capitalize flex cursor-text focus:cursor-auto ">
 
-          <h1 class="text-sm text-gray-500 m-0 p-0 leading-none">Mulai diskusi,berbagi informasi, dan lain-lain</h1>
+          <h1 class="text-sm text-gray-500 m-0 p-0 leading-none" onclick="document.getElementById('myModal2').showModal()"> Mulai diskusi,berbagi informasi, dan lain-lain</h1>
         </div>
     </div>
 </div>
