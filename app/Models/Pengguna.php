@@ -51,4 +51,8 @@ class Pengguna extends Authenticatable
     {
         return $this->pengguna_email;
     }
+    public function adalahGuru()
+    {
+        return $this->belongsTo(Guru::class,'pengguna_id','pengguna_id');
+    }
 }

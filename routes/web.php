@@ -72,5 +72,7 @@ Route::prefix('murid')->group(function () {
 
 Route::prefix('guru')->group(function () {
     Route::get('/', 'GuruController@GotoHome');
+    Route::get('/kelas', 'GuruController@GoToKelas');
+    Route::get('/kelas/{id}', 'GuruController@GoDetailKelas');
 
 });
