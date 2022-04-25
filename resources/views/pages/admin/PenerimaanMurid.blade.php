@@ -5,7 +5,6 @@
 <div class="font-bold text-center text-2xl">Daftar Murid Yang Mendaftar Kelas</div>
 <div class="flex items-center justify-center p-10 border-4 border-dotted ">
 
-    <div class="flex items-center justify-center p-10 border-4 border-dotted ">
 
         <div class="flex flex-col">
             <div class="overflow-x-auto">
@@ -54,7 +53,6 @@
               </div>
             </div>
           </div>
-        </div>
     </div>
 
 

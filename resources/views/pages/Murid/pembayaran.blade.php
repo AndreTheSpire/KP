@@ -24,7 +24,7 @@
 @section('content')
 
 
-<table class="table-fixed border-collapse border border-slate-500 w-4/5">
+<table class="table-fixed border-collapse border border-slate-700 w-full">
     <thead>
         <tr >
             <th class="border border-slate-600 text-center w-full">ID Pendaftaran</th>
