@@ -14,24 +14,48 @@
       <!-- end sidebar toggle -->
 
       <!-- link -->
-      <a href="/murid/pembayaran" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md  {{ $title === "semua" ? "bg-gray-400" : " " }}">
+      @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
+      <a href='/guru/kelas/{{$dataKelas->kelas_id}}/' class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md  {{ $title === "post" ? "bg-gray-400" : " " }}">
         <i class="fa fa-envelope-open-text text-xs mx-2 "></i>
         Post
       </a>
+      @else
+      <a href='/murid/kelas/{{$dataKelas->kelas_id}}/' class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md  {{ $title === "post" ? "bg-gray-400" : " " }}">
+        <i class="fa fa-envelope-open-text text-xs mx-2 "></i>
+        Post
+      </a>
+      @endif
+
       <!-- end link -->
 
       <!-- link -->
-      <a href="/murid/pembayaranbelum" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "belum" ? "bg-gray-400" : " " }}">
+      @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
+      <a href="/guru/kelas/{{$dataKelas->kelas_id}}/tugas" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "tugas" ? "bg-gray-400" : " " }}">
         <i class="fa fa-comments text-xs mx-2"></i>
         Tugas
       </a>
+      @else
+      <a href="/murid/kelas/{{$dataKelas->kelas_id}}/tugas" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "tugas" ? "bg-gray-400" : " " }}">
+        <i class="fa fa-comments text-xs mx-2"></i>
+        Tugas
+      </a>
+      @endif
+
       <!-- end link -->
 
       <!-- link -->
-      <a href="/murid/pembayaranmenunggu" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "menunggu" ? "bg-gray-400" : " " }}">
+      @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
+      <a href="/guru/kelas/{{$dataKelas->kelas_id}}/member" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "member" ? "bg-gray-400" : " " }}">
         <i class="fa fa-shield-check text-xs mx-2"></i>
         Member
       </a>
+      @else
+      <a href="/murid/kelas/{{$dataKelas->kelas_id}}/member" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "member" ? "bg-gray-400" : " " }}">
+        <i class="fa fa-shield-check text-xs mx-2"></i>
+        Member
+      </a>
+      @endif
+
       <!-- end link -->
 
 

@@ -1,4 +1,4 @@
-@extends('layout.Layout_Murid')
+@extends('layout.Layout_Guru')
 
 @section('navbar')
     @include('pages.essential.navbarguru')

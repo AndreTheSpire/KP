@@ -49,7 +49,27 @@ class GuruController extends Controller
         $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
         $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
         return view("pages.Guru.DetailKelas",[
-            'title' => "semua",
+            'title' => "post",
+            "dataKelas"=>$dataKelas,
+            "waktuMulaiEdited"=>$waktuMulaiEdited,
+            "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataFeed"=>$dataFeed,
+        ]);
+    }
+    public function GoDetailTugasKelas(Request $request)
+    {
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $dataFeed=Feed::where('kelas_id','=',$request->id)->get();
+        $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
+        $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
+        return view("pages.Guru.tugas",[
+            'title' => "tugas",
             "dataKelas"=>$dataKelas,
             "waktuMulaiEdited"=>$waktuMulaiEdited,
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,

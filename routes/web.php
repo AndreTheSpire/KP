@@ -76,6 +76,7 @@ Route::prefix('guru')->group(function () {
     Route::get('/', 'GuruController@GotoHome');
     Route::get('/kelas', 'GuruController@GoToKelas');
     Route::get('/kelas/{id}', 'GuruController@GoDetailKelas');
+    Route::get('/kelas/{id}/tugas', 'GuruController@GoDetailTugasKelas');
     Route::post('/kelas/{id}/addfeed', 'GuruController@doAddFeed');
     Route::post('/kelas/{kelas_id}/comment/{feed_id}/add', 'GuruController@doAddComment');
     Route::get('downloadlampiranfeed/{id}','MuridController@downloadlampiranfeed');

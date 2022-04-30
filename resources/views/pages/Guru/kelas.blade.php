@@ -1,7 +1,7 @@
-@extends('layout.Layout_Murid')
+@extends('layout.Layout_Guru')
 
 @section('navbar')
-    @include('pages.essential.navbarmurid')
+    @include('pages.essential.navbarguru')
 @endsection
 
 @section('content')

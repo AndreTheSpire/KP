@@ -209,7 +209,7 @@ class MuridController extends Controller
         $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
         $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
         return view("pages.Murid.DetailKelas",[
-            'title' => "semua",
+            'title' => "post",
             "dataKelas"=>$dataKelas,
             "waktuMulaiEdited"=>$waktuMulaiEdited,
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
