@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Feed;
 use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
@@ -201,6 +203,7 @@ class MuridController extends Controller
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
+        $dataFeed=Feed::where('kelas_id','=',$request->id)->get();
         $dataKelas = Kelas::find($request->id);
         $dataGuru = Guru::where('pelajaran_id','=',$dataKelas->pelajaran_id)->get();;
         $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
@@ -212,9 +215,31 @@ class MuridController extends Controller
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
+            "dataFeed"=>$dataFeed,
         ]);
     }
 
+    public function doAddComment(Request $request)
+    {
+        $comment = $request->comment;
+        $kelas_id = $request->kelas_id;
+        $feed_id = $request->feed_id;
+        $pengguna =  Auth::guard('satpam_pengguna')->user();
+        if ($feed_id && $pengguna->pengguna_id && $comment) {
+            $hasil = Comment::create([
+                'feed_id' => $feed_id,
+                'pengguna_id' => $pengguna->pengguna_id,
+                'keterangan' => $comment,
+            ]);
+        }
+
+        return back();
+    }
+    public function downloadlampiranfeed(Request $request)
+    {
+        $register = Feed::find($request->id);
+        return Storage::disk('local')->download("DataKelas/Feed/$request->id/$register->lampiran");
+    }
     public function downloadfilebuktitf(Request $request)
     {
         $register = PendaftaranMurid::find($request->id);
