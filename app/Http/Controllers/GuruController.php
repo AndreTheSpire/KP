@@ -118,6 +118,30 @@ class GuruController extends Controller
         }
         return back();
     }
+    public function doUpdateFeed(Request $request)
+    {
+        $dataUser = Auth::guard('satpam_pengguna')->user();
+        $nama_file="kosong";
+        $file = $request->file('lampiran');
+        $dataFeed = Feed::find($request->idfeed);
+        // dd($dataFeed);
+
+            if($file){
+                $nama_file = $file->getClientOriginalName();
+
+                $nama=$nama_file;
+
+                $dataFeed->keterangan=$request->keterangan;
+                $dataFeed->lampiran=$nama;
+                $dataFeed->save();
+                $request->file('lampiran')->storeAs('DataKelas/Feed/'.$request->idfeed,$nama_file, 'local');
+            }else{
+                $dataFeed->keterangan=$request->keterangan;
+                $dataFeed->save();
+            }
+
+        return back();
+    }
 
     public function doAddComment(Request $request)
     {

@@ -121,6 +121,19 @@
     //     console.log("masuk gak tuh!!!");
     //     getIndex();
     // });
+const update= (feed_id,keteranganfeed)=>{
+    var keterangan=keteranganfeed;
+    console.log("masuk sini oii");
+    console.log(feed_id);
+    console.log(keterangan);
+    document.getElementById("ket").value =keterangan;
+    var frm = document.getElementById('forminput') || null;
+    if(frm) {
+    frm.action = "/guru/kelas/"+feed_id+"/updatefeed"
+    }
+    document.getElementById('myModal2').showModal();
+
+}
 
 const getIndex= ()=>{
     console.log("masuk sini oii");

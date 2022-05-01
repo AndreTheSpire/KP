@@ -65,11 +65,11 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </div>
     </div>
-            <form action="{{url('/guru/kelas/'.$dataKelas->kelas_id.'/addfeed')}}" method="POST"  enctype="multipart/form-data">
+            <form action="{{url('/guru/kelas/'.$dataKelas->kelas_id.'/addfeed')}}" method="POST" id="forminput"  enctype="multipart/form-data">
                 @csrf
                 <div class="mt-4">
                     <div>
-                                <textarea type="text" name="keterangan" cols="30" rows="5" style="resize: none" placeholder="type your post here"
+                                <textarea type="text" name="keterangan" id="ket" cols="30" rows="5" style="resize: none" placeholder="type your post here"
                                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" ></textarea>
                     </div>
                     <label class="block" for="lampiran">Lampiran<label>
@@ -83,6 +83,10 @@
             </form>
 
 </dialog>
+<script>
+
+
+</script>
 
 
 @endsection

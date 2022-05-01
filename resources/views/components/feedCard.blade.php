@@ -1,16 +1,22 @@
 <div class="bg-white rounded-md p-2 lg:p-4 dark:bg-ocean-light dark:bg-opacity-75 my-5">
 
-    <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center w-full bg-white p-5">
-        <div class="w-8 h-8 overflow-hidden rounded-full">
-          <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
-        </div>
+    <div class=" flex justice-between">
+        <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center w-full bg-white p-5">
 
-        <div class="ml-2 capitalize flex grid grid-rows-2 ">
-            <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">{{$feed_creator}}</h1>
-            <h1 class="text-sm text-gray-600 m-0 p-0 leading-none">{{$feed_waktu}}</h1>
-        </div>
+                <div class="w-8 h-8 overflow-hidden rounded-full">
+                    <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+                  </div>
 
+                  <div class="ml-2 capitalize flex grid grid-rows-2 ">
+                      <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">{{$feed_creator}}</h1>
+                      <h1 class="text-sm text-gray-600 m-0 p-0 leading-none">{{$feed_waktu}}</h1>
+                  </div>
+
+        </div>
+        <div class="float-right p-5" onclick="update({{$feed_id}},'{{$keterangan}}')">update</div>
     </div>
+
+
 
     <div class="text-xs lg:text-base mb-2 p-5">
         {{$keterangan}}
@@ -94,3 +100,4 @@
     @endif
 
 </div>
+
