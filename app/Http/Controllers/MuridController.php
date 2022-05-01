@@ -26,11 +26,17 @@ class MuridController extends Controller
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataFeed=Feed::whereIn('kelas_id',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $datakelasmurid=PendaftaranMurid::where('pengguna_id','=',$iduser)->get();
         return view("pages.Murid.home",[
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "datasebagaimurid"=> $datasebagaimurid,
+            "dataFeed"=>$dataFeed,
         ]);
     }
     public function GotoPembayaran()

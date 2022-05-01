@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Feed;
+use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
 use App\Models\Pelajaran;
@@ -11,6 +12,7 @@ use App\Models\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use SebastianBergmann\Environment\Console;
 
 class GuruController extends Controller
 {
@@ -20,10 +22,16 @@ class GuruController extends Controller
         $dataKategori = KategoriKelas::get();
         $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
         $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataFeed=Feed::whereIn('kelas_id',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         return view("pages.Guru.home",[
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "datasebagaiguru"=> $datasebagaiguru,
+            "dataFeed"=>$dataFeed,
         ]);
     }
     public function GoToKelas()
@@ -114,7 +122,6 @@ class GuruController extends Controller
     public function doAddComment(Request $request)
     {
         $comment = $request->comment;
-        $kelas_id = $request->kelas_id;
         $feed_id = $request->feed_id;
         $pengguna =  Auth::guard('satpam_pengguna')->user();
         if ($feed_id && $pengguna->pengguna_id && $comment) {
