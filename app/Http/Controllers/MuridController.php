@@ -10,6 +10,7 @@ use App\Models\Kelas;
 use App\Models\Murid;
 use App\Models\Pelajaran;
 use App\Models\PendaftaranMurid;
+use App\Models\Reply;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -203,7 +204,7 @@ class MuridController extends Controller
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
-        $dataFeed=Feed::where('kelas_id','=',$request->id)->get();
+        $dataFeed=Feed::where('kelas_id','=',$request->id)->orderBy('feed_id', 'desc')->get();
         $dataKelas = Kelas::find($request->id);
         $dataGuru = Guru::where('pelajaran_id','=',$dataKelas->pelajaran_id)->get();;
         $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
@@ -233,6 +234,22 @@ class MuridController extends Controller
             ]);
         }
 
+        return back();
+    }
+    public function doAddReply(Request $request)
+    {
+        $user_logged =  Auth::guard('satpam_pengguna')->user();
+        $keterangan = $request->keterangan;
+        $comment_id = $request->comment_id;
+        $pengguna_id = $user_logged->pengguna_id;
+        //TODO add reply ke table reply ambil
+        if ($comment_id && $pengguna_id && $keterangan) {
+            $hasil = Reply::create([
+                'comment_id' => $comment_id,
+                'pengguna_id' => $pengguna_id,
+                'keterangan' => $keterangan,
+            ]);
+        }
         return back();
     }
     public function downloadlampiranfeed(Request $request)

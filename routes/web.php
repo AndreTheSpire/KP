@@ -68,6 +68,7 @@ Route::prefix('murid')->group(function () {
     Route::get('/logout', 'MuridController@GotoHome');
     Route::get('downloadbuktitf/{id}','MuridController@downloadfilebuktitf');
     Route::post('/kelas/{kelas_id}/comment/{feed_id}/add', 'MuridController@doAddComment');
+    Route::post('/kelas/{kelas_id}/reply/{comment_id}/add', 'GuruController@doAddReply');
     Route::get('downloadlampiranfeed/{id}','GuruController@downloadlampiranfeed');
 
 });
@@ -79,6 +80,7 @@ Route::prefix('guru')->group(function () {
     Route::get('/kelas/{id}/tugas', 'GuruController@GoDetailTugasKelas');
     Route::post('/kelas/{id}/addfeed', 'GuruController@doAddFeed');
     Route::post('/kelas/{kelas_id}/comment/{feed_id}/add', 'GuruController@doAddComment');
+    Route::post('/kelas/{kelas_id}/reply/{comment_id}/add', 'GuruController@doAddReply');
     Route::get('downloadlampiranfeed/{id}','MuridController@downloadlampiranfeed');
 
 });

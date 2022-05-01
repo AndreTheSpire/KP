@@ -7,6 +7,7 @@ use App\Models\Feed;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
 use App\Models\Pelajaran;
+use App\Models\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -45,7 +46,7 @@ class GuruController extends Controller
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
-        $dataFeed=Feed::where('kelas_id','=',$request->id)->get();
+        $dataFeed=Feed::where('kelas_id','=',$request->id)->orderBy('feed_id', 'desc')->get();
         $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
         $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
         return view("pages.Guru.DetailKelas",[
@@ -124,6 +125,22 @@ class GuruController extends Controller
             ]);
         }
 
+        return back();
+    }
+    public function doAddReply(Request $request)
+    {
+        $user_logged =  Auth::guard('satpam_pengguna')->user();
+        $keterangan = $request->keterangan;
+        $comment_id = $request->comment_id;
+        $pengguna_id = $user_logged->pengguna_id;
+        //TODO add reply ke table reply ambil
+        if ($comment_id && $pengguna_id && $keterangan) {
+            $hasil = Reply::create([
+                'comment_id' => $comment_id,
+                'pengguna_id' => $pengguna_id,
+                'keterangan' => $keterangan,
+            ]);
+        }
         return back();
     }
     public function downloadlampiranfeed(Request $request)
