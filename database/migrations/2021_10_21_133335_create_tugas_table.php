@@ -17,9 +17,9 @@ class CreateTugasTable extends Migration
             $table->increments('tugas_id');
             $table->foreignId('kelas_id');
             $table->string('tugas_nama');
-            $table->dateTime('batas_awal');
-            $table->dateTime('batas_akhir');
+            $table->dateTime('tanggat_waktu');
             $table->longText('tugas_keterangan');
+            $table->string('lampiran');
             $table->boolean('status');
             $table->timestamps();
             $table->softDeletes();

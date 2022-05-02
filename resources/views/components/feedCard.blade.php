@@ -5,7 +5,7 @@
 
                 <div class="w-8 h-8 overflow-hidden rounded-full">
                     <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
-                  </div>
+                </div>
 
                   <div class="ml-2 capitalize flex grid grid-rows-2 ">
                       <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">{{$feed_creator}}</h1>

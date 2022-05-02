@@ -225,6 +225,28 @@ class MuridController extends Controller
             "dataFeed"=>$dataFeed,
         ]);
     }
+    public function GoDetailMemberKelas(Request $request)
+    {
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataFeed=Feed::where('kelas_id','=',$request->id)->orderBy('feed_id', 'desc')->get();
+        $dataKelas = Kelas::find($request->id);
+        $datamurid=Murid::where('kelas_id','=',$request->id)->get();
+        $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
+        $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
+        return view("pages.Murid.member",[
+            'title' => "member",
+            "dataKelas"=>$dataKelas,
+            "waktuMulaiEdited"=>$waktuMulaiEdited,
+            "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataMurid"=>$datamurid,
+        ]);
+    }
+
 
     public function doAddComment(Request $request)
     {

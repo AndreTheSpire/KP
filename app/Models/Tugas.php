@@ -20,9 +20,9 @@ class Tugas extends Model
     protected $fillable = [
         'kelas_id',
         'tugas_nama',
-        'batas_awal',
-        'batas_akhir',
+        'tanggat_waktu',
         'tugas_keterangan',
+        'lampiran',
         'status',
     ];
 

@@ -7,8 +7,10 @@ use App\Models\Feed;
 use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
+use App\Models\Murid;
 use App\Models\Pelajaran;
 use App\Models\Reply;
+use App\Models\Tugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -85,6 +87,27 @@ class GuruController extends Controller
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataFeed"=>$dataFeed,
+        ]);
+    }
+    public function GoDetailMemberKelas(Request $request)
+    {
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $datamurid=Murid::where('kelas_id','=',$request->id)->get();
+        $dataFeed=Feed::where('kelas_id','=',$request->id)->get();
+        $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
+        $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
+        return view("pages.Guru.member",[
+            'title' => "member",
+            "dataKelas"=>$dataKelas,
+            "waktuMulaiEdited"=>$waktuMulaiEdited,
+            "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataMurid"=>$datamurid,
         ]);
     }
 
@@ -164,6 +187,23 @@ class GuruController extends Controller
 
         return back();
     }
+    public function doAddTugasKelas(Request $request)
+    {
+        $dataKelas = Kelas::find($request->id);
+        $pengguna =  Auth::guard('satpam_pengguna')->user();
+        dd($request->all());
+        if ( $pengguna->pengguna_id ) {
+            $hasil = Tugas::create([
+                'kelas_id' => $request->id,
+                'tugas_nama' => $request->tugas_nama,
+                'tanggat_waktu'=>$request->tanggat_waktu,
+                'tugas_keterangan' => $request->tugas_keterangan,
+            ]);
+        }
+
+        return back();
+    }
+
     public function doAddReply(Request $request)
     {
         $user_logged =  Auth::guard('satpam_pengguna')->user();
