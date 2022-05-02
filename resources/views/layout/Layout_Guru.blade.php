@@ -134,6 +134,16 @@ const update= (feed_id,keteranganfeed)=>{
     document.getElementById('myModal2').showModal();
 
 }
+const deletepost= (feed_id)=>{
+    console.log("masuk sini oii");
+    console.log(feed_id);
+    var frm = document.getElementById('yes') || null;
+    if(frm) {
+    frm.href = "/guru/kelas/"+feed_id+"/deletefeed"
+    }
+    document.getElementById('myModal3').showModal();
+
+}
 
 const getIndex= ()=>{
     console.log("masuk sini oii");

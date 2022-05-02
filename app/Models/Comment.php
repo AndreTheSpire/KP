@@ -35,4 +35,13 @@ class Comment extends Model
     {
         return $this->hasMany(Reply::class,'comment_id','comment_id');
     }
+    public static function boot() {
+        parent::boot();
+        self::deleting(function($comment) { // before delete() method call this
+             $comment->Reply()->each(function($reply) {
+                $reply->delete(); // <-- direct deletion
+             });
+             // do the rest of the cleanup...
+        });
+    }
 }

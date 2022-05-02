@@ -142,6 +142,12 @@ class GuruController extends Controller
 
         return back();
     }
+    public function doDeleteFeed(Request $request)
+    {
+        $dataFeed = Feed::find($request->idfeed);
+        $dataFeed->delete();
+        return back();
+    }
 
     public function doAddComment(Request $request)
     {

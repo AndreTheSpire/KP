@@ -80,6 +80,7 @@ Route::prefix('guru')->group(function () {
     Route::get('/kelas/{id}/tugas', 'GuruController@GoDetailTugasKelas');
     Route::post('/kelas/{id}/addfeed', 'GuruController@doAddFeed');
     Route::post('/kelas/{idfeed}/updatefeed', 'GuruController@doUpdateFeed');
+    Route::GET('/kelas/{idfeed}/deletefeed', 'GuruController@doDeleteFeed');
     Route::post('/kelas/comment/{feed_id}/add', 'GuruController@doAddComment');
     Route::post('/kelas/reply/{comment_id}/add', 'GuruController@doAddReply');
     Route::get('downloadlampiranfeed/{id}','MuridController@downloadlampiranfeed');
