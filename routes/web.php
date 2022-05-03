@@ -66,6 +66,8 @@ Route::prefix('murid')->group(function () {
     Route::get('/kelas', 'MuridController@GoToKelas');
     Route::get('/kelas/{id}', 'MuridController@GoDetailKelas');
     Route::get('/kelas/{id}/member', 'MuridController@GoDetailMemberKelas');
+    Route::get('/kelas/{id}/tugas', 'MuridController@GoTugasKelas');
+    Route::get('/kelas/{id}/tugas/{id_tugas}', 'MuridController@GoDetailTugasKelas');
     Route::get('/logout', 'MuridController@GotoHome');
     Route::get('downloadbuktitf/{id}','MuridController@downloadfilebuktitf');
     Route::post('/kelas/comment/{feed_id}/add', 'MuridController@doAddComment');

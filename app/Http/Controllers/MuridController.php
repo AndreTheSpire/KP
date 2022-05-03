@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\D_tugas;
 use App\Models\Feed;
 use App\Models\Guru;
 use App\Models\KategoriKelas;
@@ -11,6 +12,7 @@ use App\Models\Murid;
 use App\Models\Pelajaran;
 use App\Models\PendaftaranMurid;
 use App\Models\Reply;
+use App\Models\Tugas;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -225,6 +227,58 @@ class MuridController extends Controller
             "dataFeed"=>$dataFeed,
         ]);
     }
+
+    public function GoTugasKelas(Request $request)
+    {
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $dataTugas=Tugas::where('kelas_id','=',$request->id)->orderBy('created_at', 'desc')->get();
+        $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
+        $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
+        return view("pages.Murid.tugas",[
+            'title' => "tugas",
+            "dataKelas"=>$dataKelas,
+            "waktuMulaiEdited"=>$waktuMulaiEdited,
+            "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataTugas"=>$dataTugas,
+        ]);
+    }
+    public function GoDetailTugasKelas(Request $request)
+    {
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataUser =  Auth::guard('satpam_pengguna')->user();
+
+        foreach ($dataUser->AdalahMurid as $usermurid) {
+            if($usermurid->kelas_id==$request->id){
+                $muridkelas=$usermurid;
+            }
+        };
+
+        $dataTugas=D_tugas::where('tugas_id','=',$request->idTugas)->where('murid_id','=',$muridkelas->murid_id)->first();
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $detailTugas= Tugas::find($request->id_tugas);
+        $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
+        $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
+        return view("pages.Murid.detailtugas",[
+            'title' => "tugas",
+            "dataKelas"=>$dataKelas,
+            "waktuMulaiEdited"=>$waktuMulaiEdited,
+            "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataTugas"=>$dataTugas,
+            "detailTugas"=>$detailTugas
+        ]);
+    }
+
     public function GoDetailMemberKelas(Request $request)
     {
 

@@ -1,5 +1,9 @@
 <div class="bg-white rounded-md p-2 lg:p-4 dark:bg-ocean-light dark:bg-opacity-75 my-5">
+    @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
     <a href="/guru/kelas/{{$kelas_id}}/tugas/{{$tugas_id}}" class="href">
+    @else
+    <a href="/murid/kelas/{{$kelas_id}}/tugas/{{$tugas_id}}" class="href">
+    @endif
         <div class=" flex justice-between">
             <div class="menu-btn focus:outline-none focus:shadow-outline items-center w-full bg-white p-5 grid grid-cols-12">
 
