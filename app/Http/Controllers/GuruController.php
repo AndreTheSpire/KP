@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\D_tugas;
 use App\Models\Feed;
 use App\Models\Guru;
 use App\Models\KategoriKelas;
@@ -69,14 +70,14 @@ class GuruController extends Controller
             "dataFeed"=>$dataFeed,
         ]);
     }
-    public function GoDetailTugasKelas(Request $request)
+    public function GoTugasKelas(Request $request)
     {
 
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
-        $dataFeed=Feed::where('kelas_id','=',$request->id)->get();
+        $dataTugas=Tugas::where('kelas_id','=',$request->id)->orderBy('created_at', 'desc')->get();
         $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
         $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
         return view("pages.Guru.tugas",[
@@ -86,7 +87,29 @@ class GuruController extends Controller
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
-            "dataFeed"=>$dataFeed,
+            "dataTugas"=>$dataTugas,
+        ]);
+    }
+    public function GoDetailTugasKelas(Request $request)
+    {
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $detailTugas= Tugas::find($request->id_tugas);
+        $dataTugas= D_Tugas::where('tugas_id','=',$request->id_tugas)->get();
+        $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
+        $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
+        return view("pages.Guru.detailtugas",[
+            'title' => "tugas",
+            "dataKelas"=>$dataKelas,
+            "waktuMulaiEdited"=>$waktuMulaiEdited,
+            "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataTugas"=>$dataTugas,
+            "detailTugas"=>$detailTugas
         ]);
     }
     public function GoDetailMemberKelas(Request $request)
@@ -189,18 +212,48 @@ class GuruController extends Controller
     }
     public function doAddTugasKelas(Request $request)
     {
+        $dataUser = Auth::guard('satpam_pengguna')->user();
+        $nama_file="kosong";
+        $file = $request->file('lampiran');
         $dataKelas = Kelas::find($request->id);
-        $pengguna =  Auth::guard('satpam_pengguna')->user();
-        dd($request->all());
-        if ( $pengguna->pengguna_id ) {
-            $hasil = Tugas::create([
-                'kelas_id' => $request->id,
-                'tugas_nama' => $request->tugas_nama,
-                'tanggat_waktu'=>$request->tanggat_waktu,
-                'tugas_keterangan' => $request->tugas_keterangan,
-            ]);
-        }
+        if ($request->tugas_nama && $request->tanggat_waktu && $request->tugas_keterangan) {
+            if($file){
+                $nama_file = $file->getClientOriginalName();
+                $nama=$nama_file;
+                $hasil = Tugas::create([
+                    'kelas_id' => $request->id,
+                    'pengguna_id'=>$dataUser->pengguna_id,
+                    'tugas_nama' => $request->tugas_nama,
+                    'tanggat_waktu'=>$request->tanggat_waktu,
+                    'tugas_keterangan' => $request->tugas_keterangan,
+                    "lampiran"=>$nama,
+                    "status"=>0,
+                ]);
+                $request->file('lampiran')->storeAs('DataKelas/Tugas/'.$hasil->tugas_id,$nama_file, 'local');
+            }else{
+                $hasil = Tugas::create([
+                    'kelas_id' => $request->id,
+                    'pengguna_id'=>$dataUser->pengguna_id,
+                    'tugas_nama' => $request->tugas_nama,
+                    'tanggat_waktu'=>$request->tanggat_waktu,
+                    'tugas_keterangan' => $request->tugas_keterangan,
+                    "lampiran" => "kosong",
+                    "status"=>0,
+                ]);
+            }
+            $kelastugas=$hasil->kelas_id;
+            $data_murid=Murid::where('kelas_id','=',$kelastugas)->get();
 
+            foreach ($data_murid as $murid) {
+                $tugasdibagi=D_tugas::create([
+                    "tugas_id"=>$hasil->tugas_id,
+                    "murid_id"=>$murid->murid_id,
+                    "nilai"=>0,
+                ]);
+
+            }
+
+        }
         return back();
     }
 

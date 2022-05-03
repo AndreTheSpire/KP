@@ -26,6 +26,15 @@
     </div>
 
 </div>
+@foreach ($dataTugas as $tugas)
+@include('components.listtugasCard',
+[
+    'tugas_id'=>$tugas->tugas_id,
+    'kelas_id'=>$tugas->kelas_id,
+    'tugas_nama'=>$tugas->tugas_nama,
+    'tugas_waktu'=>date('d M Y', strtotime($tugas->created_at)),
+])
+@endforeach
 
 
 <dialog id="myModal2" class="w-full h-full bg-white rounded-md ">

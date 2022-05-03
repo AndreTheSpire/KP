@@ -78,7 +78,8 @@ Route::prefix('guru')->group(function () {
     Route::get('/', 'GuruController@GotoHome');
     Route::get('/kelas', 'GuruController@GoToKelas');
     Route::get('/kelas/{id}', 'GuruController@GoDetailKelas');
-    Route::get('/kelas/{id}/tugas', 'GuruController@GoDetailTugasKelas');
+    Route::get('/kelas/{id}/tugas', 'GuruController@GoTugasKelas');
+    Route::get('/kelas/{id}/tugas/{id_tugas}', 'GuruController@GoDetailTugasKelas');
     Route::post('/kelas/{id}/tugas/add', 'GuruController@doAddTugasKelas');
     Route::get('/kelas/{id}/member', 'GuruController@GoDetailMemberKelas');
     Route::post('/kelas/{id}/addfeed', 'GuruController@doAddFeed');
