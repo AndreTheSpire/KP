@@ -15,6 +15,10 @@ class EssentianController extends Controller
     {
         return view("pages.essential.login");
     }
+    public function GoToLanding()
+    {
+        return view("pages.essential.landing");
+    }
     public function  GoTologout()
     {
         if(Auth::guard('satpam_pengguna')->check()){
