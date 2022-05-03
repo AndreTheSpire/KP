@@ -339,6 +339,11 @@ class MuridController extends Controller
         $register = Feed::find($request->id);
         return Storage::disk('local')->download("DataKelas/Feed/$request->id/$register->lampiran");
     }
+    public function downloadlampirantugas(Request $request)
+    {
+        $register = Tugas::find($request->id);
+        return Storage::disk('local')->download("DataKelas/Tugas/$request->id/$register->lampiran");
+    }
     public function downloadfilebuktitf(Request $request)
     {
         $register = PendaftaranMurid::find($request->id);

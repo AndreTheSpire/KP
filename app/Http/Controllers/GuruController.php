@@ -99,9 +99,32 @@ class GuruController extends Controller
         $dataKelas = Kelas::find($request->id);
         $detailTugas= Tugas::find($request->id_tugas);
         $dataTugas= D_Tugas::where('tugas_id','=',$request->id_tugas)->get();
-        $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
+        $tanggatwaktu = date('Y-m-d\TH:i', strtotime($detailTugas->tanggat_waktu));
         $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
         return view("pages.Guru.detailtugas",[
+            'title' => "tugas",
+            "dataKelas"=>$dataKelas,
+            "tanggatwaktu"=>$tanggatwaktu,
+            "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataTugas"=>$dataTugas,
+            "detailTugas"=>$detailTugas
+        ]);
+    }
+    public function doDeleteTugas(Request $request)
+    {
+        $dataTugas = Tugas::find($request->idtugas);
+        $dataTugas->delete();
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $dataTugas=Tugas::where('kelas_id','=',$request->id)->orderBy('created_at', 'desc')->get();
+        $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
+        $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
+        return view("pages.Guru.tugas",[
             'title' => "tugas",
             "dataKelas"=>$dataKelas,
             "waktuMulaiEdited"=>$waktuMulaiEdited,
@@ -109,7 +132,6 @@ class GuruController extends Controller
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataTugas"=>$dataTugas,
-            "detailTugas"=>$detailTugas
         ]);
     }
     public function GoDetailMemberKelas(Request $request)
@@ -257,6 +279,36 @@ class GuruController extends Controller
         return back();
     }
 
+    public function doUpdateTugasKelas(Request $request)
+    {
+
+        $dataUser = Auth::guard('satpam_pengguna')->user();
+        $nama_file="kosong";
+        $file = $request->file('lampiran');
+        $dataTugas = Tugas::find($request->idtugas);
+
+            if($file){
+                $nama_file = $file->getClientOriginalName();
+
+                $nama=$nama_file;
+
+                $dataTugas->tugas_nama=$request->tugas_nama;
+                $dataTugas->tanggat_waktu=$request->tanggat_waktu;
+                $dataTugas->tugas_keterangan=$request->tugas_keterangan;
+                $dataTugas->lampiran=$nama;
+                $dataTugas->save();
+                $request->file('lampiran')->storeAs('DataKelas/Tugas/'.$request->idtugas,$nama_file, 'local');
+            }else{
+                $dataTugas->tugas_nama=$request->tugas_nama;
+                $dataTugas->tanggat_waktu=$request->tanggat_waktu;
+                $dataTugas->tugas_keterangan=$request->tugas_keterangan;
+                $dataTugas->save();
+            }
+
+        return back();
+
+    }
+
     public function doAddReply(Request $request)
     {
         $user_logged =  Auth::guard('satpam_pengguna')->user();
@@ -277,5 +329,10 @@ class GuruController extends Controller
     {
         $register = Feed::find($request->id);
         return Storage::disk('local')->download("DataKelas/Feed/$request->id/$register->lampiran");
+    }
+    public function downloadlampirantugas(Request $request)
+    {
+        $register = Tugas::find($request->id);
+        return Storage::disk('local')->download("DataKelas/Tugas/$request->id/$register->lampiran");
     }
 }

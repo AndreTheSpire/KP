@@ -24,6 +24,16 @@
 
             </div>
         </div>
+        @if ($detailTugas->lampiran=="kosong")
+
+        @else
+        <div class="text-xs lg:text-base mb-2">
+            <div class="text-xs lg:text-base bg-gray-100 round p-5">
+                <a href="{{ url("/murid/downloadlampirantugas/$detailTugas->tugas_id") }}">{{$detailTugas->lampiran}}</a>
+
+            </div>
+        </div>
+        @endif
     </div>
 
         <form action="/murid/kelas/{{$dataKelas->kelas_id}}/tugas/uploadtugas" method="POST" class="bg-white dark:bg-ocean-light dark:bg-opacity-50 shadow-md rounded-md flex flex-row p-5 flex flex-col bg-opacity-75 " enctype="multipart/form-data">

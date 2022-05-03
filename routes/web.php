@@ -72,7 +72,8 @@ Route::prefix('murid')->group(function () {
     Route::get('downloadbuktitf/{id}','MuridController@downloadfilebuktitf');
     Route::post('/kelas/comment/{feed_id}/add', 'MuridController@doAddComment');
     Route::post('/kelas/reply/{comment_id}/add', 'GuruController@doAddReply');
-    Route::get('downloadlampiranfeed/{id}','GuruController@downloadlampiranfeed');
+    Route::get('downloadlampiranfeed/{id}','MuridController@downloadlampiranfeed');
+    Route::get('downloadlampirantugas/{id}','MuridController@downloadlampirantugas');
 
 });
 
@@ -83,12 +84,15 @@ Route::prefix('guru')->group(function () {
     Route::get('/kelas/{id}/tugas', 'GuruController@GoTugasKelas');
     Route::get('/kelas/{id}/tugas/{id_tugas}', 'GuruController@GoDetailTugasKelas');
     Route::post('/kelas/{id}/tugas/add', 'GuruController@doAddTugasKelas');
+    Route::post('/kelas/{idtugas}/updatetugas', 'GuruController@doUpdateTugasKelas');
+    Route::GET('/kelas/{id}/{idtugas}/deletetugas', 'GuruController@doDeleteTugas');
     Route::get('/kelas/{id}/member', 'GuruController@GoDetailMemberKelas');
     Route::post('/kelas/{id}/addfeed', 'GuruController@doAddFeed');
     Route::post('/kelas/{idfeed}/updatefeed', 'GuruController@doUpdateFeed');
     Route::GET('/kelas/{idfeed}/deletefeed', 'GuruController@doDeleteFeed');
     Route::post('/kelas/comment/{feed_id}/add', 'GuruController@doAddComment');
     Route::post('/kelas/reply/{comment_id}/add', 'GuruController@doAddReply');
-    Route::get('downloadlampiranfeed/{id}','MuridController@downloadlampiranfeed');
+    Route::get('downloadlampiranfeed/{id}','GuruController@downloadlampiranfeed');
+    Route::get('downloadlampirantugas/{id}','GuruController@downloadlampirantugas');
 
 });

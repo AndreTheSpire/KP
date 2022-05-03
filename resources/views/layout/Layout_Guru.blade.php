@@ -145,6 +145,32 @@ const deletepost= (feed_id)=>{
 
 }
 
+const updatetugas= (tugas_id,judul_tugas,tanggaltugas,keterangantugas)=>{
+    var keterangan=keterangantugas;
+    var tanggaltf=tanggaltugas;
+    console.log("masuk sini oii");
+    console.log(tugas_id);
+    console.log(tanggaltf);
+    document.getElementById("tugas_nama").value =judul_tugas;
+    document.getElementById("tanggat_waktu").value =tanggaltf;
+    document.getElementById("tugas_keterangan").value =keterangan;
+    var frm = document.getElementById('formtugas') || null;
+    if(frm) {
+    frm.action = "/guru/kelas/"+tugas_id+"/updatetugas"
+    }
+    document.getElementById('myModal2').showModal();
+
+}
+const deletetugas= (tugas_id,kelas_id)=>{
+    console.log("masuk sini oii");
+    console.log(tugas_id);
+    var frm = document.getElementById('yes') || null;
+    if(frm) {
+    frm.href = "/guru/kelas/"+kelas_id+"/"+tugas_id+"/deletetugas"
+    }
+    document.getElementById('myModal3').showModal();
+
+}
 const getIndex= ()=>{
     console.log("masuk sini oii");
     var e = document.getElementById("pelajaran_id");

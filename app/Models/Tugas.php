@@ -39,6 +39,19 @@ class Tugas extends Model
     {
         return $this->hasMany(NilaiTugasMurid::class,'tugas_id','tugas_id');
     }
+    public function tugas_murid()
+    {
+        return $this->hasMany(D_tugas::class, 'tugas_id', 'tugas_id');
+    }
+    public static function boot() {
+        parent::boot();
+        self::deleting(function($tugas) { // before delete() method call this
+             $tugas->tugas_murid()->each(function($tugas) {
+                $tugas->delete(); // <-- direct deletion
+             });
+             // do the rest of the cleanup...
+        });
+    }
 
 
 }
