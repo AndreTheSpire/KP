@@ -260,7 +260,7 @@ class MuridController extends Controller
             }
         };
 
-        $dataTugas=D_tugas::where('tugas_id','=',$request->idTugas)->where('murid_id','=',$muridkelas->murid_id)->first();
+        $dataTugas=D_tugas::where('tugas_id','=',$request->id_tugas)->where('murid_id','=',$muridkelas->murid_id)->first();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
@@ -332,6 +332,30 @@ class MuridController extends Controller
                 'keterangan' => $keterangan,
             ]);
         }
+        return back();
+    }
+    public function doUploadTugas(Request $request)
+    {
+        $dataKelas = Kelas::find($request->id);
+
+        $user_login =  Auth::guard('satpam_pengguna')->user();
+        $id_tugas=$request->id_tugas;
+        $file = $request->file('file_upload');
+
+		$nama_file = $file->getClientOriginalName();
+
+
+        $request->file('file_upload')->storeAs('DataKelas/PengumpulanTugas/'.$id_tugas,$nama_file, 'local');
+
+        $result=D_tugas::where('tugas_id','=',$id_tugas)->get();
+
+        foreach ($result as $res) {
+            if($res->PunyaMurid->pengguna_id==$user_login->pengguna_id){
+                $res->url_pengumpulan=$nama_file;
+                $res->save();
+            }
+        }
+
         return back();
     }
     public function downloadlampiranfeed(Request $request)

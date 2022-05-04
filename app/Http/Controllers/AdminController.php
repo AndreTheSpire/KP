@@ -57,21 +57,32 @@ class AdminController extends Controller
         }
 
     }
+    public function DoUpdatePelajaran(Request $request)
+    {
+            $pelajaran = Pelajaran::find($request->id);
+            $pelajaran->pelajaran_nama=$request->pelajaranupdate;
+            $pelajaran->save();
+
+            $dataPelajaran = Pelajaran::get();
+            return view("pages.admin.PelajaranKelas",[
+                'title' => "pelajaran",
+                "dataPelajaran" => $dataPelajaran,
+            ]);
+    }
 
     public function DoDeletePelajaran($id)
     {
-        try {
-            $check = Pelajaran::where('pelajaran_id',$id)->delete();
-            $check1 = KategoriKelas::where('pelajaran_id',$id)->delete();
+        $cek1=KategoriKelas::where('pelajaran_id',$id)->get();
+        $cek2=Guru::where('pelajaran_id',$id)->get();
+        $cek3=Kelas::where('pelajaran_id',$id)->get();
+        $cek4=PendaftaranMurid::where('pelajaran_id',$id)->get();
+        if(sizeof($cek1)!=0 ||sizeof($cek2)!=0||sizeof($cek3)!=0||sizeof($cek4)!=0){
+            Alert::warning('PERINGATAN', 'Pelajaran ini dipakai untuk kategori, kelas, ataupun guru');
+            return back();
         }
-        catch (\Exception $e) {
-            return response()->json($e->getMessage());
-        }
-        $dataPelajaran = Pelajaran::get();
-        return view("pages.admin.PelajaranKelas",[
-            'title' => "pelajaran",
-            "dataPelajaran" => $dataPelajaran,
-        ]);
+
+        $delete = Pelajaran::find($id)->delete();
+        return back();
     }
 
     public function DoTambahKategori(Request $request)
@@ -96,22 +107,27 @@ class AdminController extends Controller
         }
 
     }
+    public function DoUpdateKategori(Request $request)
+    {
+            $kategori = KategoriKelas::find($request->id);
+            $kategori->kategorikelas_nama=$request->kategorikelas_nama;
+            $kategori->save();
+
+            return back();
+    }
+
 
     public function DoDeleteKategori($id)
     {
-        try {
-            $check = KategoriKelas::where('kategorikelas_id',$id)->delete();
+        $cek1=Kelas::where('kategorikelas_id',$id)->get();
+        $cek2=PendaftaranMurid::where('kategorikelas_id',$id)->get();
+        if(sizeof($cek1)!=0 ||sizeof($cek2)!=0){
+            Alert::warning('PERINGATAN', 'kategori ini dipakai untuk kelas ataupun murid');
+            return back();
         }
-        catch (\Exception $e) {
-            return response()->json($e->getMessage());
-        }
-        $dataPelajaran = Pelajaran::get();
-        $dataKategori = KategoriKelas::get();
-        return view("pages.admin.KategoriKelas",[
-            'title' => "kategori",
-            "dataKategori" => $dataKategori,
-            "dataPelajaran" => $dataPelajaran,
-        ]);
+        $delete = KategoriKelas::find($id)->delete();
+        return back();
+
     }
 
     public function GoToKategoriKelas()

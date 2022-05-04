@@ -44,8 +44,7 @@
             </div>
 
             <input type="hidden" class="" value="{{$detailTugas->tugas_id}}" name="id_tugas">
-
-            @if ($detailTugas->url_pengumpulan!=null)
+            @if ($dataTugas->url_pengumpulan!=null)
             <div class=" text-center text-green-400 bg-white-500 text-white font-bold py-2 px-4 rounded">Already Submited</div>
             @else
             <br>

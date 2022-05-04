@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\D_tugas;
 use App\Models\Guru;
 use App\Models\KategoriKelas;
+use App\Models\Kelas;
 use App\Models\Pengguna;
+use App\Models\Tugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 class EssentianController extends Controller
 {
@@ -158,5 +163,48 @@ class EssentianController extends Controller
         $guru = Guru::where('pelajaran_id','=',$request->id)->with('punyaUser')->get();
         return json_encode($guru);
     }
+    public function downloadfile(Request $request)
+    {
+        $dataTugas = Tugas::find($request->id);
+        $kelas=$dataTugas->tugas_id;
+        return Storage::disk('local')->download("DataKelas/PengumpulanTugas/$kelas/$request->namafile");
+    }
+    public function downloadallfile(Request $request)
+    {
+        $dataKelas = Kelas::find($request->id);
+        $datatugas = D_tugas::where('tugas_id','=',$request->id_tugas)->get();
 
+        $pengumpulan=0;
+        $datapengumpulan= D_tugas::where('tugas_id','=',$request->id_tugas)->where('url_pengumpulan','!=',null)->get();
+        $pengumpulan=sizeof($datapengumpulan);
+        if($pengumpulan==0){
+            return back()->with("message", "Tidak ada File siswa yang dapat didownload");
+        }
+        // dd($datatugas);
+        $fileName = 'TugasKelas'.$dataKelas->kelas_nama.'.zip';
+        // dd(public_path());
+        // File::delete(public_path().'/'.$fileName);
+        // Storage::delete($fileName);
+        $kelas=$dataKelas->kelas_kode;
+        $zip = new \ZipArchive();
+
+
+        if ($zip->open(storage_path($fileName), \ZipArchive::CREATE)== TRUE)
+        {
+            $files = File::files(storage_path("app/DataKelas/PengumpulanTugas/$request->id_tugas"));
+            foreach ($files as $key => $value){
+                $relativeName = basename($value);
+                foreach ($datatugas as $item) {
+                    if($item->url_pengumpulan==$relativeName){
+                        $zip->addFile($value, $relativeName);
+                    }else{
+                    }
+                }
+
+            }
+            $zip->close();
+        }
+
+        return response()->download(storage_path($fileName))->deleteFileAfterSend(true);
+    }
 }

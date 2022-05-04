@@ -18,5 +18,18 @@ class Pelajaran extends Model
     protected $fillable = [
         'pelajaran_nama',
     ];
+    public function punyaKategori()
+    {
+        return $this->hasMany(KategoriKelas::class, 'pelajaran_id', 'pelajaran_id');
+    }
+    public static function boot() {
+        parent::boot();
+        self::deleting(function($pelajaran) { // before delete() method call this
+             $pelajaran->punyaKategori()->each(function($kat) {
+                $kat->delete(); // <-- direct deletion
+             });
+             // do the rest of the cleanup...
+        });
+    }
 
 }

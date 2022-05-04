@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','EssentianController@GoToLanding');
+Route::get('/','EssentianController@GoToLogin');
 Route::get('landing','EssentianController@GoToLanding');
 Route::get('login', 'EssentianController@GoToLogin');
 Route::get('logout', 'EssentianController@GoTologout');
@@ -30,8 +30,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/pelajaran', 'AdminController@GoToPelajaranKelas');
     Route::get('/kategori', 'AdminController@GoToKategoriKelas');
     Route::post('/tambahpelajaran', 'AdminController@DoTambahPelajaran');
+    Route::post('/{id}/updatepelajaran', 'AdminController@DoUpdatePelajaran');
     Route::get('/{id}/deletepelajaran','AdminController@DoDeletePelajaran');
     Route::post('/tambahkategori', 'AdminController@DoTambahKategori');
+    Route::post('/{id}/updatekategori', 'AdminController@DoUpdateKategori');
     Route::get('/{id}/deletekategori','AdminController@DoDeleteKategori');
     Route::get('/kelas/buatkelas', 'AdminController@GoToBuatKelas');
     Route::get('/kelas/{id}', 'AdminController@GoDetailKelas');
@@ -69,6 +71,7 @@ Route::prefix('murid')->group(function () {
     Route::get('/kelas/{id}/member', 'MuridController@GoDetailMemberKelas');
     Route::get('/kelas/{id}/tugas', 'MuridController@GoTugasKelas');
     Route::get('/kelas/{id}/tugas/{id_tugas}', 'MuridController@GoDetailTugasKelas');
+    Route::post('kelas/{id}/tugas/uploadtugas', 'MuridController@doUploadTugas');
     Route::get('/logout', 'MuridController@GotoHome');
     Route::get('downloadbuktitf/{id}','MuridController@downloadfilebuktitf');
     Route::post('/kelas/comment/{feed_id}/add', 'MuridController@doAddComment');
@@ -97,3 +100,5 @@ Route::prefix('guru')->group(function () {
     Route::get('downloadlampirantugas/{id}','GuruController@downloadlampirantugas');
 
 });
+Route::get('download/{id}/{namafile}','EssentianController@downloadfile');
+Route::get('downloadall/{id}/{id_tugas}','EssentianController@downloadallfile');

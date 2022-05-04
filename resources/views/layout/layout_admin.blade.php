@@ -136,5 +136,51 @@
       @yield('container')
       </div>
 
+      <script>
+          const updatepelajaran= (pelajaran_id,nama_pelajaran)=>{
+                console.log("masuk sini oii");
+                console.log(pelajaran_id);
+                console.log(nama_pelajaran);
+                document.getElementById("pelajaranupdate").value =nama_pelajaran;
+                var frm = document.getElementById('formpelajaran') || null;
+                if(frm) {
+                frm.action = "/admin/"+pelajaran_id+"/updatepelajaran"
+                }
+                document.getElementById('myModal2').showModal();
+
+            }
+            const deletepelajaran= (pelajaran_id)=>{
+                console.log("masuk sini oii");
+                console.log(pelajaran_id);
+                var frm = document.getElementById('yes') || null;
+                if(frm) {
+                frm.href = "/admin/"+pelajaran_id+"/deletepelajaran"
+                }
+                document.getElementById('myModal3').showModal();
+
+            }
+            const updatekategori= (kategori_id,nama_kategori)=>{
+                console.log("masuk sini oii");
+                console.log(kategori_id);
+                console.log(nama_kategori);
+                document.getElementById("updatekategori").value =nama_kategori;
+                var frm = document.getElementById('formkategori') || null;
+                if(frm) {
+                frm.action = "/admin/"+kategori_id+"/updatekategori"
+                }
+                document.getElementById('myModal2').showModal();
+
+            }
+            const deletekategori= (kategori_id)=>{
+                console.log("masuk sini oii");
+                console.log(kategori_id);
+                var frm = document.getElementById('yes') || null;
+                if(frm) {
+                frm.href = "/admin/"+kategori_id+"/deletekategori"
+                }
+                document.getElementById('myModal3').showModal();
+
+            }
+      </script>
   </body>
 </html>
