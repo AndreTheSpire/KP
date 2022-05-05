@@ -27,6 +27,10 @@ class D_tugas extends Model
     {
         return $this->belongsTo(Murid::class, 'murid_id', 'murid_id');
     }
+    public function DariTugas()
+    {
+        return $this->belongsTo(Tugas::class, 'tugas_id', 'tugas_id');
+    }
 
 
 }

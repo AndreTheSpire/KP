@@ -235,7 +235,7 @@ class MuridController extends Controller
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
-        $dataTugas=Tugas::where('kelas_id','=',$request->id)->orderBy('created_at', 'desc')->get();
+        $dataTugas=Tugas::where('kelas_id','=',$request->id)->where('tanggat_waktu','>=',Carbon::now())->orderBy('created_at', 'desc')->get();
         $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
         $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
         return view("pages.Murid.tugas",[
@@ -243,6 +243,27 @@ class MuridController extends Controller
             "dataKelas"=>$dataKelas,
             "waktuMulaiEdited"=>$waktuMulaiEdited,
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataTugas"=>$dataTugas,
+        ]);
+    }
+
+    public function GoToDo(Request $request)
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftartugasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftartugasid[]=$murid->murid_id;
+        }
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $dataTugas=D_Tugas::whereIn('murid_id',$daftartugasid)->orderBy('created_at', 'desc')->get();
+        return view("pages.Murid.todo",[
+            'title' => "tugas",
+            "dataKelas"=>$dataKelas,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataTugas"=>$dataTugas,

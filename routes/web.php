@@ -66,6 +66,7 @@ Route::prefix('murid')->group(function () {
     Route::get('/detailpembayaran/{id}', 'MuridController@GotoDetailPembayaran');
     Route::post('/dokirimbuktitf/{id}', 'MuridController@Gokirimbuktitfd');
     Route::post('/dodaftarmurid', 'MuridController@GodaftarMurid');
+    Route::get('/todo', 'MuridController@GoToDo');
     Route::get('/kelas', 'MuridController@GoToKelas');
     Route::get('/kelas/{id}', 'MuridController@GoDetailKelas');
     Route::get('/kelas/{id}/member', 'MuridController@GoDetailMemberKelas');
