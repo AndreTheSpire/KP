@@ -6,6 +6,7 @@ use App\Models\D_tugas;
 use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
+use App\Models\Pelajaran;
 use App\Models\Pengguna;
 use App\Models\Tugas;
 use Illuminate\Http\Request;
@@ -23,6 +24,17 @@ class EssentianController extends Controller
     public function GoToLanding()
     {
         return view("pages.essential.landing");
+    }
+    public function GoToProfile()
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        return view("pages.essential.profile",[
+            'title' => "tugas",
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
     }
     public function  GoTologout()
     {
