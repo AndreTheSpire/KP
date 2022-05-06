@@ -24,7 +24,7 @@
       <div class="text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly md:pb-10 md:mb-10 md:border-b md:border-gray-200">
         <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="/guru" title="email"><i class="fad fa-home"></i> Home</a>
         <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="/guru/kelas" title="email"><i class="fad fa-users"></i> Kelas</a>
-
+        <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="/guru/penilaian" title="email"><i class="fad fa-users"></i> Penilaian</a>
       </div>
       <!-- end left -->
 

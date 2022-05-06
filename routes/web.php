@@ -98,6 +98,10 @@ Route::prefix('guru')->group(function () {
     Route::GET('/kelas/{idfeed}/deletefeed', 'GuruController@doDeleteFeed');
     Route::post('/kelas/comment/{feed_id}/add', 'GuruController@doAddComment');
     Route::post('/kelas/reply/{comment_id}/add', 'GuruController@doAddReply');
+    Route::get('/penilaian', 'GuruController@GoToPenilaian');
+    Route::get('/penilaian/{idkelas}', 'GuruController@GoToTugasPenilaian');
+    Route::get('/penilaian/{idkelas}/{idtugas}', 'GuruController@GoToTugasPenilaian');
+    Route::post('/kelas/{idkelas}/tugas/{idtugas}/simpan', 'GuruController@DoSimpanNilai');
     Route::get('downloadlampiranfeed/{id}','GuruController@downloadlampiranfeed');
     Route::get('downloadlampirantugas/{id}','GuruController@downloadlampirantugas');
 

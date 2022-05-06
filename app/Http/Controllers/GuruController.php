@@ -325,6 +325,62 @@ class GuruController extends Controller
         }
         return back();
     }
+    public function GoToPenilaian(Request $request)
+    {
+
+        $iduserguru=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::where('guru_id','=',$iduserguru)->get();
+        return view("pages.Guru.penilaian",[
+            'title' => "tugas",
+            "dataKelas"=>$dataKelas,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
+    public function GoToTugasPenilaian(Request $request)
+    {
+
+        $iduserguru=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $dataTugas=Tugas::where('kelas_id','=',$request->idkelas)->get();
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::where('guru_id','=',$iduserguru)->get();
+        $nomor=0;
+        if($request->idtugas){
+            for ($i=0; $i <sizeof($dataTugas) ; $i++) {
+                if($dataTugas[$i]->tugas_id==$request->idtugas){
+                    $nomor=$i;
+                }
+            }
+        }else{
+            $nomor=0;
+        }
+        $tugas="tugas".$nomor;
+        return view("pages.Guru.detailpenilaian",[
+            'title' => $tugas,
+            'nomor' => $nomor,
+            "dataKelas"=>$dataKelas,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataTugas"=>$dataTugas,
+        ]);
+    }
+    public function DoSimpanNilai(Request $request)
+    {
+        $kelas = $request->idkelas;
+        $tugas = $request->idtugas;
+        $nilai = $request->nilai;
+        $ctr = 0;
+        $updateNilai = D_tugas::where('tugas_id', '=', $tugas)->get();
+        foreach ($updateNilai as $key => $update) {
+                $update->nilai = $nilai[$ctr];
+                $ctr++;
+                $update->save();
+        }
+        return back();
+    }
     public function downloadlampiranfeed(Request $request)
     {
         $register = Feed::find($request->id);
