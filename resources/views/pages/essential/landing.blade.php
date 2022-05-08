@@ -265,7 +265,7 @@
               <ul class="w-full text-center text-base font-bold">
                 <li class="border-b py-4">Total Pertemuan 20 Kali</li>
                 <li class="border-b py-4">Sekali Pertemuan 90 Menit</li>
-                <li class="border-b py-4">Serifikat TOEFL</li>
+                <li class="border-b py-4">Score Card TOEFL</li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
