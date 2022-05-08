@@ -56,6 +56,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/murid/{id}/decline', 'AdminController@DeclineDetailPenerimaanMurid');
     Route::get('/transaksi', 'AdminController@GoToLaporanTransaksi');
     Route::get('download/{id}','AdminController@downloadfileCV');
+    Route::get('searchPelajaran','AdminController@DoSearchPelajaran');
+    Route::get('searchKelas','AdminController@DoSearchKelas');
 });
 Route::prefix('murid')->group(function () {
     Route::get('/', 'MuridController@GotoHome');

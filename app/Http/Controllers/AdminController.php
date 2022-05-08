@@ -85,6 +85,20 @@ class AdminController extends Controller
         return back();
     }
 
+    public function DoSearchPelajaran(Request $request)
+    {
+        $data_pelajaran = Pelajaran::all();
+        if($request->pelajaran==""){
+            $data_pelajaran = Pelajaran::all();
+        }else{
+            $data_pelajaran = Pelajaran::where('pelajaran_nama','like', '%'.$request->pelajaran.'%')->get();
+        }
+        return view("pages.admin.PelajaranKelas",[
+            'title' => "pelajaran",
+            "dataPelajaran" => $data_pelajaran,
+        ]);
+    }
+
     public function DoTambahKategori(Request $request)
     {
         /**
@@ -253,6 +267,21 @@ class AdminController extends Controller
 
 
     }
+
+    public function DoSearchKelas(Request $request)
+    {
+        $data_kelas = Kelas::all();
+        if($request->namakelas==""){
+            $data_kelas = Kelas::all();
+        }else{
+            $data_kelas = Kelas::where('kelas_nama','like', '%'.$request->namakelas.'%')->get();
+        }
+        return view("pages.admin.PembuatanDanPenetapanKelas",[
+            'title' => "Penetapan",
+            "dataKelas" => $data_kelas,
+        ]);
+    }
+
     public function GoToPenerimaanCVGuru()
     {
         $data_guru = Pengguna::where('pengguna_status_CV','=','0')->where('pengguna_status_wawancara','=','0')->get();
