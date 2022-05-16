@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
@@ -125,7 +126,11 @@ class AdminController extends Controller
     {
             $kategori = KategoriKelas::find($request->id);
             $kategori->kategorikelas_nama=$request->kategorikelas_nama;
+            $kategori->kategorikelas_pertemuan=$request->kategorikelas_pertemuan;
+            $kategori->kategorikelas_harga=$request->kategorikelas_harga;
             $kategori->save();
+
+            
 
             return back();
     }
@@ -443,11 +448,22 @@ class AdminController extends Controller
     {
         $data_confirm = PendaftaranMurid::find($request->idpendaftaran);
         $data_confirm->pendaftaranmurid_status = '3';
+        $datadetailkelas = Kelas::find($request->id);
         $data_confirm->save();
         $hasil=Murid::create([
             'kelas_id'=>$request->id,
             'pengguna_id'=>$data_confirm->pengguna_id,
         ]);
+        $jumlah_pertemuan=$datadetailkelas->Kategori->kategorikelas_pertemuan;
+        for ($i=0; $i <$jumlah_pertemuan ; $i++) {
+            $hasilpertemuan=Absensi::create([
+                'minggu'=>$i,
+                'murid_id'=>$hasil->murid_id,
+                'kelas_id'=>$request->id,
+                'status_absen'=>0,
+            ]);
+        }
+
         if ($hasil) {
             Alert::success('Succes', 'berhasil menambah kelas');
             return back();

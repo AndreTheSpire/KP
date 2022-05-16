@@ -22,6 +22,7 @@
                     </thead class="border-b">
                     <tbody>
                         @foreach ($datapendaftaran as $k)
+                        <tr>
                             <td class="px-6 py-4 border border-slate-500 whitespace-nowrap text-sm font-medium text-gray-900">{{$k->pendaftaranmurid_id}}</td>
                             <td class="px-6 py-4 border border-slate-500 whitespace-nowrap text-sm font-medium text-gray-900">{{$k->PunyaPelajaran->pelajaran_nama}}</td>
                             <td class="px-6 py-4 border border-slate-500 whitespace-nowrap text-sm font-medium text-gray-900">{{$k->punyaKategori->kategorikelas_nama}}</td>
@@ -46,6 +47,7 @@
                                     </button>
                                 </a>
                             </td>
+                        </tr>
                         @endforeach
                     </tbody>
                   </table>

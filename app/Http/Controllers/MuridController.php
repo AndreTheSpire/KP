@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\Comment;
 use App\Models\D_tugas;
 use App\Models\Feed;
@@ -246,6 +247,28 @@ class MuridController extends Controller
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataTugas"=>$dataTugas,
+        ]);
+    }
+
+    public function GoAbsensiKelas(Request $request)
+    {
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarabsensiid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarabsensiid[]=$murid->murid_id;
+        }
+        $dataAbsensi=Absensi::where('kelas_id','=',$request->id)->whereIn('murid_id',$daftarabsensiid)->get();
+        return view("pages.Murid.Absensi",[
+            'title' => "absensi",
+            "dataKelas"=>$dataKelas,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataAbsensi"=>$dataAbsensi,
         ]);
     }
 

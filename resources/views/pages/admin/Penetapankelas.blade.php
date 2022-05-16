@@ -87,10 +87,8 @@
 
 
         @else
-        @foreach ($datacalonmurid as $d)
-        @php
-            $x++;
-        @endphp
+
+
         <div class="overflow-x-auto">
         <div class="py-4 inline-block min-w-full ">
             <div class="overflow-hidden">
@@ -105,6 +103,9 @@
                 <tbody>
 
                     @foreach ($datacalonmurid as $k)
+                        @php
+                        $x++;
+                    @endphp
                             <tr class="bg-white border-b">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$x}}</td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$k->PunyaUser->pengguna_nama}}</td>
@@ -126,7 +127,7 @@
             </div>
         </div>
         </div>
-    @endforeach
+
         @endif
 
       </div>

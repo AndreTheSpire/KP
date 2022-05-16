@@ -159,11 +159,13 @@
                 document.getElementById('myModal3').showModal();
 
             }
-            const updatekategori= (kategori_id,nama_kategori)=>{
+            const updatekategori= (kategori_id,nama_kategori,pertemuan_kategori,harga_kategori)=>{
                 console.log("masuk sini oii");
                 console.log(kategori_id);
                 console.log(nama_kategori);
                 document.getElementById("updatekategori").value =nama_kategori;
+                document.getElementById("updatekategori_pertemuan").value =pertemuan_kategori;
+                document.getElementById("updatekategori_harga").value =harga_kategori;
                 var frm = document.getElementById('formkategori') || null;
                 if(frm) {
                 frm.action = "/admin/"+kategori_id+"/updatekategori"

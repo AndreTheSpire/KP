@@ -18,6 +18,8 @@ class KategoriKelas extends Model
     protected $fillable = [
         'pelajaran_id',
         'kategorikelas_nama',
+        'kategorikelas_harga',
+        'kategorikelas_pertemuan'
     ];
 
 }

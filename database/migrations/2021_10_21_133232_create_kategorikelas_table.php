@@ -17,6 +17,8 @@ class CreateKategorikelasTable extends Migration
             $table->increments('kategorikelas_id');
             $table->string('kategorikelas_nama');
             $table->foreignId("pelajaran_id");
+            $table->integer('kategorikelas_harga');
+            $table->integer('kategorikelas_pertemuan');
             $table->timestamps();
             $table->softDeletes();
         });

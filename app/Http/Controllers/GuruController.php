@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\Comment;
 use App\Models\D_tugas;
 use App\Models\Feed;
@@ -89,6 +90,56 @@ class GuruController extends Controller
             "dataPelajaran" => $dataPelajaran,
             "dataTugas"=>$dataTugas,
         ]);
+    }
+    public function GoAbsensiKelas(Request $request)
+    {
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $dataMurid=Murid::where('kelas_id','=',$request->id)->get();
+        $dataAbsensi=Absensi::where('kelas_id','=',$request->id)->get();
+        return view("pages.Guru.Absensi",[
+            'title' => "absensi",
+            "dataKelas"=>$dataKelas,
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataMurid"=>$dataMurid,
+            "dataAbsensi"=>$dataAbsensi,
+        ]);
+    }
+    public function DoAbsensiKelas(Request $request)
+    {
+
+        $hasilabsen=$request->read;
+
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+
+
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $dataMurid=Murid::where('kelas_id','=',$request->id)->get();
+        $dataAbsensi=Absensi::where('kelas_id','=',$request->id)->get();
+
+        foreach ($dataAbsensi as $d) {
+
+            $stat=false;
+            for ($i=0;$i< sizeOf($hasilabsen);$i++){
+                if($d->absen_id==$hasilabsen[$i]){
+                    $stat=true;
+                }
+            }
+            if($stat==true){
+                $updateOrder = Absensi::find($d->absen_id)->update(['status_absen'=>1]);
+            }else{
+                $updateOrder = Absensi::find($d->absen_id)->update(['status_absen'=>0]);
+            }
+
+        }
+
+        return back();
     }
     public function GoDetailTugasKelas(Request $request)
     {
