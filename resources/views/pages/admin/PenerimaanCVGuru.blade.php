@@ -22,6 +22,7 @@
                     <tbody>
 
                         @foreach ($data_guru as $data_daftar_guru)
+                        <tr>
                             <td class="px-6 py-4 border border-slate-500 whitespace-nowrap text-sm font-medium text-gray-900">{{$data_daftar_guru->pengguna_nama}}</td>
                             <td class="px-6 py-4 border border-slate-500 whitespace-nowrap text-sm font-medium text-gray-900">{{$data_daftar_guru->pengguna_email}}</td>
                             <td class="px-6 py-4 border border-slate-500 whitespace-nowrap text-sm font-medium text-gray-900">{{date('d-m-Y', strtotime($data_daftar_guru->pengguna_tanggallahir))}}</td>
@@ -34,6 +35,7 @@
                                     </button>
                                 </a>
                             </td>
+                        </tr>
                         @endforeach
                     </tbody>
                   </table>
