@@ -13,14 +13,14 @@
                 Profile
             </div>
         </div>
-        <div class="w-full p-10 flex flex-wrap items-center">
+        <div class="w-full p-10 flex flex-wrap items-center" id="modal">
                 <label
                     class="flex flex-col w-1/4 h-1/4 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                    <div class="flex flex-col items-center justify-center pt-7">
-                        <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+                    <div class="flex flex-col items-center justify-center">
+                        <img class="w-48 h-48 rounded-full object-fill" id="output" src="{{ asset('image/user.svg') }}" >
 
                     </div>
-                    <input type="file" class="opacity-0" />
+                    <input type="file"  accept="image/*" class="image opacity-0" />
                 </label>
                 <div class="w-3/4 pl-5">
                     <div class="flex items-center mb-6 w-full">
@@ -82,7 +82,42 @@
     </div>
 </div>
 
+<script>
+    // var loadFile = function(event) {
+    //     var image = document.getElementById('output');
+    //     image.src = URL.createObjectURL(event.target.files[0]);
+    // };
+    // var $modal = $('#modal');
+var image = document.getElementById('output');
+var cropper;
 
+$("body").on("change", ".image", function(e){
+    var files = e.target.files;
+    var done = function (url) {
+      image.src = url;
+      $modal.modal('show');
+    };
+    var reader;
+    var file;
+    var url;
+
+    if (files && files.length > 0) {
+      file = files[0];
+
+      if (URL) {
+        done(URL.createObjectURL(file));
+      } else if (FileReader) {
+        reader = new FileReader();
+        reader.onload = function (e) {
+          done(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+});
+
+
+</script>
 
 @endsection
 @section('footer')
