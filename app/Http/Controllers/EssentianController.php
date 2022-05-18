@@ -110,6 +110,33 @@ class EssentianController extends Controller
         //     "dataPelajaran" => $dataPelajaran,
         // ]);
     }
+
+    public function UpdatePassword(Request $request)
+    {
+        $dataUser = Auth::guard('satpam_pengguna')->user();
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $passuser=Auth::guard('satpam_pengguna')->user()->pengguna_password;
+        $peranuser=Auth::guard('satpam_pengguna')->user()->pengguna_peran;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        if(Hash::check($request->current_password, $passuser)) {
+            if($request->new_password==$request->confirm_new_password){
+                $password = Hash::make($request->new_password);
+                $dataUser->pengguna_password=$password;
+                $dataUser->save();
+                Alert::success('Berhasil', 'Password Berhasil DIubah');
+                return back();
+            }
+            Alert::warning('PERINGATAN', 'new password dan confirm new password tidak sesuai');
+            return back();
+        } else {
+            Alert::warning('PERINGATAN', 'current password salah');
+            return back();
+        }
+
+
+
+    }
     public function  GoTologout()
     {
         if(Auth::guard('satpam_pengguna')->check()){
@@ -132,8 +159,8 @@ class EssentianController extends Controller
             'pengguna_email' => $email,
             'password' => $password
         ];
+
         // dd($data_pengguna);
-        // dd($credential);
         // dd(Auth::guard('satpam_pengguna'));
         if(Auth::guard('satpam_pengguna')->attempt($credential)){
             if(getAuthUser()->role_text == 'guru'){

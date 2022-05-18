@@ -24,6 +24,7 @@ Route::get('dependantkategori/{id}', 'EssentianController@storeKategori');
 Route::get('dependantguru/{id}', 'EssentianController@storeGuru');
 Route::get('profile', 'EssentianController@GoToProfile');
 Route::post('updateprofile', 'EssentianController@DoUpdateProfile');
+Route::post('updatepassword', 'EssentianController@UpdatePassword');
 // Route::get('image-cropper','EssentianController@index');
 // Route::post('image-cropper/upload','EssentianController@upload');
 
