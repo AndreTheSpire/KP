@@ -107,8 +107,12 @@ class AdminController extends Controller
          */
         $request->validate([
             'kategorikelas_nama'=>'required',
+            'kategorikelas_pertemuan'=>'required',
+            'kategorikelas_harga'=>'required'
         ],[
             'kategorikelas_nama.required'=>'kolom ini tidak boleh kosong',
+            'kategorikelas_pertemuan'=>'kolom ini tidak boleh kosong',
+            'kategorikelas_harga'=>'kolom ini tidak boleh kosong'
         ]);
 
 
@@ -130,7 +134,7 @@ class AdminController extends Controller
             $kategori->kategorikelas_harga=$request->kategorikelas_harga;
             $kategori->save();
 
-            
+
 
             return back();
     }

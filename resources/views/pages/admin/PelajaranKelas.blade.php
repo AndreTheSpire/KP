@@ -111,12 +111,17 @@
                             </div>
                             </div>
                         </div>
+                        @error("pelajaran_nama")
+                            <div class="text-xs text-red-500">{{$message}}</div>
+                        @enderror
                     </div>
                     </div>
                 </div>
             </form>
         </div>
     </dialog>
+
+
 
     <dialog id="myModal2" class="w-11/12 md:w-1/2 p-5  bg-white rounded-md ">
         <div class="flex flex-col w-full h-auto ">
@@ -180,4 +185,13 @@
 
 
     </dialog>
+
+    <?php
+        if($errors->any()){
+        //   dd($errors->any());
+            ?>
+            <script>document.getElementById('myModal').showModal();</script>
+            <?php
+        }
+    ?>
 @endsection

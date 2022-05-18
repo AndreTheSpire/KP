@@ -209,6 +209,11 @@ class GuruController extends Controller
 
     public function doAddFeed(Request $request)
     {
+        $request->validate([
+            'keterangan'=>'required',
+        ],[
+            'keterangan.required'=>'kolom ini tidak boleh kosong',
+        ]);
         $dataUser = Auth::guard('satpam_pengguna')->user();
         $nama_file="kosong";
         $file = $request->file('lampiran');
@@ -270,6 +275,11 @@ class GuruController extends Controller
 
     public function doAddComment(Request $request)
     {
+        $request->validate([
+            'comment'=>'required',
+        ],[
+            'comment.required'=>'kolom ini tidak boleh kosong',
+        ]);
         $comment = $request->comment;
         $feed_id = $request->feed_id;
         $pengguna =  Auth::guard('satpam_pengguna')->user();
@@ -285,6 +295,13 @@ class GuruController extends Controller
     }
     public function doAddTugasKelas(Request $request)
     {
+        $request->validate([
+            'tugas_nama'=>'required',
+            'tugas_keterangan'=>'required',
+        ],[
+            'tugas_nama.required'=>'kolom ini tidak boleh kosong',
+            'tugas_keterangan.required'=>'kolom ini tidak boleh kosong',
+        ]);
         $dataUser = Auth::guard('satpam_pengguna')->user();
         $nama_file="kosong";
         $file = $request->file('lampiran');
@@ -362,6 +379,11 @@ class GuruController extends Controller
 
     public function doAddReply(Request $request)
     {
+        $request->validate([
+            'keterangan'=>'required',
+        ],[
+            'keterangan.required'=>'kolom ini tidak boleh kosong',
+        ]);
         $user_logged =  Auth::guard('satpam_pengguna')->user();
         $keterangan = $request->keterangan;
         $comment_id = $request->comment_id;

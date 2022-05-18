@@ -65,26 +65,29 @@
                       class=" w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
                       placeholder="Judul"
                     />
-
+                    @error("tugas_nama")
+                        <div class="text-xs text-red-500">{{$message}}</div>
+                    @enderror
                 </div>
-                  <div class="relative h-10 input-component mt-8 empty">
-                    <label for="tanggat_waktu">Tanggat Waktu<label>
-                    <input
-                      id="waktu"
-                      type="datetime-local"
-                      name="tanggat_waktu"
-                      placeholder="Tanggat Waktu"
-                      class=" w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
-                    />
+                <div class="relative h-10 input-component mt-8 empty">
+                <label for="tanggat_waktu">Tanggat Waktu<label>
+                <input
+                    id="waktu"
+                    type="datetime-local"
+                    name="tanggat_waktu"
+                    placeholder="Tanggat Waktu"
+                    class=" w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
+                />
+                </div>
 
-                  </div>
-
-                    <div class="mt-8">
-                        <label for="tugas_keterangan">Keterangan<label>
-                            <textarea type="text" name="tugas_keterangan" cols="30" rows="5" style="resize: none" placeholder="petunjuk (opsional)"
-                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" ></textarea>
-                    </div>
-
+                <div class="mt-8">
+                    <label for="tugas_keterangan">Keterangan<label>
+                        <textarea type="text" name="tugas_keterangan" cols="30" rows="5" style="resize: none" placeholder="petunjuk (opsional)"
+                            class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" ></textarea>
+                    @error("tugas_keterangan")
+                    <div class="text-xs text-red-500">{{$message}}</div>
+                    @enderror
+                </div>
                 <label for="lampiran">Lampiran<label>
                 <input type="file" placeholder="file" name="lampiran"
                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
