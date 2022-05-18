@@ -33,6 +33,7 @@ class Pengguna extends Authenticatable
         'pengguna_CV_KTP',
         'pengguna_status_CV',
         'pengguna_status_wawancara',
+        'pengguna_photo',
     ];
 
     public function getAuthPassword()

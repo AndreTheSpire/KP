@@ -48,13 +48,67 @@ class EssentianController extends Controller
     public function GoToProfile()
     {
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $peranuser=Auth::guard('satpam_pengguna')->user()->pengguna_peran;
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
-        return view("pages.essential.profile",[
-            'title' => "tugas",
-            "dataKategori" => $dataKategori,
-            "dataPelajaran" => $dataPelajaran,
-        ]);
+
+        if($peranuser==1){
+            return view("pages.Guru.profile",[
+                'title' => "tugas",
+                "dataKategori" => $dataKategori,
+                "dataPelajaran" => $dataPelajaran,
+            ]);
+        }else{
+            return view("pages.Murid.profile",[
+                'title' => "tugas",
+                "dataKategori" => $dataKategori,
+                "dataPelajaran" => $dataPelajaran,
+            ]);
+        }
+
+    }
+
+    public function DoupdateProfile(Request $request)
+    {
+
+        $dataUser = Auth::guard('satpam_pengguna')->user();
+        $nama_file="kosong";
+        $file = $request->file('pengguna_photo');
+
+
+
+            if($file){
+                $nama_expansion = $file->getClientOriginalExtension();
+
+                $nama_file=$dataUser->pengguna_id.".".$nama_expansion;
+
+                $dataUser->pengguna_nama=$request->pengguna_nama;
+                $dataUser->pengguna_alamat=$request->pengguna_alamat;
+                $dataUser->pengguna_nohp=$request->pengguna_nohp;
+                $dataUser->pengguna_photo=$nama_file;
+                $dataUser->save();
+                // $request->file('pengguna_photo')->storeAs('upload/'.$dataUser->pengguna_id,$nama_file, 'public');
+                $request->file('pengguna_photo')->move(public_path('/upload'), $nama_file);
+
+            }else{
+                $dataUser->pengguna_nama=$request->pengguna_nama;
+                $dataUser->pengguna_alamat=$request->pengguna_alamat;
+                $dataUser->pengguna_nohp=$request->pengguna_nohp;
+                // $dataUser->pengguna_photo=$nama;
+                $dataUser->save();
+            }
+
+        return back();
+
+        // dd($request->all());
+        // $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        // $dataPelajaran = Pelajaran::get();
+        // $dataKategori = KategoriKelas::get();
+        // return view("pages.essential.profile",[
+        //     'title' => "tugas",
+        //     "dataKategori" => $dataKategori,
+        //     "dataPelajaran" => $dataPelajaran,
+        // ]);
     }
     public function  GoTologout()
     {
@@ -167,7 +221,7 @@ class EssentianController extends Controller
 
         // dd($request->all());
 
-        $result = Pengguna::create($request->all()+ ['pengguna_CV_KTP' => $nama]+ ['pengguna_status_CV' => '0']+ ['pengguna_status_wawancara' => '0']);
+        $result = Pengguna::create($request->all()+ ['pengguna_CV_KTP' => $nama]+ ['pengguna_status_CV' => '0']+ ['pengguna_status_wawancara' => '0']+ ['pengguna_photo' => 'kosong.jpg']);
         // dd($result);
         $password = Hash::make($request->pengguna_password);
         $result->pengguna_password=$password;

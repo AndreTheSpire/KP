@@ -18,7 +18,7 @@
 <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center w-full bg-white p-8">
 
     <div class="w-8 h-8 overflow-hidden rounded-full">
-        <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+        <img class="w-full h-full object-cover" src="/upload/{{$dataKelas->Guru->PunyaUser->pengguna_photo}}" >
     </div>
 
       <div class="ml-2 capitalize flex ">
@@ -44,7 +44,7 @@
     <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center w-full bg-white px-8 py-4">
 
         <div class="w-8 h-8 overflow-hidden rounded-full">
-            <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+            <img class="w-full h-full object-cover" src="/upload/{{$murid->punyaUser->pengguna_photo}}" >
         </div>
 
           <div class="ml-2 capitalize flex ">

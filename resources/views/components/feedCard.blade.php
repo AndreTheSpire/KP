@@ -4,7 +4,7 @@
         <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center w-full bg-white p-5">
 
                 <div class="w-8 h-8 overflow-hidden rounded-full">
-                    <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+                    <img class="w-full h-full object-cover" src="/upload/{{$feed_creator_photo}}" >
                 </div>
 
                   <div class="ml-2 capitalize flex grid grid-rows-2 ">
@@ -57,7 +57,7 @@
     <div class="ml-5">
         <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center w-full bg-white pt-3">
             <div class="w-8 h-8 overflow-hidden rounded-full">
-              <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+              <img class="w-full h-full object-cover"  src="/upload/{{$comment->pengirim->pengguna_photo}}" >
             </div>
 
             <div class="ml-2 capitalize flex grid grid-rows-3 w-7/8 pt-5">
@@ -73,7 +73,7 @@
             @foreach ($comment->Reply as $reply)
             <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center w-full bg-white pt-3">
                 <div class="w-8 h-8 overflow-hidden rounded-full">
-                  <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+                  <img class="w-full h-full object-cover" src="/upload/{{$reply->pengirim->pengguna_photo}}" >
                 </div>
 
                 <div class="ml-2 capitalize flex grid grid-rows-3 w-7/8 pt-5">

@@ -22,6 +22,7 @@
 [
     'feed_id'=>$feed->feed_id,
     'feed_creator'=>$feed->pengirim->pengguna_nama,
+    'feed_creator_photo'=>$feed->pengirim->pengguna_photo,
     'keterangan'=>$feed->keterangan,
     'feed_waktu'=>date('d M Y, H:i', strtotime($feed->created_at)),
     'feed_lampiran'=>$feed->lampiran,

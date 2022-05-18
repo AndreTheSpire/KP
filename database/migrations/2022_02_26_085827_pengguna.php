@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('pengguna_CV_KTP');
             $table->string('pengguna_status_CV');
             $table->string('pengguna_status_wawancara');
+            $table->string('pengguna_photo');
             $table->timestamps();
             $table->softDeletes();
         });

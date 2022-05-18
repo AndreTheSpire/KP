@@ -21,7 +21,7 @@
 <div class="mt-5">
     <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center w-full bg-white p-5">
         <div class="w-8 h-8 overflow-hidden rounded-full">
-          <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+          <img class="w-full h-full object-cover" src="/upload/{{Auth::guard('satpam_pengguna')->user()->pengguna_photo}}" >
         </div>
 
         <div class="ml-4 capitalize flex cursor-text focus:cursor-auto ">
@@ -35,6 +35,7 @@
 [
     'feed_id'=>$feed->feed_id,
     'feed_creator'=>$feed->pengirim->pengguna_nama,
+    'feed_creator_photo'=>$feed->pengirim->pengguna_photo,
     'keterangan'=>$feed->keterangan,
     'kelas_id'=>$feed->kelas_id,
     'feed_waktu'=>date('d M Y, H:i', strtotime($feed->created_at)),
@@ -50,7 +51,7 @@
         <div class="flex flex-row w-full h-auto py-3 text-2xl font-bold">
             <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center">
                 <div class="w-8 h-8 overflow-hidden rounded-full">
-                  <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+                  <img class="w-full h-full object-cover" src="/upload/{{Auth::guard('satpam_pengguna')->user()->pengguna_photo}}" >
                 </div>
 
                 <div class="ml-2 capitalize flex grid grid-rows-2 ">
@@ -89,7 +90,7 @@
         <div class="flex flex-row w-full h-auto py-3 text-2xl font-bold">
             <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center">
                 <div class="w-8 h-8 overflow-hidden rounded-full">
-                  <img class="w-full h-full object-cover" src="{{ asset('image/user.svg') }}" >
+                  <img class="w-full h-full object-cover" src="/upload/{{Auth::guard('satpam_pengguna')->user()->pengguna_photo}}" >
                 </div>
 
                 <div class="ml-2 capitalize flex grid grid-rows-2 ">
