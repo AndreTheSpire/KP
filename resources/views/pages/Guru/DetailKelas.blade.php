@@ -70,9 +70,12 @@
                 @csrf
                 <div class="mt-4">
                     <div>
-                                <textarea type="text" name="keterangan" id="ket" cols="30" rows="5" style="resize: none" placeholder="type your post here"
-                                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" ></textarea>
+                        <textarea type="text" name="keterangan" id="ket" cols="30" rows="5" style="resize: none" placeholder="type your post here"
+                            class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" ></textarea>
                     </div>
+                    @error("keterangan")
+                            <div class="text-xs text-red-500">{{$message}}</div>
+                    @enderror
                     <label class="block" for="lampiran">Lampiran<label>
                     <input type="file" placeholder="file" name="lampiran"
                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
@@ -119,7 +122,18 @@
 
 
 </script>
-
+    <?php
+        if($errors->any()){
+            $outputError = "";
+            foreach($errors->getMessages() as $this_error){
+                if($this_error[0] == "kolom ini tidak boleh kosong"){
+                    ?>
+                    <script>document.getElementById('myModal2').showModal();</script>
+                    <?php
+                }
+            }
+        }
+    ?>
 
 @endsection
 @section('footer')

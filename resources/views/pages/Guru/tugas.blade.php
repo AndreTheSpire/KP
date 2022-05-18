@@ -78,6 +78,9 @@
                     placeholder="Tanggat Waktu"
                     class=" w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
                 />
+                @error("tanggat_waktu")
+                    <div class="text-xs text-red-500">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="mt-8">
@@ -123,6 +126,14 @@
     }
     </style>
 
+    <?php
+    if($errors->any()){
+    //   dd($errors->any());
+        ?>
+        <script>document.getElementById('myModal2').showModal();</script>
+        <?php
+    }
+    ?>
 @endsection
 @section('footer')
 

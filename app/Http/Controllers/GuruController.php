@@ -278,7 +278,7 @@ class GuruController extends Controller
         $request->validate([
             'comment'=>'required',
         ],[
-            'comment.required'=>'kolom ini tidak boleh kosong',
+            'comment.required'=>'kolom comment ini tidak boleh kosong',
         ]);
         $comment = $request->comment;
         $feed_id = $request->feed_id;
@@ -298,9 +298,11 @@ class GuruController extends Controller
         $request->validate([
             'tugas_nama'=>'required',
             'tugas_keterangan'=>'required',
+            'tanggat_waktu'=>'required'
         ],[
             'tugas_nama.required'=>'kolom ini tidak boleh kosong',
             'tugas_keterangan.required'=>'kolom ini tidak boleh kosong',
+            'tanggat_waktu.required'=>'kolom ini tidak boleh kosong'
         ]);
         $dataUser = Auth::guard('satpam_pengguna')->user();
         $nama_file="kosong";
@@ -382,7 +384,7 @@ class GuruController extends Controller
         $request->validate([
             'keterangan'=>'required',
         ],[
-            'keterangan.required'=>'kolom ini tidak boleh kosong',
+            'keterangan.required'=>'kolom reply ini tidak boleh kosong',
         ]);
         $user_logged =  Auth::guard('satpam_pengguna')->user();
         $keterangan = $request->keterangan;

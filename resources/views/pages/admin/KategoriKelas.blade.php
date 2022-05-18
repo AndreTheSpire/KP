@@ -114,14 +114,23 @@
                     <div class="md:col-span-6">
                     <label for="kategorikelas_nama">Nama Kategori</label>
                     <input type="text" name="kategorikelas_nama" id="kategorikelas_nama" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('pelajaran_nama')}}" />
-                    </div>
+                    @error("kategorikelas_nama")
+                        <div class="text-xs text-red-500">{{$message}}</div>
+                    @enderror
+                </div>
                     <div class="md:col-span-6">
                         <label for="kategorikelas_pertemuan">Jumlah pertemuan</label>
                         <input type="number" name="kategorikelas_pertemuan" id="kategorikelas_pertemuan" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('pelajaran_nama')}}" />
+                        @error("kategorikelas_nama")
+                            <div class="text-xs text-red-500">{{$message}}</div>
+                        @enderror
                     </div>
                     <div class="md:col-span-6">
-                            <label for="kategorikelas_harga">Harga</label>
-                            <input type="number" name="kategorikelas_harga" id="kategorikelas_harga" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('pelajaran_nama')}}" />
+                        <label for="kategorikelas_harga">Harga</label>
+                        <input type="number" name="kategorikelas_harga" id="kategorikelas_harga" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('pelajaran_nama')}}" />
+                        @error("kategorikelas_nama")
+                            <div class="text-xs text-red-500">{{$message}}</div>
+                        @enderror
                     </div>
                     <div class="md:col-span-6 text-right">
                         <div class="inline-flex items-endt">
@@ -220,4 +229,12 @@
 
 </dialog>
 </div>
+    <?php
+        if($errors->any()){
+        //   dd($errors->any());
+            ?>
+            <script>document.getElementById('myModal').showModal();</script>
+            <?php
+        }
+    ?>
 @endsection
