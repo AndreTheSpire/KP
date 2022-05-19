@@ -179,7 +179,7 @@
                     </div>
                     <div class="md:col-span-6">
                         <label for="kategorikelas_pertemuan">Jumlah pertemuan</label>
-                        <input type="number" name="kategorikelas_pertemuan" disabled id="updatekategori_pertemuan" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('pelajaran_nama')}}" />
+                        <input type="number" name="kategorikelas_pertemuan" id="updatekategori_pertemuan" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="{{old('pelajaran_nama')}}" />
                     </div>
                     <div class="md:col-span-6">
                             <label for="kategorikelas_harga">Harga</label>
