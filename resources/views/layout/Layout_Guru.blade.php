@@ -163,6 +163,7 @@
     //     console.log("masuk gak tuh!!!");
     //     getIndex();
     // });
+
 const update= (feed_id,keteranganfeed)=>{
     var keterangan=keteranganfeed;
     console.log("masuk sini oii");
@@ -211,6 +212,16 @@ const deletetugas= (tugas_id,kelas_id)=>{
     frm.href = "/guru/kelas/"+kelas_id+"/"+tugas_id+"/deletetugas"
     }
     document.getElementById('myModal3').showModal();
+
+}
+const tutup= (kelas_id)=>{
+    console.log("masuk sini oii");
+    document.getElementById("ket").value ="";
+    var frm = document.getElementById('forminput') || null;
+    if(frm){
+    frm.action = "/guru/kelas/"+kelas_id+"/addfeed"
+    }
+    document.getElementById('myModal2').close();
 
 }
 const getIndex= ()=>{
