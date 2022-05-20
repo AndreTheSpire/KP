@@ -57,25 +57,13 @@
             <!-- end item -->
 
             <!-- item -->
-            <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="#">
+            <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="/guru/notifikasi">
               <i class="fad fa-inbox-in text-xs mr-1"></i>
-              my inbox
+              Notifications
             </a>
             <!-- end item -->
 
-            <!-- item -->
-            <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="#">
-              <i class="fad fa-badge-check text-xs mr-1"></i>
-              tasks
-            </a>
-            <!-- end item -->
 
-            <!-- item -->
-            <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="#">
-              <i class="fad fa-comment-alt-dots text-xs mr-1"></i>
-              chats
-            </a>
-            <!-- end item -->
 
             <hr>
 
@@ -127,7 +115,7 @@
             @endif
 
                 <div class="px-3 py-2 rounded mr-3 bg-gray-100 border border-gray-300">
-                  <i class="fad fa-birthday-cake text-sm"></i>
+                    <i class="fad fa-inbox-in"></i>
                 </div>
 
                 <div class="flex-1 flex flex-rowbg-green-100">
