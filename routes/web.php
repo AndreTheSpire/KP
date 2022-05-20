@@ -64,6 +64,7 @@ Route::prefix('admin')->group(function () {
 });
 Route::prefix('murid')->group(function () {
     Route::get('/', 'MuridController@GotoHome');
+    Route::get('/notifikasi', 'MuridController@GotoNotifikasi');
     Route::get('/pembayaran', 'MuridController@GotoPembayaransemua');
     Route::get('/pembayaranbelum', 'MuridController@GotoPembayaranbelum');
     Route::get('/pembayaranmenunggu', 'MuridController@GotoPembayaranmenunggu');
@@ -91,6 +92,7 @@ Route::prefix('murid')->group(function () {
 
 Route::prefix('guru')->group(function () {
     Route::get('/', 'GuruController@GotoHome');
+    Route::get('/notifikasi', 'GuruController@GotoNotifikasi');
     Route::get('/kelas', 'GuruController@GoToKelas');
     Route::get('/kelas/{id}', 'GuruController@GoDetailKelas');
     Route::get('/kelas/{id}/tugas', 'GuruController@GoTugasKelas');

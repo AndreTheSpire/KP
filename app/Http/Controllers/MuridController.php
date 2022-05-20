@@ -10,6 +10,7 @@ use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
 use App\Models\Murid;
+use App\Models\Notifikasi;
 use App\Models\Pelajaran;
 use App\Models\PendaftaranMurid;
 use App\Models\Reply;
@@ -33,18 +34,44 @@ class MuridController extends Controller
         foreach ($datasebagaimurid as $murid) {
             $daftarkelasid[]=$murid->kelas_id;
         }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataFeed=Feed::whereIn('kelas_id',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $datakelasmurid=PendaftaranMurid::where('pengguna_id','=',$iduser)->get();
         return view("pages.Murid.home",[
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
             "datasebagaimurid"=> $datasebagaimurid,
             "dataFeed"=>$dataFeed,
+        ]);
+    }
+    public function GotoNotifikasi()
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
+        return view("pages.Murid.Notifikasi",[
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
+            "datasebagaimurid"=> $datasebagaimurid,
         ]);
     }
     public function GotoPembayaran()
     {
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->get();
         $dataPelajaran = Pelajaran::get();
 
@@ -52,47 +79,75 @@ class MuridController extends Controller
             'title' => "semua",
             "datapendaftaran" => $datapendaftaran,
             "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
         ]);
     }
     public function GotoPembayaransemua()
     {
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->get();
         $dataPelajaran = Pelajaran::get();
         // dd($datapendaftaran);
         return view("pages.Murid.pembayaran",[
             'title' => "semua",
             "datapendaftaran" => $datapendaftaran,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataPelajaran" => $dataPelajaran,
         ]);
     }
     public function GotoPembayaranbelum()
     {
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',-1)->get();
         $dataPelajaran = Pelajaran::get();
 
         return view("pages.Murid.pembayaran",[
             'title' => "belum",
             "datapendaftaran" => $datapendaftaran,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataPelajaran" => $dataPelajaran,
         ]);
     }
     public function GotoPembayaranmenunggu()
     {
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',0)->get();
         $dataPelajaran = Pelajaran::get();
 
         return view("pages.Murid.pembayaran",[
             'title' => "menunggu",
             "datapendaftaran" => $datapendaftaran,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataPelajaran" => $dataPelajaran,
         ]);
     }
     public function GotoPembayaransukes()
     {
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',1)->get();
         $dataPelajaran = Pelajaran::get();
 
@@ -100,11 +155,18 @@ class MuridController extends Controller
             'title' => "sukses",
             "datapendaftaran" => $datapendaftaran,
             "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
         ]);
     }
     public function GotoPembayarangagal()
     {
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',2)->get();
         $dataPelajaran = Pelajaran::get();
 
@@ -112,11 +174,19 @@ class MuridController extends Controller
             'title' => "gagal",
             "datapendaftaran" => $datapendaftaran,
             "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
         ]);
     }
     public function GotoDetailPembayaran(Request $request)
     {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
         $datadetail = PendaftaranMurid::find($request->id);
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         // dd($waktuMulaiEdited);
         // dd($waktuSelesaiEdited);
@@ -124,10 +194,18 @@ class MuridController extends Controller
             'title' => "zonk",
             'datadetail'=>$datadetail,
             "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
         ]);
     }
     public function Gokirimbuktitfd(Request $request)
     {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $datadetail = PendaftaranMurid::find($request->id);
         $nama_file="kosong";
         $file = $request->file('pendaftaranmurid_buktibayar');
@@ -140,6 +218,7 @@ class MuridController extends Controller
             return view('pages.Murid.pembayaran', [
                 'title' => "semua",
                 'datapendaftaran'=>$datapendaftaran,
+                "dataNotifikasi"=>$dataNotifikasi,
                 "dataPelajaran" => $dataPelajaran,
             ]);
         }else{
@@ -157,6 +236,7 @@ class MuridController extends Controller
             return view('pages.Murid.pembayaran', [
                 'title' => "semua",
                 'datapendaftaran'=>$datapendaftaran,
+                "dataNotifikasi"=>$dataNotifikasi,
                 "dataPelajaran" => $dataPelajaran,
             ]);
         }
@@ -197,12 +277,20 @@ class MuridController extends Controller
 
     public function GoToKelas()
     {
+
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataMurid = Murid::where('pengguna_id','=',$iduser)->get();
         $dataPelajaran = Pelajaran::get();
         return view("pages.Murid.kelas",[
             'title' => "Penetapan",
             "dataMurid" => $dataMurid,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataPelajaran" => $dataPelajaran,
         ]);
 
@@ -210,7 +298,14 @@ class MuridController extends Controller
     public function GoDetailKelas(Request $request)
     {
 
+
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataFeed=Feed::where('kelas_id','=',$request->id)->orderBy('feed_id', 'desc')->get();
@@ -221,6 +316,7 @@ class MuridController extends Controller
         return view("pages.Murid.DetailKelas",[
             'title' => "post",
             "dataKelas"=>$dataKelas,
+            "dataNotifikasi"=>$dataNotifikasi,
             "waktuMulaiEdited"=>$waktuMulaiEdited,
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
             "dataKategori" => $dataKategori,
@@ -232,7 +328,14 @@ class MuridController extends Controller
     public function GoTugasKelas(Request $request)
     {
 
+
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
@@ -244,6 +347,7 @@ class MuridController extends Controller
             "dataKelas"=>$dataKelas,
             "waktuMulaiEdited"=>$waktuMulaiEdited,
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataTugas"=>$dataTugas,
@@ -252,8 +356,13 @@ class MuridController extends Controller
 
     public function GoAbsensiKelas(Request $request)
     {
-
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
@@ -267,6 +376,7 @@ class MuridController extends Controller
             'title' => "absensi",
             "dataKelas"=>$dataKelas,
             "dataKategori" => $dataKategori,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataPelajaran" => $dataPelajaran,
             "dataAbsensi"=>$dataAbsensi,
         ]);
@@ -274,9 +384,14 @@ class MuridController extends Controller
 
     public function GoToDo(Request $request)
     {
+
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
         $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
-        $daftartugasid=[];
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         foreach ($datasebagaimurid as $murid) {
             $daftartugasid[]=$murid->murid_id;
         }
@@ -289,13 +404,21 @@ class MuridController extends Controller
             "dataKelas"=>$dataKelas,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataTugas"=>$dataTugas,
         ]);
     }
     public function GoDetailTugasKelas(Request $request)
     {
 
+
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataUser =  Auth::guard('satpam_pengguna')->user();
 
         foreach ($dataUser->AdalahMurid as $usermurid) {
@@ -316,6 +439,7 @@ class MuridController extends Controller
             'title' => "tugas",
             "dataKelas"=>$dataKelas,
             "tanggatwaktutampilan"=>$tanggatwaktutampilan,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataTugas"=>$dataTugas,
@@ -326,7 +450,14 @@ class MuridController extends Controller
     public function GoDetailMemberKelas(Request $request)
     {
 
+
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataFeed=Feed::where('kelas_id','=',$request->id)->orderBy('feed_id', 'desc')->get();
@@ -339,6 +470,7 @@ class MuridController extends Controller
             "dataKelas"=>$dataKelas,
             "waktuMulaiEdited"=>$waktuMulaiEdited,
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataMurid"=>$datamurid,

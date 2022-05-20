@@ -10,6 +10,7 @@ use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
 use App\Models\Murid;
+use App\Models\Notifikasi;
 use App\Models\Pelajaran;
 use App\Models\Reply;
 use App\Models\Tugas;
@@ -26,27 +27,59 @@ class GuruController extends Controller
         $dataKategori = KategoriKelas::get();
         $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
         $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
         $daftarkelasid=[];
         foreach ($datasebagaiguru as $guru) {
             $daftarkelasid[]=$guru->kelas_id;
         }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataFeed=Feed::whereIn('kelas_id',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         return view("pages.Guru.home",[
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
             "datasebagaiguru"=> $datasebagaiguru,
             "dataFeed"=>$dataFeed,
+        ]);
+    }
+
+    public function GotoNotifikasi()
+    {
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
+        return view("pages.Guru.Notifikasi",[
+            "dataKategori" => $dataKategori,
+            "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
+            "datasebagaiguru"=> $datasebagaiguru,
         ]);
     }
     public function GoToKelas()
     {
 
+        $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
         $dataGuru=Kelas::where('guru_id','=',$idguruuser)->get();
         return view("pages.Guru.kelas",[
             'title' => "Penetapan",
             "dataGuru" => $dataGuru,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataPelajaran" => $dataPelajaran,
         ]);
 
@@ -55,6 +88,14 @@ class GuruController extends Controller
     {
 
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
@@ -66,6 +107,7 @@ class GuruController extends Controller
             "dataKelas"=>$dataKelas,
             "waktuMulaiEdited"=>$waktuMulaiEdited,
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataFeed"=>$dataFeed,
@@ -74,7 +116,16 @@ class GuruController extends Controller
     public function GoTugasKelas(Request $request)
     {
 
+        $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
@@ -88,6 +139,7 @@ class GuruController extends Controller
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataTugas"=>$dataTugas,
         ]);
     }
@@ -95,6 +147,14 @@ class GuruController extends Controller
     {
 
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
@@ -103,6 +163,7 @@ class GuruController extends Controller
         return view("pages.Guru.Absensi",[
             'title' => "absensi",
             "dataKelas"=>$dataKelas,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataMurid"=>$dataMurid,
@@ -145,6 +206,14 @@ class GuruController extends Controller
     {
 
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
@@ -158,6 +227,7 @@ class GuruController extends Controller
             "dataKelas"=>$dataKelas,
             "tanggatwaktu"=>$tanggatwaktu,
             "tanggatwaktutampilan"=>$tanggatwaktutampilan,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataTugas"=>$dataTugas,
@@ -170,6 +240,14 @@ class GuruController extends Controller
         $dataTugas->delete();
 
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
@@ -181,6 +259,7 @@ class GuruController extends Controller
             "dataKelas"=>$dataKelas,
             "waktuMulaiEdited"=>$waktuMulaiEdited,
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataTugas"=>$dataTugas,
@@ -190,6 +269,14 @@ class GuruController extends Controller
     {
 
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
@@ -202,6 +289,7 @@ class GuruController extends Controller
             "dataKelas"=>$dataKelas,
             "waktuMulaiEdited"=>$waktuMulaiEdited,
             "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataMurid"=>$datamurid,
@@ -215,6 +303,7 @@ class GuruController extends Controller
         ],[
             'keterangan.required'=>'kolom ini tidak boleh kosong',
         ]);
+
         $dataUser = Auth::guard('satpam_pengguna')->user();
         $nama_file="kosong";
         $file = $request->file('lampiran');
@@ -335,6 +424,11 @@ class GuruController extends Controller
                 ]);
             }
             $kelastugas=$hasil->kelas_id;
+            $notifikasidibuat=Notifikasi::create([
+                "notifikasi_jenis"=>1,
+                "notifikasi_kelas"=>$kelastugas,
+                "notifikasi_jenis_id"=>$hasil->tugas_id,
+            ]);
             $data_murid=Murid::where('kelas_id','=',$kelastugas)->get();
 
             foreach ($data_murid as $murid) {
@@ -405,6 +499,14 @@ class GuruController extends Controller
     {
 
         $iduserguru=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::where('guru_id','=',$iduserguru)->get();
@@ -412,6 +514,7 @@ class GuruController extends Controller
             'title' => "tugas",
             "dataKelas"=>$dataKelas,
             "dataKategori" => $dataKategori,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataPelajaran" => $dataPelajaran,
         ]);
     }
@@ -419,6 +522,14 @@ class GuruController extends Controller
     {
 
         $iduserguru=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+        $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+        $daftarkelasid=[];
+        foreach ($datasebagaiguru as $guru) {
+            $daftarkelasid[]=$guru->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
         $dataTugas=Tugas::where('kelas_id','=',$request->idkelas)->get();
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
@@ -440,6 +551,7 @@ class GuruController extends Controller
             "dataKelas"=>$dataKelas,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
+            "dataNotifikasi"=>$dataNotifikasi,
             "dataTugas"=>$dataTugas,
         ]);
     }
