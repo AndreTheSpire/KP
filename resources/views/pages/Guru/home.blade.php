@@ -10,7 +10,6 @@
 
 @section('content')
 
-    <h1>hai Guru</h1>
     @foreach ($dataFeed as $feed)
     @include('components.feedCard',
     [

@@ -151,12 +151,13 @@ class GuruController extends Controller
         $detailTugas= Tugas::find($request->id_tugas);
         $dataTugas= D_Tugas::where('tugas_id','=',$request->id_tugas)->get();
         $tanggatwaktu = date('Y-m-d\TH:i', strtotime($detailTugas->tanggat_waktu));
+        $tanggatwaktutampilan = date('d-m-Y H:i', strtotime($detailTugas->tanggat_waktu));
         $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
         return view("pages.Guru.detailtugas",[
             'title' => "tugas",
             "dataKelas"=>$dataKelas,
             "tanggatwaktu"=>$tanggatwaktu,
-            "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "tanggatwaktutampilan"=>$tanggatwaktutampilan,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataTugas"=>$dataTugas,

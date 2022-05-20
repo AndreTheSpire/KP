@@ -25,83 +25,23 @@
       <p class="flex justify-between items-center uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">Kelas <button class="border-2 border-rose-600 text-blue px-3 font-bold rounded text-center float-right"  onclick="document.getElementById('myModal').showModal()">+</button>  </p>
 
       <!-- link -->
+      @if (sizeOf($datasebagaimurid )>0)
       @foreach ($datasebagaimurid as $k)
       <a href="/murid/kelas/{{$k->kelas_id}}/" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
         <i class="fa fa-envelope-open-text text-xs mr-2"></i>
         {{$k->punyaKelas->kelas_nama}}
       </a>
       @endforeach
-      <!-- end link -->
-
-
-
-
-      <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">UI Elements</p>
-
-      <!-- link -->
-      <a href="./typography.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-text text-xs mr-2"></i>
-        typography
+      @else
+      <a class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition text-center  ease-in-out duration-500">
+        Silahkan mendaftar Kelas
       </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="./alert.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-whistle text-xs mr-2"></i>
-        alerts
+      <a class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition text-center  ease-in-out duration-500" onclick="document.getElementById('myModal').showModal()">
+        + Daftar Kelas
       </a>
+      @endif
+
       <!-- end link -->
-
-
-      <!-- link -->
-      <a href="./buttons.html" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-cricket text-xs mr-2"></i>
-        buttons
-      </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-box-open text-xs mr-2"></i>
-        Content
-      </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-swatchbook text-xs mr-2"></i>
-        colors
-      </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-atom-alt text-xs mr-2"></i>
-        icons
-      </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-club text-xs mr-2"></i>
-        card
-      </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-cheese-swiss text-xs mr-2"></i>
-        Widgets
-      </a>
-      <!-- end link -->
-
-      <!-- link -->
-      <a href="#" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-        <i class="fa fa-computer-classic text-xs mr-2"></i>
-        Components
-      </a>
-      <!-- end link -->
-
 
 
     </div>

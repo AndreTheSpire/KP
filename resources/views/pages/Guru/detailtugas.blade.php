@@ -14,10 +14,14 @@
     <div class="bg-white w-full dark:bg-ocean-light dark:bg-opacity-50 shadow-md rounded-md p-5 flex flex-col bg-opacity-75 flex-shrink">
 
         <div class=" flex justice-between">
-            <div class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center w-full bg-white p-5">
+            <div class=" -outline flex justice-between items-center w-full bg-white py-5 pr-5">
             {{-- @dd($dataTugas) --}}
-            {{$detailTugas->tugas_nama}}
-        </div>
+            <p class="menu-btn text-black focus:outline-none text-xl w-3/4"> {{$detailTugas->tugas_nama}}</p>
+            <p class="text-right w-1/4 text-black"> Tanggat : {{$tanggatwaktutampilan}}</p>
+
+            </div>
+
+
         <div class="float-right p-5 flex">
             <div onclick="updatetugas({{$detailTugas->tugas_id}},'{{$detailTugas->tugas_nama}}','{{$tanggatwaktu}}','{{$detailTugas->tugas_keterangan}}')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

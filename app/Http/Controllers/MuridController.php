@@ -309,13 +309,13 @@ class MuridController extends Controller
         $dataKategori = KategoriKelas::get();
         $dataKelas = Kelas::find($request->id);
         $detailTugas= Tugas::find($request->id_tugas);
+        $tanggatwaktutampilan = date('d-m-Y H:i', strtotime($detailTugas->tanggat_waktu));
         $waktuMulaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_mulai));
         $waktuSelesaiEdited = date('Y-m-d\TH:i', strtotime($dataKelas->waktu_selesai));
         return view("pages.Murid.detailtugas",[
             'title' => "tugas",
             "dataKelas"=>$dataKelas,
-            "waktuMulaiEdited"=>$waktuMulaiEdited,
-            "waktuSelesaiEdited"=>$waktuSelesaiEdited,
+            "tanggatwaktutampilan"=>$tanggatwaktutampilan,
             "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
             "dataTugas"=>$dataTugas,
