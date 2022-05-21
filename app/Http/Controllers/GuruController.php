@@ -14,6 +14,7 @@ use App\Models\Notifikasi;
 use App\Models\Pelajaran;
 use App\Models\Reply;
 use App\Models\Tugas;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -237,8 +238,14 @@ class GuruController extends Controller
     public function doDeleteTugas(Request $request)
     {
         $dataTugas = Tugas::find($request->idtugas);
+        $files =   Storage::allFiles('DataKelas/Tugas/'.$request->idtugas);
+        // Delete Files
+        Storage::delete($files);
         $dataTugas->delete();
-
+        $deletenotifikasi=Notifikasi::where('notifikasi_jenis','=',1)->where('notifikasi_jenis_id','=',$request->idtugas)->get();
+        foreach ($deletenotifikasi as $dnot) {
+            $dnot->delete();
+        }
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
         $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
         $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
@@ -338,13 +345,26 @@ class GuruController extends Controller
         $nama_file="kosong";
         $file = $request->file('lampiran');
         $dataFeed = Feed::find($request->idfeed);
+
+        if($request->statuslampiran=="hapus"){
+            if(Storage::exists('DataKelas/Feed/'.$request->idfeed."/".$dataFeed->lampiran)){
+                Storage::delete('DataKelas/Feed/'.$request->idfeed."/".$dataFeed->lampiran);
+            }else{
+                dd('File does not exists.');
+            }
+            $dataFeed->lampiran="kosong";
+            $dataFeed->save();
+        }
         // dd($dataFeed);
 
             if($file){
                 $nama_file = $file->getClientOriginalName();
 
                 $nama=$nama_file;
-
+                if(Storage::exists('DataKelas/Feed/'.$request->idfeed."/".$dataFeed->lampiran)){
+                    Storage::delete('DataKelas/Feed/'.$request->idfeed."/".$dataFeed->lampiran);
+                }else{
+                }
                 $dataFeed->keterangan=$request->keterangan;
                 $dataFeed->lampiran=$nama;
                 $dataFeed->save();
@@ -358,6 +378,11 @@ class GuruController extends Controller
     }
     public function doDeleteFeed(Request $request)
     {
+
+            // Get all files in a directory
+        $files =   Storage::allFiles('DataKelas/Feed/'.$request->idfeed);
+        // Delete Files
+        Storage::delete($files);
         $dataFeed = Feed::find($request->idfeed);
         $dataFeed->delete();
         return back();
@@ -451,12 +476,27 @@ class GuruController extends Controller
         $nama_file="kosong";
         $file = $request->file('lampiran');
         $dataTugas = Tugas::find($request->idtugas);
+        if($request->statuslampiran=="hapus"){
+            if(Storage::exists('DataKelas/Tugas/'.$request->idtugas."/".$dataTugas->lampiran)){
+                Storage::delete('DataKelas/Tugas/'.$request->idtugas."/".$dataTugas->lampiran);
+
+            }else{
+                dd('File does not exists.');
+            }
+            $dataTugas->lampiran="kosong";
+            $dataTugas->save();
+        }
+
 
             if($file){
                 $nama_file = $file->getClientOriginalName();
 
                 $nama=$nama_file;
+                if(Storage::exists('DataKelas/Tugas/'.$request->idtugas."/".$dataTugas->lampiran)){
+                    Storage::delete('DataKelas/Tugas/'.$request->idtugas."/".$dataTugas->lampiran);
 
+                }else{
+                }
                 $dataTugas->tugas_nama=$request->tugas_nama;
                 $dataTugas->tanggat_waktu=$request->tanggat_waktu;
                 $dataTugas->tugas_keterangan=$request->tugas_keterangan;

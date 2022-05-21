@@ -76,11 +76,25 @@
                     @error("keterangan")
                             <div class="text-xs text-red-500">{{$message}}</div>
                     @enderror
+                    <div class="text-xs lg:text-base mb-2" id="taglampiran" style="display: none">
+                        <div class="text-xs lg:text-base bg-gray-100 round p-5">
+                            @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
+                            <a id="lampiranfeed" href="{{ url("/guru/downloadlampiranfeed/") }}">a</a>
+                            @else
+                            <a  href="{{ url("/murid/downloadlampiranfeed/") }}">a</a>
+                            @endif
+                            <a class="float-right" onclick="hapuslampiran()">X</a>
+
+
+                        </div>
+                    </div>
                     <label class="block" for="lampiran">Lampiran<label>
                     <input type="file" placeholder="file" name="lampiran"
                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                     <input type="hidden" name="pengguna_id"
                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="{{Auth::guard('satpam_pengguna')->user()->pengguna_id}}">
+                    <input type="hidden" name="statuslampiran" id="statuslampiran"
+                        class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="kosong">
                     <button class="w-1/5 float-right px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Post</button>
 
                 </div>

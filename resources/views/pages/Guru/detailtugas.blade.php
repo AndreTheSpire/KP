@@ -23,7 +23,7 @@
 
 
         <div class="float-right p-5 flex">
-            <div onclick="updatetugas({{$detailTugas->tugas_id}},'{{$detailTugas->tugas_nama}}','{{$tanggatwaktu}}','{{$detailTugas->tugas_keterangan}}')">
+            <div onclick="updatetugas({{$detailTugas->tugas_id}},'{{$detailTugas->tugas_nama}}','{{$tanggatwaktu}}','{{$detailTugas->tugas_keterangan}}','{{$detailTugas->lampiran}}')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                 </svg>
@@ -120,12 +120,26 @@
                                 <textarea type="text" name="tugas_keterangan" id="tugas_keterangan"cols="30" rows="5" style="resize: none" placeholder="petunjuk (opsional)"
                                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" ></textarea>
                         </div>
+                        <div class="text-xs lg:text-base mb-2" id="taglampirantugas">
+                            <div class="text-xs lg:text-base bg-gray-100 round p-5">
+                                @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
+                                <a id="lampirantugas" href="{{ url("/guru/downloadlampiranfeed/") }}">a</a>
+                                @else
+                                <a  href="{{ url("/murid/downloadlampiranfeed/") }}">a</a>
+                                @endif
+                                <a class="float-right" onclick="hapuslampirantugas()">X</a>
 
+
+                            </div>
+                        </div>
                     <label for="lampiran">Lampiran<label>
                     <input type="file" placeholder="file" name="lampiran"
                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                     <input type="hidden" name="pengguna_id"
                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="{{Auth::guard('satpam_pengguna')->user()->pengguna_id}}">
+                    <input type="hidden" name="statuslampiran" id="statuslampiran"
+                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="kosong">
+                    
                     <button class="w-1/5 float-right px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Update</button>
 
 

@@ -164,17 +164,37 @@
     //     getIndex();
     // });
 
-const update= (feed_id,keteranganfeed)=>{
+const update= (feed_id,keteranganfeed,lampiran)=>{
     var keterangan=keteranganfeed;
     console.log("masuk sini oii");
     console.log(feed_id);
     console.log(keterangan);
+    document.getElementById("taglampiran").style.display ='block';
+    document.getElementById("statuslampiran").value ="kosong";
     document.getElementById("ket").value =keterangan;
+    var lampir= document.getElementById('lampiranfeed');
+    lampir.innerHTML=lampiran;
+    if(lampiran=="kosong"){
+        document.getElementById("taglampiran").style.display ='none';
+    }
     var frm = document.getElementById('forminput') || null;
     if(frm) {
     frm.action = "/guru/kelas/"+feed_id+"/updatefeed"
     }
     document.getElementById('myModal2').showModal();
+
+}
+const hapuslampiran= ()=>{
+    console.log("masuk sini oii");
+    document.getElementById("taglampiran").style.display ='none';
+    document.getElementById("statuslampiran").value ="hapus";
+    // var lampir= document.getElementById('lampiranfeed');
+    // lampir.innerHTML=lampiran;
+    // var frm = document.getElementById('forminput') || null;
+    // if(frm) {
+    // frm.action = "/guru/kelas/"+feed_id+"/updatefeed"
+    // }
+    // document.getElementById('myModal2').showModal();
 
 }
 const deletepost= (feed_id)=>{
@@ -188,12 +208,19 @@ const deletepost= (feed_id)=>{
 
 }
 
-const updatetugas= (tugas_id,judul_tugas,tanggaltugas,keterangantugas)=>{
+const updatetugas= (tugas_id,judul_tugas,tanggaltugas,keterangantugas,lampiran)=>{
     var keterangan=keterangantugas;
     var tanggaltf=tanggaltugas;
     console.log("masuk sini oii");
     console.log(tugas_id);
     console.log(tanggaltf);
+    document.getElementById("taglampirantugas").style.display ='block';
+    document.getElementById("statuslampiran").value ="kosong";
+    var lampir= document.getElementById('lampirantugas');
+    lampir.innerHTML=lampiran;
+    if(lampiran=="kosong"){
+        document.getElementById("taglampirantugas").style.display ='none';
+    }
     document.getElementById("tugas_nama").value =judul_tugas;
     document.getElementById("tanggat_waktu").value =tanggaltf;
     document.getElementById("tugas_keterangan").value =keterangan;
@@ -202,6 +229,19 @@ const updatetugas= (tugas_id,judul_tugas,tanggaltugas,keterangantugas)=>{
     frm.action = "/guru/kelas/"+tugas_id+"/updatetugas"
     }
     document.getElementById('myModal2').showModal();
+
+}
+const hapuslampirantugas= ()=>{
+    console.log("masuk sini oii");
+    document.getElementById("taglampirantugas").style.display ='none';
+    document.getElementById("statuslampiran").value ="hapus";
+    // var lampir= document.getElementById('lampiranfeed');
+    // lampir.innerHTML=lampiran;
+    // var frm = document.getElementById('forminput') || null;
+    // if(frm) {
+    // frm.action = "/guru/kelas/"+feed_id+"/updatefeed"
+    // }
+    // document.getElementById('myModal2').showModal();
 
 }
 const deletetugas= (tugas_id,kelas_id)=>{
@@ -218,6 +258,7 @@ const tutup= (kelas_id)=>{
     console.log("masuk sini oii");
     document.getElementById("ket").value ="";
     var frm = document.getElementById('forminput') || null;
+    document.getElementById("taglampiran").style.display ='none';
     if(frm){
     frm.action = "/guru/kelas/"+kelas_id+"/addfeed"
     }
