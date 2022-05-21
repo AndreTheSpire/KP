@@ -490,8 +490,10 @@ class AdminController extends Controller
     }
     public function GoToLaporanTransaksi()
     {
+        $datalaporan = PendaftaranMurid::get();
         return view("pages.admin.LaporanTransaksi",[
-            'title' => "LaporanTransaksi"
+            'title' => "LaporanTransaksi",
+            "datalaporan"=>$datalaporan,
         ]);
 
     }

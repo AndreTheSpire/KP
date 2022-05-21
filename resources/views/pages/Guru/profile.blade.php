@@ -22,9 +22,9 @@
                 $foto=Auth::guard('satpam_pengguna')->user()->pengguna_photo;
             @endphp
                 <label
-                    class="flex flex-col w-2/6 h-3/4 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                    <div class="items-center h-full justify-center">
-                        <img class="w-60 h-60 rounded-full object-fill" id="output"  src="/upload/{{$foto}}" >
+                    class="flex flex-col w-auto h-3/4 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                    <div class="items-center h-full flex justify-center">
+                        <img class="w-56 h-56 rounded-full object-fill items-center" id="output"  src="/upload/{{$foto}}" >
 
                     </div>
                     <input type="file"  accept="image/*" name="pengguna_photo" class="image opacity-0" />
