@@ -148,7 +148,7 @@ class MuridController extends Controller
             $daftarkelasid[]=$murid->kelas_id;
         }
         $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
-        $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',1)->get();
+        $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','>=',2)->get();
         $dataPelajaran = Pelajaran::get();
 
         return view("pages.Murid.pembayaran",[
@@ -167,7 +167,7 @@ class MuridController extends Controller
             $daftarkelasid[]=$murid->kelas_id;
         }
         $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
-        $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',2)->get();
+        $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',1)->get();
         $dataPelajaran = Pelajaran::get();
 
         return view("pages.Murid.pembayaran",[

@@ -73,13 +73,11 @@
             $status="Menunggu Konfirmasi";
         }
         else if ($datadetail->pendaftaranmurid_status==1){
-            $status="Sukses Mendaftar";
-        }
-        else if ($datadetail->pendaftaranmurid_status==2){
             $status="Gagal Mendaftar";
+
         }
-        else if ($datadetail->pendaftaranmurid_status==3){
-            $status="Berhasil masuk kelas";
+        else if ($datadetail->pendaftaranmurid_status>=2){
+            $status="Sukses Mendaftar";
         }
     @endphp
 

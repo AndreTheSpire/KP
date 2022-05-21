@@ -46,11 +46,9 @@
             @elseif ($k->pendaftaranmurid_status==0)
             <td class="border border-slate-600 text-center w-full">Menunggu Konfirmasi</td>
             @elseif ($k->pendaftaranmurid_status==1)
-            <td class="border border-slate-600 text-center w-full">Pembayaran Sukses</td>
-            @elseif ($k->pendaftaranmurid_status==2)
             <td class="border border-slate-600 text-center w-full">Pembayaran Gagal</td>
-            @elseif ($k->pendaftaranmurid_status==3)
-            <td class="border border-slate-600 text-center w-full">Sukses Masuk Kelas</td>
+            @elseif ($k->pendaftaranmurid_status>=2)
+            <td class="border border-slate-600 text-center w-full">Pembayaran Sukses</td>
             @endif
             <td class="border border-slate-600 text-center w-full"><a href="/murid/detailpembayaran/{{$k->pendaftaranmurid_id}}"><button class="bg-orange-600 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded-full" type="button">Detail</button></a></td>
 

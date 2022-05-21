@@ -354,7 +354,7 @@ class AdminController extends Controller
     public function ConfirmDetailPenerimaanMurid(Request $request)
     {
         $data_confirm = PendaftaranMurid::find($request->id);
-        $data_confirm->pendaftaranmurid_status = '1';
+        $data_confirm->pendaftaranmurid_status = '2';
         $data_confirm->save();
         $datapendaftaran = PendaftaranMurid::get();
         $dataPelajaran = Pelajaran::get();
@@ -369,7 +369,7 @@ class AdminController extends Controller
     public function DeclineDetailPenerimaanMurid(Request $request)
     {
         $data_confirm = PendaftaranMurid::find($request->id);
-        $data_confirm->pendaftaranmurid_status = '2';
+        $data_confirm->pendaftaranmurid_status = '1';
         $data_confirm->save();
         $datapendaftaran = PendaftaranMurid::get();
         $dataPelajaran = Pelajaran::get();
@@ -438,7 +438,7 @@ class AdminController extends Controller
     {
         $datadetail = Kelas::find($request->id);
         $dataPelajaran = Pelajaran::get();
-        $datacalonmurid=PendaftaranMurid::where('pendaftaranmurid_status','=',1)->where('pelajaran_id','=',$datadetail->pelajaran_id)->where('kategorikelas_id','=',$datadetail->kategorikelas_id)->get();
+        $datacalonmurid=PendaftaranMurid::where('pendaftaranmurid_status','=',2)->where('pelajaran_id','=',$datadetail->pelajaran_id)->where('kategorikelas_id','=',$datadetail->kategorikelas_id)->get();
         // dd($waktuMulaiEdited);
         // dd($waktuSelesaiEdited);
         return view('pages.admin.Penetapankelas', [

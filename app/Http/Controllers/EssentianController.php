@@ -6,6 +6,8 @@ use App\Models\D_tugas;
 use App\Models\Guru;
 use App\Models\KategoriKelas;
 use App\Models\Kelas;
+use App\Models\Murid;
+use App\Models\Notifikasi;
 use App\Models\Pelajaran;
 use App\Models\Pengguna;
 use App\Models\Tugas;
@@ -48,6 +50,24 @@ class EssentianController extends Controller
     public function GoToProfile()
     {
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $roleuser=Auth::guard('satpam_pengguna')->user()->pengguna_peran;
+        if($roleuser==1){
+            $idguruuser=Auth::guard('satpam_pengguna')->user()->adalahGuru->guru_id;
+            $datasebagaiguru=Kelas::where('guru_id','=',$idguruuser)->get();
+
+            $daftarkelasid=[];
+            foreach ($datasebagaiguru as $guru) {
+                $daftarkelasid[]=$guru->kelas_id;
+            }
+            $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
+        }else{
+            $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+            $daftarkelasid=[];
+            foreach ($datasebagaimurid as $murid) {
+                $daftarkelasid[]=$murid->kelas_id;
+            }
+            $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
+        }
         $peranuser=Auth::guard('satpam_pengguna')->user()->pengguna_peran;
         $dataPelajaran = Pelajaran::get();
         $dataKategori = KategoriKelas::get();
@@ -56,12 +76,14 @@ class EssentianController extends Controller
             return view("pages.Guru.profile",[
                 'title' => "tugas",
                 "dataKategori" => $dataKategori,
+                "dataNotifikasi"=>$dataNotifikasi,
                 "dataPelajaran" => $dataPelajaran,
             ]);
         }else{
             return view("pages.Murid.profile",[
                 'title' => "tugas",
                 "dataKategori" => $dataKategori,
+                "dataNotifikasi"=>$dataNotifikasi,
                 "dataPelajaran" => $dataPelajaran,
             ]);
         }
@@ -79,6 +101,13 @@ class EssentianController extends Controller
 
             if($file){
                 $nama_expansion = $file->getClientOriginalExtension();
+
+                if ($nama_expansion=="jpg"||$nama_expansion=="png"||$nama_expansion=="jpeg") {
+
+                }else{
+                    Alert::warning('PERINGATAN', 'extension file harus image');
+                    return back();
+                }
 
                 $nama_file=$dataUser->pengguna_id.".".$nama_expansion;
 
