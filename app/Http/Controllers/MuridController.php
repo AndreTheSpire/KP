@@ -101,6 +101,38 @@ class MuridController extends Controller
             "dataPelajaran" => $dataPelajaran,
         ]);
     }
+    public function GotoPembayaransearch(Request $request)
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
+        if($request->tipe=="semua"){
+            $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_id','like', '%'.$request->search.'%')->get();
+        }else if($request->tipe=="belum"){
+            $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',-1)->where('pendaftaranmurid_id','like', '%'.$request->search.'%')->get();
+        }else if($request->tipe=="menunggu"){
+            $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',0)->where('pendaftaranmurid_id','like', '%'.$request->search.'%')->get();
+        }else if($request->tipe=="sukses"){
+            $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','>=',2)->where('pendaftaranmurid_id','like', '%'.$request->search.'%')->get();
+        }else if($request->tipe=="gagal"){
+            $datapendaftaran = PendaftaranMurid::where('pengguna_id','=',$iduser)->where('pendaftaranmurid_status','=',1)->where('pendaftaranmurid_id','like', '%'.$request->search.'%')->get();
+        }
+
+
+
+        $dataPelajaran = Pelajaran::get();
+        // dd($datapendaftaran);
+        return view("pages.Murid.pembayaran",[
+            'title' => $request->tipe,
+            "datapendaftaran" => $datapendaftaran,
+            "dataNotifikasi"=>$dataNotifikasi,
+            "dataPelajaran" => $dataPelajaran,
+        ]);
+    }
     public function GotoPembayaranbelum()
     {
         $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
