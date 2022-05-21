@@ -112,8 +112,8 @@
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     <a href="/admin/kelas/{{$datadetail->kelas_id}}/penetapan/{{$k->pendaftaranmurid_id}}">
                                         <button class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 mx-4 rounded">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
                                             </svg>
                                         </button>
                                     </a>

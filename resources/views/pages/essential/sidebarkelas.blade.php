@@ -31,12 +31,12 @@
       <!-- link -->
       @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
       <a href="/guru/kelas/{{$dataKelas->kelas_id}}/tugas" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "tugas" ? "bg-gray-400" : " " }}">
-        <i class="fa fa-comments text-xs mx-2"></i>
+        <i class="fa fa-book text-xs mx-2"></i>
         Tugas
       </a>
       @else
       <a href="/murid/kelas/{{$dataKelas->kelas_id}}/tugas" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "tugas" ? "bg-gray-400" : " " }}">
-        <i class="fa fa-comments text-xs mx-2"></i>
+        <i class="fa fa-book text-xs mx-2"></i>
         Tugas
       </a>
       @endif
@@ -46,12 +46,12 @@
           <!-- link -->
           @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
           <a href="/guru/kelas/{{$dataKelas->kelas_id}}/absensi" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "absensi" ? "bg-gray-400" : " " }}">
-            <i class="fa fa-comments text-xs mx-2"></i>
+            <i class="fa fa-check-square text-xs mx-2"></i>
             Absensi
           </a>
           @else
           <a href="/murid/kelas/{{$dataKelas->kelas_id}}/absensi" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "absensi" ? "bg-gray-400" : " " }}">
-            <i class="fa fa-comments text-xs mx-2"></i>
+            <i class="fa fa-check-square text-xs mx-2"></i>
             Absensi
           </a>
           @endif
@@ -61,12 +61,12 @@
       <!-- link -->
       @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
       <a href="/guru/kelas/{{$dataKelas->kelas_id}}/member" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "member" ? "bg-gray-400" : " " }}">
-        <i class="fa fa-shield-check text-xs mx-2"></i>
+        <i class="fa fa-users text-xs mx-2"></i>
         Member
       </a>
       @else
       <a href="/murid/kelas/{{$dataKelas->kelas_id}}/member" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "member" ? "bg-gray-400" : " " }}">
-        <i class="fa fa-shield-check text-xs mx-2"></i>
+        <i class="fa fa-users text-xs mx-2"></i>
         Member
       </a>
       @endif
