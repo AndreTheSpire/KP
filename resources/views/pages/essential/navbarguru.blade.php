@@ -22,9 +22,9 @@
     <div id="navbar" class="animated md:hidden md:fixed md:top-0 md:w-full md:left-0 md:mt-16 md:border-t md:border-b md:border-gray-200 md:p-10 md:bg-white flex-1 pl-3 flex flex-row flex-wrap justify-between items-center md:flex-col md:items-center">
       <!-- left -->
       <div class="text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly md:pb-10 md:mb-10 md:border-b md:border-gray-200">
-        <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="/guru" title="email"><i class="fad fa-home"></i> Home</a>
-        <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="/guru/kelas" title="email"><i class="fad fa-users"></i> Kelas</a>
-        <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="/guru/penilaian" title="email"><i class="fad fa-users"></i> Penilaian</a>
+        <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="/guru" title="Home"><i class="fad fa-home"></i> Home</a>
+        <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="/guru/kelas" title="Kelas"><i class="fad fa-users"></i> Kelas</a>
+        <a class="mr-5 transition duration-500 ease-in-out hover:text-gray-900" href="/guru/penilaian" title="Penilaian"><i class="fad fa-pencil"></i> Penilaian</a>
       </div>
       <!-- end left -->
 
@@ -58,7 +58,7 @@
 
             <!-- item -->
             <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out" href="/guru/notifikasi">
-              <i class="fad fa-inbox-in text-xs mr-1"></i>
+              <i class="fad fa-bells text-xs mr-1"></i>
               Notifications
             </a>
             <!-- end item -->

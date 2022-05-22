@@ -22,21 +22,21 @@
 
       <!-- link -->
       <a href="/murid/pembayaranbelum" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "belum" ? "bg-gray-400" : " " }}">
-        <i class="fa fa-comments text-xs mx-2"></i>
+        <i class="fa fa-times-circle text-xs mx-2"></i>
         Belum Membayar
       </a>
       <!-- end link -->
 
       <!-- link -->
       <a href="/murid/pembayaranmenunggu" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "menunggu" ? "bg-gray-400" : " " }}">
-        <i class="fa fa-shield-check text-xs mx-2"></i>
+        <i class="fa fa-spinner text-xs mx-2"></i>
         Menunggu Konfirmasi
       </a>
       <!-- end link -->
 
       <!-- link -->
       <a href="/murid/pembayaransukses" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "sukses" ? "bg-gray-400" : " " }}">
-        <i class="fa fa-calendar-edit text-xs mx-2"></i>
+        <i class="fa fa-shield-check text-xs mx-2"></i>
         Pembayaran Sukses
       </a>
 
@@ -44,7 +44,7 @@
 
       <!-- link -->
       <a href="/murid/pembayarangagal" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "gagal" ? "bg-gray-400" : " " }}">
-        <i class="fa fa-file-invoice-dollar text-xs mx-2"></i>
+        <i class="fa fa-user-times text-xs mx-2"></i>
         Pembayaran Gagal
       </a>
       <!-- end link -->

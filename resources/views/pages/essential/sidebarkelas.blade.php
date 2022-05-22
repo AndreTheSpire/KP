@@ -47,7 +47,7 @@
 
         @else
         <a href="/murid/kelas/{{$dataKelas->kelas_id}}/nilai" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "nilai" ? "bg-gray-400" : " " }}">
-          <i class="fa fa-check-square text-xs mx-2"></i>
+          <i class="fa fa-list-ol text-xs mx-2"></i>
           Nilai
         </a>
         @endif
