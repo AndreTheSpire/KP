@@ -21,7 +21,7 @@
 </head>
 <body>
     @include('sweetalert::alert')
-    <div class="bg-ocean-light dark:bg-ocean-dark bg-opacity-75 flex flex-col items-center ">
+    <div class="bg-red-400 dark:bg-ocean-dark bg-opacity-75 flex flex-col items-center ">
         <div class="min-h-screen flex flex-col justify-between lg:w-5/6">
             <div class="z-20">
                 @yield('navbar')
