@@ -36,6 +36,8 @@ class Pengguna extends Authenticatable
         'pengguna_photo',
     ];
 
+
+
     public function getAuthPassword()
     {
         return $this->pengguna_password;

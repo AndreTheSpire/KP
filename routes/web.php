@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','EssentianController@GoToLogin');
-Route::get('landing','EssentianController@GoToLanding');
-Route::get('login', 'EssentianController@GoToLogin');
+Route::get('/','EssentianController@GoToLogin')->middleware('is_logout');
+Route::get('landing','EssentianController@GoToLanding')->middleware('is_logout');
+Route::get('login', 'EssentianController@GoToLogin')->middleware('is_logout');
 Route::get('logout', 'EssentianController@GoTologout');
 Route::get('dologin', 'EssentianController@DoLogin');
-Route::get('register', 'EssentianController@GoToRegister');
+Route::get('register', 'EssentianController@GoToRegister')->middleware('is_logout');
 Route::post('doregister', 'EssentianController@DoRegister');
 Route::get('dependantkategori/{id}', 'EssentianController@storeKategori');
 Route::get('dependantguru/{id}', 'EssentianController@storeGuru');
-Route::get('profile', 'EssentianController@GoToProfile');
+Route::get('profile', 'EssentianController@GoToProfile')->middleware('is_login');
 Route::post('updateprofile', 'EssentianController@DoUpdateProfile');
 Route::post('updatepassword', 'EssentianController@UpdatePassword');
 // Route::get('image-cropper','EssentianController@index');
@@ -63,7 +63,7 @@ Route::prefix('admin')->group(function () {
     Route::get('searchlaporan','AdminController@DoSearchLaporan');
     Route::get('searchKelas','AdminController@DoSearchKelas');
 });
-Route::prefix('murid')->group(function () {
+Route::prefix('murid')->middleware('is_login')->middleware('is_murid')->group(function () {
     Route::get('/', 'MuridController@GotoHome');
     Route::get('/notifikasi', 'MuridController@GotoNotifikasi');
     Route::get('/pembayaran', 'MuridController@GotoPembayaransemua');
@@ -93,7 +93,7 @@ Route::prefix('murid')->group(function () {
 
 });
 
-Route::prefix('guru')->group(function () {
+Route::prefix('guru')->middleware('is_login')->middleware('is_guru')->group(function () {
     Route::get('/', 'GuruController@GotoHome');
     Route::get('/notifikasi', 'GuruController@GotoNotifikasi');
     Route::get('/kelas', 'GuruController@GoToKelas');
