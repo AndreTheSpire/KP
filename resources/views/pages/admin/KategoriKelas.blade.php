@@ -3,7 +3,7 @@
 @include('sweetalert::alert')
 
 
-<button class="btn inline-block h-10 w-auto px-6 mx-4 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" onclick="document.getElementById('myModal').showModal()">
+<button class="btn inline-block h-10 w-auto px-6 mx-4 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-400 hover:shadow-lg focus:bg-red-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out flex items-center" onclick="document.getElementById('myModal').showModal()">
     Tambah Kategori
 </button>
 
@@ -22,6 +22,12 @@
                 </tr>
                 </thead class="border-b">
                 <tbody>
+                    @if(count($dataKategori)==0)
+                    <tr>
+
+                        <td colspan="3" class="px-6 py-4 border border-slate-200 whitespace-nowrap text-sm font-medium text-gray-900">Tidak ada Data</td>
+                    </tr>
+                    @else
                     @foreach ($dataKategori as $k)
                         @if ($d->pelajaran_id==$k->pelajaran_id)
                             <tr class="bg-white border-b">
@@ -49,6 +55,7 @@
                         @endif
 
                     @endforeach
+                    @endif
                 </tbody>
             </table>
             </div>
@@ -134,7 +141,7 @@
                     </div>
                     <div class="md:col-span-6 text-right">
                         <div class="inline-flex items-endt">
-                            <button type="submit" class="bg-secondary-red hover:bg-secondary-red-hover text-black font-bold py-2 px-4 rounded">Submit</button>
+                            <button type="submit" class="bg-red-600 hover:bg-red-400 text-white font-bold py-2 px-4 rounded">Submit</button>
                         </div>
                         </div>
                     </div>
@@ -187,7 +194,7 @@
                     </div>
                     <div class="md:col-span-6 text-right">
                         <div class="inline-flex items-endt">
-                            <button type="submit" class="bg-secondary-red hover:bg-secondary-red-hover text-black font-bold py-2 px-4 rounded">Submit</button>
+                            <button type="submit" class="bg-red-600 hover:bg-red-400 text-white font-bold py-2 px-4 rounded">Submit</button>
                         </div>
                         </div>
                     </div>
@@ -221,8 +228,8 @@
 
                 <div class="mt-4">
                     <div>apakah kamu yakin untuk menghapus Kategori ini?</div>
-                    <button class="w-1/5 float-right px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900" onclick="document.getElementById('myModal3').close();">No</button>
-                    <a href="" id="yes"><button class="w-1/5 mx-4 float-right px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Yes</button></a>
+                    <button class="w-1/5 float-right px-6 py-2 mt-4  rounded-lg bg-red-600 hover:bg-red-400 text-white" onclick="document.getElementById('myModal3').close();">No</button>
+                    <a href="" id="yes"><button class="w-1/5 mx-4 float-right px-6 py-2 mt-4 text-white bg-red-600 rounded-lg hover:bg-red-400">Yes</button></a>
 
                 </div>
 

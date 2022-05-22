@@ -48,6 +48,12 @@
         </tr>
     </thead>
     <tbody>
+        @if(count($datapendaftaran)==0)
+        <tr>
+
+            <td colspan="5" class=" text-center px-6 py-4 border border-slate-200 whitespace-nowrap text-sm font-medium text-gray-900">Tidak ada Data</td>
+        </tr>
+        @else
         @foreach ($datapendaftaran as $k)
         <tr>
             <td class="border border-slate-600 text-center w-full">{{$k->pendaftaranmurid_id}}</td>
@@ -71,6 +77,7 @@
         </tr>
 
         @endforeach
+        @endif
     </tbody>
 </table>
 
