@@ -1,5 +1,9 @@
 @extends('layout.Layout_Murid')
 
+@section('title')
+    Nilai Tugas {{$dataKelas->kelas_nama}}
+@endsection
+
 @section('navbar')
     @include('pages.essential.navbarmurid')
 @endsection

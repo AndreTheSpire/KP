@@ -1,4 +1,7 @@
 @extends('layout.Layout_Murid')
+@section('title')
+    Absensi {{$dataKelas->kelas_nama}}
+@endsection
 
 @section('navbar')
     @include('pages.essential.navbarmurid')

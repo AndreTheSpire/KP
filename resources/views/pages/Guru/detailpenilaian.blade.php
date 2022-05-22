@@ -1,5 +1,9 @@
 @extends('layout.Layout_Guru')
 
+@section('title')
+    Penilaian
+@endsection
+
 @section('navbar')
     @include('pages.essential.navbarguru')
 @endsection
@@ -64,7 +68,7 @@
                 <div class="px-2 py-1">
                     {{-- <input type="hidden" name="id_murid" value="{{$filter_murid}}">
                     <input type="hidden" name="id_kelas" value="{{$id_kelas_sekarang}}"> --}}
-                    <button type="submit" class="float-right text-black py-2 px-1 px-4 w-auto md:w-1/4 bg-secondary-red hover:bg-secondary-red-hover dark:bg-secondary-red-hover dark:hover:bg-secondary-red shadow-lg block md:inline rounded-lg text-xl">Update</button>
+                    <button type="submit" class="float-right bg-red-600 text-white py-2 px-1 px-4 w-auto md:w-1/4 bg-secondary-red hover:bg-secondary-red-hover dark:bg-secondary-red-hover dark:hover:bg-secondary-red shadow-lg block md:inline rounded-lg text-xl">Update</button>
                 </div>
 
     </form>

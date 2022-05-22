@@ -1,5 +1,10 @@
 @extends('layout.Layout_Guru')
 
+@section('title')
+    Home
+@endsection
+
+
 @section('navbar')
     @include('pages.essential.navbarguru')
 @endsection
@@ -70,7 +75,7 @@
                         class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="{{Auth::guard('satpam_pengguna')->user()->pengguna_id}}">
                         <input type="hidden" name="statuslampiran" id="statuslampiran"
                         class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="kosong">
-                        <button class="w-1/5 float-right px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Post</button>
+                        <button class="w-1/5 float-right px-6 py-2 mt-4 text-white bg-red-600 rounded-lg hover:bg-red-400">Post</button>
 
                     </div>
                 </form>
@@ -100,8 +105,8 @@
 
                     <div class="mt-4">
                         <div>apakah kamu yakin untuk menghapus post ini?</div>
-                        <button class="w-1/5 float-right px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900" onclick="document.getElementById('myModal3').close();">No</button>
-                        <a href="" id="yes"><button class="w-1/5 mx-4 float-right px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Yes</button></a>
+                        <button class="w-1/5 float-right px-6 py-2 mt-4  bg-red-600 text-white hover:bg-red-400 rounded-lg " onclick="document.getElementById('myModal3').close();">No</button>
+                        <a href="" id="yes"><button class="w-1/5 mx-4 float-right px-6 py-2 mt-4 text-white bg-red-600 rounded-lg hover:bg-red-400">Yes</button></a>
 
                     </div>
 

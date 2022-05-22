@@ -1,5 +1,8 @@
 
 @extends('layout.Layout_Guru')
+@section('title')
+    Profile
+@endsection
 
 @section('navbar')
     @include('pages.essential.navbarguru')
@@ -74,12 +77,12 @@
                         <div class="md:w-1/3"></div>
                         <div class="md:w-2/3">
                             <a onclick="document.getElementById('myPass').showModal()">
-                                <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                                <button class="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
                                     Ganti Password
                                   </button>
                             </a>
 
-                          <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+                          <button class="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                             Save
                           </button>
                         </div>

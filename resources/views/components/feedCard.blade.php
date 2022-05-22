@@ -91,13 +91,13 @@
         <form action="{{url('/guru/kelas/reply/'.$comment->comment_id.'/add')}}" class="flex pt-2 ml-10 pr-5" method="POST">
             @csrf
             <input type="text" name="keterangan" id="" class="border border-gray-400 rounded-lg w-auto flex-grow mr-4 p-1 px-2" placeholder="tuliskan replymu disini">
-            <button type="submit" class="py-1 px-4 text-black rounded-lg bg-button-light hover:bg-button-dark dark:bg-button-dark dark:hover:bg-button-light shadow-lg block md:inline-block w-auto">Reply</button>
+            <button type="submit" class="py-1 px-4  bg-red-600 text-white hover:bg-red-400 rounded-lg bg-button-light  dark:bg-button-dark dark:hover:bg-button-light shadow-lg block md:inline-block w-auto">Reply</button>
         </form>
         @else
         <form action="{{url('/murid/kelas/reply/'.$comment->comment_id.'/add')}}" class="flex pt-2 ml-10 pr-5" method="POST">
             @csrf
             <input type="text" name="keterangan" id="" class="border border-gray-400 rounded-lg w-auto flex-grow mr-4 p-1 px-2" placeholder="tuliskan replymu disini">
-            <button type="submit" class="py-1 px-4 text-black rounded-lg bg-button-light hover:bg-button-dark dark:bg-button-dark dark:hover:bg-button-light shadow-lg block md:inline-block w-auto">Reply</button>
+            <button type="submit" class="py-1 px-4  bg-red-600 text-white hover:bg-red-400 rounded-lg bg-button-light  dark:bg-button-dark dark:hover:bg-button-light shadow-lg block md:inline-block w-auto">Reply</button>
         </form>
         @endif
     </div>
@@ -106,13 +106,13 @@
     <form action="{{url('/guru/kelas/comment/'.$feed_id.'/add')}}" class="flex p-5" method="POST">
         @csrf
         <input type="text" name="comment" id="" class="border border-gray-400 rounded-lg w-auto flex-grow mr-4 p-1 px-2" placeholder="tuliskan commentmu disini">
-        <button type="submit" class="py-1 px-4 text-black rounded-lg bg-button-light hover:bg-button-dark dark:bg-button-dark dark:hover:bg-button-light shadow-lg block md:inline-block w-auto">Komentar</button>
+        <button type="submit" class="py-1 px-4 bg-red-600 text-white hover:bg-red-400 rounded-lg bg-button-light  dark:bg-button-dark dark:hover:bg-button-light shadow-lg block md:inline-block w-auto">Komentar</button>
     </form>
     @else
     <form action="{{url('/murid/kelas/comment/'.$feed_id.'/add')}}" class="flex p-5" method="POST">
         @csrf
         <input type="text" name="comment" id="" class="border border-gray-400 rounded-lg w-auto flex-grow mr-4 p-1 px-2" placeholder="tuliskan commentmu disini">
-        <button type="submit" class="py-1 px-4 text-black rounded-lg bg-button-light hover:bg-button-dark dark:bg-button-dark dark:hover:bg-button-light shadow-lg block md:inline-block w-auto">Komentar</button>
+        <button type="submit" class="py-1 px-4 bg-red-600 text-white  rounded-lg bg-button-light hover:bg-red-400 dark:bg-button-dark dark:hover:bg-button-light shadow-lg block md:inline-block w-auto">Komentar</button>
     </form>
     @endif
 

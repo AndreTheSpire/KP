@@ -1,5 +1,9 @@
 @extends('layout.Layout_Murid')
 
+@section('title')
+    Kelas
+@endsection
+
 @section('navbar')
     @include('pages.essential.navbarmurid')
 @endsection

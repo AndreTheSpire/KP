@@ -8,7 +8,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
-   <title>Cetta</title>
+  <title>@yield('title')</title>
 </head>
 
 <body class="bg-gray-100 relative">
@@ -106,7 +106,7 @@
                     </div>
 
                     <div class="flex">
-                        <button class="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Daftar
+                        <button class="w-full px-6 py-2 mt-4  bg-red-600 text-white hover:bg-red-400 rounded-lg ">Daftar
                             Kelas</button>
                     </div>
 
@@ -149,7 +149,7 @@
 
 
                     <div class="flex">
-                        <button class="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Ganti Password</button>
+                        <button class="w-full px-6 py-2 mt-4  bg-red-600 text-white hover:bg-red-400 rounded-lg ">Ganti Password</button>
                     </div>
 
                 </div>

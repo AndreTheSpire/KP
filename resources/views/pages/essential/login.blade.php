@@ -38,7 +38,7 @@
             Password
             </label>
         </div>
-        <button type="submit" name="login" class="bg-secondary-red text-black hover:bg-secondary-red-hover py-4 text-center px-17 md:px-12 md:py-4 rounded leading-tight text-xl md:text-base font-sans mt-4">Login</button>
+        <button type="submit" name="login" class="bg-red-600 text-white hover:bg-red-400 py-4 text-center px-17 md:px-12 md:py-4 rounded leading-tight text-xl md:text-base font-sans mt-4">Login</button>
 
         @if(isset($gagalcek))
         {{-- <div class="text-2xl">Login Gagal</div> --}}

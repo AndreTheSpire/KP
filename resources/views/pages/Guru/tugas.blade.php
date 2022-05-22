@@ -1,4 +1,7 @@
 @extends('layout.Layout_Guru')
+@section('title')
+    Tugas {{$dataKelas->kelas_nama}}
+@endsection
 
 @section('navbar')
     @include('pages.essential.navbarguru')
@@ -20,7 +23,7 @@
         <div class="items-center text-2xl text-bold ">
             Tugas
         </div>
-        <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" onclick="document.getElementById('myModal2').showModal()">
+        <button class="shadow bg-red-600 text-white hover:bg-red-400 focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded" onclick="document.getElementById('myModal2').showModal()">
             + Buat Tugas
           </button>
     </div>
@@ -96,7 +99,7 @@
                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                 <input type="hidden" name="pengguna_id"
                 class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="{{Auth::guard('satpam_pengguna')->user()->pengguna_id}}">
-                <button class="w-1/5 float-right px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Tambah</button>
+                <button class="w-1/5 float-right px-6 py-2 mt-4 bg-red-600 text-white rounded-lg hover:bg-blue-900">Tambah</button>
 
 
         </form>

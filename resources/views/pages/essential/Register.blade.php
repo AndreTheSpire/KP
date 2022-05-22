@@ -12,7 +12,7 @@
 
 <form action="{{ url('doregister') }}" method="POST" class="flex justify-center h-full items-center text-center" enctype="multipart/form-data">
     @csrf
-    <div class='flex max-w-sm w-full justify-center bg-white shadow-md rounded-lg overflow-hidden mx-auto flex flex-col p-5'>
+    <div class='flex max-w-lg w-full justify-center bg-white shadow-md rounded-lg overflow-hidden mx-auto flex flex-col p-5'>
         <img src="{{ ('image/cettatf.png') }}" alt="" class="h-2/4">
 
     <div class="relative h-10 input-component mb-5 empty">
@@ -47,54 +47,69 @@
         <div class="text-red-500 text-xs text-left">{{ $message }}</div>
         @enderror
     </div>
+    <div class="flex">
+        <div class="relative h-10 input-component mb-5 empty flex-1">
+            <input
+              id="password"
+              type="password"
+              name="pengguna_password"
+              class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
+              @error('pengguna_password') style="border: 2px solid red;" @enderror value="{{ old('pengguna_password')}}"
+            />
+            <label for="address" class="absolute left-2 transition-all bg-white px-1">
+              Password
+            </label>
+            @error("pengguna_password")
+            <div class="text-red-500 text-xs text-left">{{ $message }}</div>
+            @enderror
+          </div>
+          <div class="relative h-10 input-component mb-5 empty flex-1">
+            <input
+              id="konfirmasi_password"
+              type="password"
+              name="pengguna_password_confirmation"
+              class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
+              @error('pengguna_password') style="border: 2px solid red;" @enderror value="{{ old('pengguna_password')}}"
+            />
+            <label for="address" class="absolute left-2 transition-all bg-white px-1">
+              Konfirmasi Password
+            </label>
+            @error("pengguna_password")
+            <div class="text-red-500 text-xs text-left">{{ $message }}</div>
+            @enderror
+          </div>
 
-    <div class="relative h-10 input-component mb-5 empty">
-        <input
-          id="password"
-          type="password"
-          name="pengguna_password"
-          class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
-          @error('pengguna_password') style="border: 2px solid red;" @enderror value="{{ old('pengguna_password')}}"
-        />
-        <label for="address" class="absolute left-2 transition-all bg-white px-1">
-          Password
-        </label>
-        @error("pengguna_password")
-        <div class="text-red-500 text-xs text-left">{{ $message }}</div>
-        @enderror
-      </div>
-      <div class="relative h-10 input-component mb-5 empty">
-        <input
-          id="konfirmasi_password"
-          type="password"
-          name="pengguna_password_confirmation"
-          class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
-          @error('pengguna_password') style="border: 2px solid red;" @enderror value="{{ old('pengguna_password')}}"
-        />
-        <label for="address" class="absolute left-2 transition-all bg-white px-1">
-          Konfirmasi Password
-        </label>
-        @error("pengguna_password")
-        <div class="text-red-500 text-xs text-left">{{ $message }}</div>
-        @enderror
-      </div>
+    </div>
 
-    <div class="relative h-10 input-component mb-3 empty">
-        <input
-          id="nohp"
-          type="tel"
-          name="pengguna_nohp"
-          class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
-          @error('pengguna_nohp') style="border: 2px solid red;" @enderror value="{{ old('pengguna_nohp')}}"
-        />
-        <label for="no_hp" class="absolute left-2 transition-all bg-white px-1">
-          No Handphone
-        </label>
-          @error("pengguna_nohp")
-          <div class="text-red-500 text-xs text-left">{{ $message }}</div>
-          @enderror
-      </div>
-      <div class="relative h-15 input-component mb-5 empty " id="tanggal">
+    <div class="flex">
+        <div class="relative h-10 input-component mb-3 empty flex-1">
+            <input
+              id="nohp"
+              type="tel"
+              name="pengguna_nohp"
+              class="h-full w-full border-gray-300 px-2 transition-all border-blue rounded-sm py-1"
+              @error('pengguna_nohp') style="border: 2px solid red;" @enderror value="{{ old('pengguna_nohp')}}"
+            />
+            <label for="no_hp" class="absolute left-2 transition-all bg-white px-1">
+              No Handphone
+            </label>
+              @error("pengguna_nohp")
+              <div class="text-red-500 text-xs text-left">{{ $message }}</div>
+              @enderror
+          </div>
+          <div class="relative h-10 input-component mb-5 flex-1">
+            <select id="jenis_kelamin" name="pengguna_jeniskelamin" class="h-full w-full border border-gray-300 px-2 transition-all border-blue rounded-sm py-1">
+                <option value="0">Laki-laki</option>
+                <option value="1">Perempuan</option>
+
+            </select>
+            <label for="jenis_kelamin" class="absolute text-black left-2 transition-all bg-white px-1">
+             Jenis Kelamin
+            </label>
+          </div>
+
+    </div>
+    <div class="relative h-15 input-component mb-5 empty" id="tanggal">
         <div class="px-2 ">Tanggal lahir</div>
         <input
           id="tanggal_lahir"
@@ -125,16 +140,7 @@
           @enderror
       </div>
 
-      <div class="relative h-10 input-component mb-5">
-        <select id="jenis_kelamin" name="pengguna_jeniskelamin" class="h-full w-full border border-gray-300 px-2 transition-all border-blue rounded-sm py-1">
-            <option value="0">Laki-laki</option>
-            <option value="1">Perempuan</option>
 
-        </select>
-        <label for="jenis_kelamin" class="absolute text-black left-2 transition-all bg-white px-1">
-         Jenis Kelamin
-        </label>
-      </div>
 
 
       <div class="relative h-10 input-component mt-1">
@@ -164,7 +170,7 @@
 
       {{-- <input type="hidden" name="penggutampilan" value='0'> --}}
       <div class="">
-        <input type="submit" value="Submit" class="bg-secondary-red text-black hover:bg-secondary-red-hover py-4 text-center px-17 md:px-12 md:py-4 rounded leading-tight text-xl md:text-base font-sans mt-4 w-full">
+        <input type="submit" value="Submit" class="bg-red-600 text-white hover:bg-red-400 py-4 text-center px-17 md:px-12 md:py-4 rounded leading-tight text-xl md:text-base font-sans mt-4 w-full">
        </div >
         <a href="/login" class="text-sm text-black text-left font-roboto leading-normal underline mt-2 ">Kembali Ke Login</a>
     </div>

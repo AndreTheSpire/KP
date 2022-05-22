@@ -1,5 +1,9 @@
 @extends('layout.Layout_Guru')
 
+@section('title')
+    Detail Tugas {{$dataKelas->kelas_nama}}
+@endsection
+
 @section('navbar')
     @include('pages.essential.navbarguru')
 @endsection
@@ -52,7 +56,7 @@
         @endif
         <div class="flex flex-row gap-2 lg:gap-4 break-normal">
             <a href="{{ url("downloadall/$dataKelas->kelas_id/$detailTugas->tugas_id") }}">
-                <button class="mt-2 place-self-center hover:underline hover:text-blue text-black font-bold py-2 px-4 rounded dark:bg-indigo-100 bg-indigo-200 hover:bg-indigo-300 dark:hover:bg-indigo-300">
+                <button class="mt-2 place-self-center hover:underline hover:text-blue font-bold py-2 px-4 rounded dark:bg-indigo-100   bg-red-600 text-white hover:bg-red-400 dark:hover:bg-indigo-300">
                     Download All
                 </button>
             </a>
@@ -139,8 +143,8 @@
                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="{{Auth::guard('satpam_pengguna')->user()->pengguna_id}}">
                     <input type="hidden" name="statuslampiran" id="statuslampiran"
                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="kosong">
-                    
-                    <button class="w-1/5 float-right px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Update</button>
+
+                    <button class="w-1/5 float-right px-6 py-2 mt-4  bg-red-600 text-white hover:bg-red-400 rounded-lg ">Update</button>
 
 
             </form>

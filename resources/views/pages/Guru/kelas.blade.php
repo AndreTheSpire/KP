@@ -1,5 +1,9 @@
 @extends('layout.Layout_Guru')
 
+@section('title')
+    Kelas
+@endsection
+
 @section('navbar')
     @include('pages.essential.navbarguru')
 @endsection

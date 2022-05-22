@@ -1,5 +1,9 @@
 @extends('layout.Layout_Guru')
 
+@section('title')
+    Member {{$dataKelas->kelas_nama}}
+@endsection
+
 @section('navbar')
     @include('pages.essential.navbarguru')
 @endsection

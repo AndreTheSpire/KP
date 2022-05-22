@@ -1,5 +1,9 @@
 @extends('layout.Layout_Murid')
 
+@section('title')
+    Detail Tugas {{$dataKelas->kelas_nama}}
+@endsection
+
 @section('navbar')
     @include('pages.essential.navbarmurid')
 @endsection
@@ -60,7 +64,7 @@
             <br>
             @endif
 
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+            <button type="submit" class="bg-red-600 text-white hover:bg-red-400 font-bold py-2 px-4 rounded">Submit</button>
 
         </form>
 </div>
