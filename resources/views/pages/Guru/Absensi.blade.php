@@ -45,7 +45,11 @@
 
     </tbody>
 </table>
-<span class=" ml-2 w-50"><button type="submit"  name="tambahbarang" class=" p-2 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Save </button></span>
+<div class="px-2 py-1">
+    {{-- <input type="hidden" name="id_murid" value="{{$filter_murid}}">
+    <input type="hidden" name="id_kelas" value="{{$id_kelas_sekarang}}"> --}}
+    <button type="submit" class="float-right text-black py-2 px-1 px-4 w-auto md:w-1/4 bg-secondary-red hover:bg-secondary-red-hover dark:bg-secondary-red-hover dark:hover:bg-secondary-red shadow-lg block md:inline rounded-lg text-xl">save</button>
+</div>
 
 
 </form>

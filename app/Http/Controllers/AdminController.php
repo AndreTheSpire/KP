@@ -100,6 +100,7 @@ class AdminController extends Controller
         ]);
     }
 
+
     public function DoTambahKategori(Request $request)
     {
         /**
@@ -442,7 +443,7 @@ class AdminController extends Controller
         // dd($waktuMulaiEdited);
         // dd($waktuSelesaiEdited);
         return view('pages.admin.Penetapankelas', [
-            'title' => "zonk",
+            'title' => "Penetapan kelas",
             'datadetail'=>$datadetail,
             "dataPelajaran" => $dataPelajaran,
             "datacalonmurid"=>$datacalonmurid,
@@ -483,7 +484,7 @@ class AdminController extends Controller
         // dd($waktuMulaiEdited);
         // dd($waktuSelesaiEdited);
         return view('pages.admin.detailpembayaran', [
-            'title' => "zonk",
+            'title' => "Penerimaan murid",
             'datadetail'=>$datadetail,
             "dataPelajaran" => $dataPelajaran,
         ]);
@@ -491,6 +492,20 @@ class AdminController extends Controller
     public function GoToLaporanTransaksi()
     {
         $datalaporan = PendaftaranMurid::get();
+        return view("pages.admin.LaporanTransaksi",[
+            'title' => "LaporanTransaksi",
+            "datalaporan"=>$datalaporan,
+        ]);
+
+    }
+    public function DoSearchLaporan(Request $request)
+    {
+
+        $search=$request->laporan;
+        $datalaporan = PendaftaranMurid::whereHas('PunyaUser', function ($q) use($search) {
+            $q->where('pengguna_nama','like','%'.$search.'%'); // or email <> ''
+        })->get();
+
         return view("pages.admin.LaporanTransaksi",[
             'title' => "LaporanTransaksi",
             "datalaporan"=>$datalaporan,

@@ -60,6 +60,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/transaksi', 'AdminController@GoToLaporanTransaksi');
     Route::get('download/{id}','AdminController@downloadfileCV');
     Route::get('searchPelajaran','AdminController@DoSearchPelajaran');
+    Route::get('searchlaporan','AdminController@DoSearchLaporan');
     Route::get('searchKelas','AdminController@DoSearchKelas');
 });
 Route::prefix('murid')->group(function () {
@@ -81,6 +82,7 @@ Route::prefix('murid')->group(function () {
     Route::get('/kelas/{id}/tugas', 'MuridController@GoTugasKelas');
     Route::get('/kelas/{id}/tugas/{id_tugas}', 'MuridController@GoDetailTugasKelas');
     Route::post('kelas/{id}/tugas/uploadtugas', 'MuridController@doUploadTugas');
+    Route::get('/kelas/{id}/nilai', 'MuridController@GoNilaiKelas');
     Route::get('/kelas/{id}/absensi', 'MuridController@GoAbsensiKelas');
     Route::get('/logout', 'MuridController@GotoHome');
     Route::get('downloadbuktitf/{id}','MuridController@downloadfilebuktitf');

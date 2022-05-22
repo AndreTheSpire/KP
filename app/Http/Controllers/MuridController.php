@@ -385,6 +385,37 @@ class MuridController extends Controller
             "dataTugas"=>$dataTugas,
         ]);
     }
+    public function GoNilaiKelas(Request $request)
+    {
+        $iduser=Auth::guard('satpam_pengguna')->user()->pengguna_id;
+        $datasebagaimurid=Murid::where('pengguna_id','=',$iduser)->get();
+        $daftarkelasid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarkelasid[]=$murid->kelas_id;
+        }
+        $daftarabsensiid=[];
+        foreach ($datasebagaimurid as $murid) {
+            $daftarabsensiid[]=$murid->murid_id;
+        }
+        $dataNotifikasi=Notifikasi::whereIn('notifikasi_kelas',$daftarkelasid)->orderBy('created_at', 'desc')->get();
+        $dataTugas=Tugas::where('kelas_id','=',$request->id)->get();
+        $dataPelajaran = Pelajaran::get();
+        $dataKategori = KategoriKelas::get();
+        $dataKelas = Kelas::find($request->id);
+        $daftartugaskelas=[];
+        foreach ($dataTugas as $tugas) {
+            $daftartugaskelas[]=$tugas->tugas_id;
+        }
+        $dataTugasmurid=D_tugas::whereIn('tugas_id',$daftartugaskelas)->whereIn('murid_id',$daftarabsensiid)->get();
+        return view("pages.Murid.Nilai",[
+            'title' => "nilai",
+            "dataKelas"=>$dataKelas,
+            "dataKategori" => $dataKategori,
+            "dataNotifikasi"=>$dataNotifikasi,
+            "dataPelajaran" => $dataPelajaran,
+            "dataTugasmurid"=>$dataTugasmurid,
+        ]);
+    }
 
     public function GoAbsensiKelas(Request $request)
     {

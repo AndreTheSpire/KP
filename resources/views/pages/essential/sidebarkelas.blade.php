@@ -42,6 +42,17 @@
       @endif
 
       <!-- end link -->
+        <!-- link -->
+        @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
+
+        @else
+        <a href="/murid/kelas/{{$dataKelas->kelas_id}}/nilai" class="mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500 rounded-md {{ $title === "nilai" ? "bg-gray-400" : " " }}">
+          <i class="fa fa-check-square text-xs mx-2"></i>
+          Nilai
+        </a>
+        @endif
+
+        <!-- end link -->
 
           <!-- link -->
           @if (Auth::guard('satpam_pengguna')->user()->pengguna_peran==1)
