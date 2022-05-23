@@ -41,6 +41,8 @@ class EssentianController extends Controller
 
     public function GoToLogin()
     {
+        $dataKategori = KategoriKelas::get();
+        dd($dataKategori);
         return view("pages.essential.login");
     }
     public function GoToLanding()
