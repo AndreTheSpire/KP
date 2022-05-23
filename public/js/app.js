@@ -12559,7 +12559,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * // Avoid costly calculations while the window size is in flux.
-     * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+     * jQuery(window).on('resize', _.debounce(calculatelayout, 150));
      *
      * // Invoke `sendMail` when clicked, debouncing subsequent calls.
      * jQuery(element).on('click', _.debounce(sendMail, 300, {

@@ -1,4 +1,4 @@
-@extends('layout.Layout_Murid')
+@extends('layout.layout_Murid')
 
 @section('title')
     Nilai Tugas {{$dataKelas->kelas_nama}}

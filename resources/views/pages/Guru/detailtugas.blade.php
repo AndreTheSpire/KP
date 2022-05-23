@@ -1,4 +1,4 @@
-@extends('layout.Layout_Guru')
+@extends('layout.layout_Guru')
 
 @section('title')
     Detail Tugas {{$dataKelas->kelas_nama}}

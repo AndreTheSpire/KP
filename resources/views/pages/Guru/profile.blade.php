@@ -1,5 +1,5 @@
 
-@extends('layout.Layout_Guru')
+@extends('layout.layout_Guru')
 @section('title')
     Profile
 @endsection
