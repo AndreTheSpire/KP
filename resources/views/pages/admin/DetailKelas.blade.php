@@ -1,4 +1,4 @@
-@extends('layout.Layout_admin')
+@extends('layout.layout_admin')
 @section('container')
 
 @include('sweetalert::alert')

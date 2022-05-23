@@ -1,4 +1,4 @@
-@extends('layout.Layout_admin')
+@extends('layout.layout_admin')
 @section('container')
     <div class="flex justify-between">
         <a href="/admin/kelas/buatkelas">
