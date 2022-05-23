@@ -41,8 +41,8 @@ class EssentianController extends Controller
 
     public function GoToLogin()
     {
-        $dataUser = Pengguna::get();
-        dd($dataUser);
+        // $dataUser = Pengguna::get();
+        // dd($dataUser);
         return view("pages.essential.login");
     }
     public function GoToLanding()
