@@ -9,7 +9,7 @@ class PendaftaranMurid extends Model
 {
     use HasFactory;
     protected $connection = "mysql";
-    protected $table      = "PendaftaranMurid";
+    protected $table      = "pendaftaranmurid";
     protected $primaryKey = "pendaftaranmurid_id";
     public $incrementing  = true;
     public $timestamps    = true; //created_at & updated_at
