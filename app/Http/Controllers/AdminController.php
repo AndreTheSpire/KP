@@ -357,7 +357,7 @@ class AdminController extends Controller
         $data_confirm = PendaftaranMurid::find($request->id);
         $data_confirm->pendaftaranmurid_status = '2';
         $data_confirm->save();
-        $datapendaftaran = PendaftaranMurid::get();
+        $datapendaftaran = PendaftaranMurid::where('pendaftaranmurid_status','<','1')->get();
         $dataPelajaran = Pelajaran::get();
         // dd($datapendaftaran);
         Alert::success('Succes', 'pendaftaran '.$data_confirm->punyaUser->pengguna_nama." berhasil diverifikasi");
@@ -372,7 +372,7 @@ class AdminController extends Controller
         $data_confirm = PendaftaranMurid::find($request->id);
         $data_confirm->pendaftaranmurid_status = '1';
         $data_confirm->save();
-        $datapendaftaran = PendaftaranMurid::get();
+        $datapendaftaran = PendaftaranMurid::where('pendaftaranmurid_status','<','1')->get();
         $dataPelajaran = Pelajaran::get();
         // dd($datapendaftaran);
         Alert::success('Succes', 'pendaftaran '.$data_confirm->punyaUser->pengguna_nama." berhasil ditolak");
