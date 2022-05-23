@@ -21,24 +21,24 @@
 
 <form action="/guru/kelas/{{$dataKelas->kelas_id}}/absensi/update" class="mx-5" method="POST">
     @csrf
-
-<table class="table-fixed border-collapse border border-slate-700 w-full">
+<div class="overflow-x-auto">
+<table class="table-fixed border-collapse border border-slate-700 w-full  shrink-0">
     <thead>
         <tr >
-            <th class="border border-slate-600 text-center w-full">Nama Murid</th>
+            <th class="border border-slate-600 text-center w-32">Nama Murid</th>
             @for ($i=0;$i<$dataKelas->kategori->kategorikelas_pertemuan;$i++)
-            <th class="border border-slate-600 text-center w-full">Minggu {{$i+1}}</th>
+            <th class="border border-slate-600 text-center w-32">Minggu {{$i+1}}</th>
             @endfor
         </tr>
     </thead>
     <tbody>
         @for ($i=0;$i< sizeOf($dataMurid);$i++)
         <tr>
-            <th class="border border-slate-600 text-center w-full p-4">{{$dataMurid[$i]->punyaUser->pengguna_nama}}</th>
+            <th class="border border-slate-600 text-center w-32 p-4">{{$dataMurid[$i]->punyaUser->pengguna_nama}}</th>
 
             @foreach ($dataAbsensi as $d)
             @if ($d->murid_id==$dataMurid[$i]->murid_id)
-            <td class="border border-slate-600 text-center w-full p-4"><input type="checkbox" class="w-6 h-6 bg-red-600 text-white border-0 rounded-md focus:ring-0" name="read[]" id="" value={{$d->absen_id}}
+            <td class="border border-slate-600 text-center w-32 p-4"><input type="checkbox" class="w-6 h-6 bg-red-600 text-white border-0 rounded-md focus:ring-0" name="read[]" id="" value={{$d->absen_id}}
                 @if ($d->status_absen==1)
                 checked
                 @endif></td>
@@ -49,6 +49,7 @@
 
     </tbody>
 </table>
+</div>
 <div class="px-2 py-1">
     {{-- <input type="hidden" name="id_murid" value="{{$filter_murid}}">
     <input type="hidden" name="id_kelas" value="{{$id_kelas_sekarang}}"> --}}
