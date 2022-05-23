@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifikasiiPenerimaan extends Notification
+class NotifikasiPenerimaan extends Notification
 {
     use Queueable;
 
@@ -43,13 +43,13 @@ class NotifikasiiPenerimaan extends Notification
         if($this->status==true){
             return (new MailMessage)
                     ->greeting('Halo '.$this->pengguna->pengguna_nama)
-                    ->line('anda berhasil diterima di tempat les zeta kami ')
-                    ->line('dimohon kerja samanya selama bekerja di kami  ');
+                    ->line('Selamat anda berhasil diterima sebagai guru resmi pada Lembaga Bimbingan Belajar Cetta')
+                    ->line('Dimohon kerja samanya selama bekerja pada kami');
         }else{
             return (new MailMessage)
                     ->greeting('Halo '.$this->pengguna->pengguna_nama)
-                    ->line('mohon maaf anda kami anggap kurang mencukupi untuk menjadi guru di tempat kami ')
-                    ->line('semoga beruntung lain kali ');
+                    ->line('Mohon maaf anda kami anggap kurang mencukupi untuk menjadi guru di Lembaga Bimbingan Belajar Cetta')
+                    ->line('Semoga beruntung lain kali');
         }
     }
 

@@ -45,15 +45,15 @@ class NotifikasiWawancara extends Notification
         if($this->status==true){
             return (new MailMessage)
                     ->greeting('Halo '.$this->pengguna->pengguna_nama)
-                    ->line('Selamat anda diterima untuk diwawancarai di bimbel kami. Berikut adalah detail dari wawancara : ')
+                    ->line('Selamat anda diterima untuk diwawancarai di Bimbingan Belajar Cetta. Berikut adalah detail dari wawancara : ')
                     ->line('Tanggal dan Waktu Wawancara : '.$this->tanggal)
                     ->line('Link Wawancara : '.$this->link)
-                    ->line('semoga anda datang wawancara tepat waktu  ');
+                    ->line('Diharapkan Bapak/Ibu datang tepat waktu');
         }else{
             return (new MailMessage)
                     ->greeting('Halo '.$this->pengguna->pengguna_nama)
                     ->line('Mohon maaf setelah kami melakukan review, anda kami anggap kurang mencukupi untuk menjadi guru di tempat kami ')
-                    ->line('semoga beruntung lain kali ');
+                    ->line('Semoga beruntung lain kali ');
         }
 
                     // ->markdown('mail.welcome.index', ['user' => $this->user]);

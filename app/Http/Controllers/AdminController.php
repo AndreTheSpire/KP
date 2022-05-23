@@ -10,7 +10,7 @@ use App\Models\Murid;
 use App\Models\Pelajaran;
 use App\Models\PendaftaranMurid;
 use App\Models\Pengguna;
-use App\Notifications\NotifikasiiPenerimaan;
+use App\Notifications\NotifikasiPenerimaan;
 use App\Notifications\NotifikasiWawancara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -404,7 +404,7 @@ class AdminController extends Controller
             'pelajaran_id'=>$req->pelajaran_id,
         ]);
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
-        Notification::send($data_confirm, new NotifikasiiPenerimaan($data_confirm,true));
+        Notification::send($data_confirm, new NotifikasiPenerimaan($data_confirm,true));
         return view("pages.admin.PenerimaanWawancaraGuru",[
             'title' => "PenerimaanWawancaraGuru",
             'data_guru' => $data_guru
@@ -417,7 +417,7 @@ class AdminController extends Controller
         $data_confirm->save();
 
         $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
-        Notification::send($data_confirm, new NotifikasiiPenerimaan($data_confirm,false));
+        Notification::send($data_confirm, new NotifikasiPenerimaan($data_confirm,false));
         return view("pages.admin.PenerimaanWawancaraGuru",[
             'title' => "PenerimaanWawancaraGuru",
             'data_guru' => $data_guru
