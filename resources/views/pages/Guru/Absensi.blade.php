@@ -1,4 +1,4 @@
-@extends('layout.layout_Guru')
+@extends('layout.Layout_Guru')
 
 @section('title')
     Absensi {{$dataKelas->kelas_nama}}

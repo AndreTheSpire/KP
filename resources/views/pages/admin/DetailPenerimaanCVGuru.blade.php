@@ -1,4 +1,4 @@
-@extends('layout.layout_admin')
+@extends('layout.Layout_admin')
 @section('container')
     <div class="box-border bg-orange-100">
         <h1 class="flex justify-center text-4xl font-bold">Detail Penerimaan CV Guru</h1><br>

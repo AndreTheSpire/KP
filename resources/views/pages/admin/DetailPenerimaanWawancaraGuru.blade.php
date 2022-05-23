@@ -1,4 +1,4 @@
-@extends('layout.layout_admin')
+@extends('layout.Layout_admin')
 @section('container')
 
 <div class="box-border bg-orange-100">

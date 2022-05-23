@@ -1,4 +1,4 @@
-@extends('layout.layout_Login')
+@extends('layout.Layout_Login')
 @section('title')
     Page Login
 @endsection
