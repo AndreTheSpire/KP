@@ -6,8 +6,8 @@
 
     {{-- <link rel="shortcut icon" href="{{ asset('image/cettatf.png') }}" type="image/x-icon"> --}}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
     </script>
     <link
