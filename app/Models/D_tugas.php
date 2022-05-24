@@ -12,7 +12,7 @@ class D_tugas extends Model
     use SoftDeletes; // deleted_at
 
     protected $connection = "mysql";
-    protected $table      = "D_tugas";
+    protected $table      = "d_tugas";
     protected $primaryKey = "D_tugas_id";
     public $incrementing  = true;
     public $timestamps    = true; //created_at & updated_at
