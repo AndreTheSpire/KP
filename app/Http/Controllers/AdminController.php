@@ -416,7 +416,7 @@ class AdminController extends Controller
         $data_confirm->pengguna_status_wawancara = '-1';
         $data_confirm->save();
 
-        $data_guru = Pengguna::where('pengguna_status_CV','=','0','and','pengguna_status_wawancara','=','0')->get();
+        $data_guru = Pengguna::where('pengguna_status_CV','=','1')->where('pengguna_status_wawancara','=','0')->get();
         Notification::send($data_confirm, new NotifikasiPenerimaan($data_confirm,false));
         return view("pages.admin.PenerimaanWawancaraGuru",[
             'title' => "PenerimaanWawancaraGuru",
