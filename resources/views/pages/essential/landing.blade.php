@@ -122,7 +122,7 @@
               Cetta EC Madiun
             </h3>
             <p class="text-gray-600 mb-8 text-2xl">
-              Memperkenalkan Cetta EC Madiun menggunakan metode easy learning dan fun activity.
+                Cetta EC Madiun berdiri didedikasikan untuk membantu siswa yang kesulitan dalam mata pelajaran disekolah. Kami memiliki guru yang berpengalaman dibidangnya dan akan mengajarkan siswa dengan metode yang mudah dimengerti dan menyenangkan.
               <br/>
               <br/>
             </p>

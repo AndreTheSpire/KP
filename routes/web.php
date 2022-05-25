@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','EssentianController@GoToLogin')->middleware('is_logout');
+Route::get('/','EssentianController@GoToLanding')->middleware('is_logout');
 Route::get('landing','EssentianController@GoToLanding')->middleware('is_logout');
 Route::get('login', 'EssentianController@GoToLogin')->middleware('is_logout');
 Route::get('logout', 'EssentianController@GoTologout');
