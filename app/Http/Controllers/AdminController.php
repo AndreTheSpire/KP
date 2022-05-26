@@ -157,10 +157,8 @@ class AdminController extends Controller
     public function GoToKategoriKelas()
     {
         $dataPelajaran = Pelajaran::get();
-        $dataKategori = KategoriKelas::get();
         return view("pages.admin.KategoriKelas",[
             'title' => "kategori",
-            "dataKategori" => $dataKategori,
             "dataPelajaran" => $dataPelajaran,
         ]);
 
@@ -435,6 +433,71 @@ class AdminController extends Controller
         ]);
 
     }
+    public function GoToDaftarMurid()
+    {
+        $datamurid=Pengguna::where('pengguna_peran','=',0)->get();
+        // dd($datapendaftaran);
+        return view("pages.admin.DaftarMurid",[
+            'title' => "DaftarMurid",
+            "datamurid" => $datamurid,
+        ]);
+
+    }
+    public function DoSearchMurid(Request $request)
+    {
+
+        $search=$request->laporan;
+        $datamurid = Pengguna::where('pengguna_peran','=',0)->where('pengguna_nama','like','%'.$search.'%')->get();
+
+        return view("pages.admin.DaftarMurid",[
+            'title' => "DaftarMurid",
+            "datamurid" => $datamurid,
+        ]);
+
+    }
+    public function GoToDetailMurid(Request $request)
+    {
+        $datadetailmurid=Pengguna::find($request->id);
+        // dd($datapendaftaran);
+        return view("pages.admin.DetailMurid",[
+            'title' => "DetailMurid",
+            "datadetailmurid" => $datadetailmurid,
+        ]);
+
+    }
+    public function GoToDaftarGuru()
+    {
+        $dataguru=Pengguna::where('pengguna_peran','=',1)->get();
+        // dd($datapendaftaran);
+        return view("pages.admin.DaftarGuru",[
+            'title' => "DaftarGuru",
+            "dataguru" => $dataguru,
+        ]);
+
+    }
+    public function DoSearchGuru(Request $request)
+    {
+
+        $search=$request->laporan;
+        $dataguru = Pengguna::where('pengguna_peran','=',1)->where('pengguna_nama','like','%'.$search.'%')->get();
+
+        return view("pages.admin.DaftarGuru",[
+            'title' => "DaftarGuru",
+            "dataguru" => $dataguru,
+        ]);
+
+    }
+    public function GoToDetailGuru(Request $request)
+    {
+        $datadetailguru=Pengguna::find($request->id);
+        // dd($datapendaftaran);
+        return view("pages.admin.DetailGuru",[
+            'title' => "DetailGuru",
+            "datadetailguru" => $datadetailguru,
+        ]);
+
+    }
+
     public function GoPenetapanKelas(Request $request)
     {
         $datadetail = Kelas::find($request->id);

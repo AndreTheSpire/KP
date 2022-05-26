@@ -19,7 +19,7 @@
             </form>
         </div>
       </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col w-full">
         <div class="overflow-x-auto">
           <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">

@@ -24,4 +24,9 @@ class Guru extends Pivot
     {
         return $this->belongsTo(Pengguna::class, 'pengguna_id', 'pengguna_id');
     }
+    public function PunyaKelas()
+    {
+        // return $this->belongsTo(Murid::class, 'pengguna_id', 'pengguna_id');
+        return $this->hasMany(Kelas::class,'guru_id','guru_id');
+    }
 }

@@ -6,7 +6,7 @@
     <div class="font-bold text-center text-2xl">Daftar CV Guru Yang Mendaftar</div>
     <div class="flex items-center justify-center p-10 border-4 border-dotted ">
 
-        <div class="flex flex-col">
+        <div class="flex flex-col w-full">
             <div class="overflow-x-auto">
               <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="overflow-hidden">

@@ -7,7 +7,7 @@
     Tambah Kategori
 </button>
 
-<div class="flex flex-col">
+<div class="flex flex-col w-full">
     @foreach ($dataPelajaran as $d)
         <div class=" text-center text-3xl w-full">{{$d->pelajaran_nama}}</div>
         <div class="overflow-x-auto">
@@ -22,14 +22,14 @@
                 </tr>
                 </thead class="border-b">
                 <tbody>
-                    @if(count($dataKategori)==0)
+                    @if(count($d->punyaKategori)==0)
                     <tr>
 
                         <td colspan="3" class="px-6 py-4 border border-slate-200 whitespace-nowrap text-sm font-medium text-gray-900">Tidak ada Data</td>
                     </tr>
                     @else
-                    @foreach ($dataKategori as $k)
-                        @if ($d->pelajaran_id==$k->pelajaran_id)
+                    @foreach ($d->punyaKategori as $k)
+
                             <tr class="bg-white border-b">
                                 <td class="border border-slate-500 px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$k->kategorikelas_id}}</td>
                                 <td class="border border-slate-500 text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$k->kategorikelas_nama}}</td>
@@ -50,9 +50,7 @@
                                     </a>
                                 </td>
                             </tr>
-                        @else
 
-                        @endif
 
                     @endforeach
                     @endif

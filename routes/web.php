@@ -57,10 +57,16 @@ Route::prefix('admin')->group(function () {
     Route::get('/murid/{id}', 'AdminController@GoToDetailPenerimaanMurid');
     Route::get('/murid/{id}/confirm', 'AdminController@ConfirmDetailPenerimaanMurid');
     Route::get('/murid/{id}/decline', 'AdminController@DeclineDetailPenerimaanMurid');
+    Route::get('/daftarmurid', 'AdminController@GoToDaftarMurid');
+    Route::get('/detailmurid/{id}', 'AdminController@GoToDetailMurid');
+    Route::get('/daftarguru', 'AdminController@GoToDaftarGuru');
+    Route::get('/detailguru/{id}', 'AdminController@GoToDetailGuru');
     Route::get('/transaksi', 'AdminController@GoToLaporanTransaksi');
     Route::get('download/{id}','AdminController@downloadfileCV');
     Route::get('searchPelajaran','AdminController@DoSearchPelajaran');
     Route::get('searchlaporan','AdminController@DoSearchLaporan');
+    Route::get('searchguru','AdminController@DoSearchGuru');
+    Route::get('searchmurid','AdminController@DoSearchMurid');
     Route::get('searchKelas','AdminController@DoSearchKelas');
 });
 Route::prefix('murid')->middleware('is_login')->middleware('is_murid')->group(function () {
