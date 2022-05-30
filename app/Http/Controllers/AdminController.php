@@ -467,7 +467,7 @@ class AdminController extends Controller
     }
     public function GoToDaftarGuru()
     {
-        $dataguru=Pengguna::where('pengguna_peran','=',1)->get();
+        $dataguru=Pengguna::where('pengguna_peran','=',1)->where('pengguna_status_wawancara','=',1)->where('pengguna_status_CV','=',1)->get();
         // dd($datapendaftaran);
         return view("pages.admin.DaftarGuru",[
             'title' => "DaftarGuru",
