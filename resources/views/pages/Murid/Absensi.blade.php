@@ -30,7 +30,7 @@
     <tbody>
         @foreach ($dataAbsensi as $d)
         <tr>
-            <td class="border border-slate-600 text-center w-full p-4">{{$d->minggu}}</th>
+            <td class="border border-slate-600 text-center w-full p-4">{{$d->minggu+1}}</th>
                 @if ($d->status_absen==0)
                 <td class="border border-slate-600 text-center w-full p-4">X</th>
                 @else
