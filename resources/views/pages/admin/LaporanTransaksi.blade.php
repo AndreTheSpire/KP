@@ -48,7 +48,7 @@
                             <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">Rp. {{ number_format($d->PunyaKategori->kategorikelas_harga, 2) }}</td>
                             <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">
                                 @if($d->pendaftaranmurid_buktibayar=="kosong")
-                                <a href="{{ url("/downloadbuktitf/$d->pendaftaranmurid_id") }}">
+                                <a href="">
                                     Tidak ada File
                                 </a>
                                 @else
