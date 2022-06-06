@@ -317,22 +317,15 @@ class EssentianController extends Controller
     {
         $dataKelas = Kelas::find($request->id);
         $datatugas = D_tugas::where('tugas_id','=',$request->id_tugas)->get();
-
         $pengumpulan=0;
         $datapengumpulan= D_tugas::where('tugas_id','=',$request->id_tugas)->where('url_pengumpulan','!=',null)->get();
         $pengumpulan=sizeof($datapengumpulan);
         if($pengumpulan==0){
             return back()->with("message", "Tidak ada File siswa yang dapat didownload");
         }
-        // dd($datatugas);
         $fileName = 'TugasKelas'.$dataKelas->kelas_nama.'.zip';
-        // dd(public_path());
-        // File::delete(public_path().'/'.$fileName);
-        // Storage::delete($fileName);
         $kelas=$dataKelas->kelas_kode;
         $zip = new \ZipArchive();
-
-
         if ($zip->open(storage_path($fileName), \ZipArchive::CREATE)== TRUE)
         {
             $files = File::files(storage_path("app/DataKelas/PengumpulanTugas/$request->id_tugas"));
@@ -341,14 +334,11 @@ class EssentianController extends Controller
                 foreach ($datatugas as $item) {
                     if($item->url_pengumpulan==$relativeName){
                         $zip->addFile($value, $relativeName);
-                    }else{
                     }
                 }
-
             }
             $zip->close();
         }
-
         return response()->download(storage_path($fileName))->deleteFileAfterSend(true);
     }
 }

@@ -280,13 +280,6 @@ $.ajax({
         console.log(data[i].kategorikelas_nama);
         $('#kategorikelas_id').append(new Option(data[i].kategorikelas_nama, data[i].kategorikelas_id))
         }
-        // $('#kategorikelas_id').empty();
-        // console.log(data);
-        // $(data).each(function(x,y){
-        //     console.log(y);
-        //     $('#kategorikelas_id').append(new Option(y.kategorikelas_nama, y.kategorikelas_id))
-
-        // });
     },
 });
 $.ajax({
@@ -300,13 +293,6 @@ $.ajax({
         console.log(data[i].punya_user.pengguna_nama);
         $('#guru_kelas').append(new Option(data[i].punya_user.pengguna_nama, data[i].punya_user.pengguna_id))
         }
-        // $('#kategorikelas_id').empty();
-        // console.log(data);
-        // $(data).each(function(x,y){
-        //     console.log(y);
-        //     $('#kategorikelas_id').append(new Option(y.kategorikelas_nama, y.kategorikelas_id))
-
-        // });
     },
 });
 }

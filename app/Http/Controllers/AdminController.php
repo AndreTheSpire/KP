@@ -103,9 +103,6 @@ class AdminController extends Controller
 
     public function DoTambahKategori(Request $request)
     {
-        /**
-         * Kodingan kodingan untuk kelas code
-         */
         $request->validate([
             'kategorikelas_nama'=>'required',
             'kategorikelas_pertemuan'=>'required',
@@ -134,9 +131,6 @@ class AdminController extends Controller
             $kategori->kategorikelas_pertemuan=$request->kategorikelas_pertemuan;
             $kategori->kategorikelas_harga=$request->kategorikelas_harga;
             $kategori->save();
-
-
-
             return back();
     }
 
@@ -201,7 +195,7 @@ class AdminController extends Controller
         $id=$request->id_kelas;
         $kelasupdate=Kelas::find($id);
         $kelasupdate->kelas_nama=$request->kelas_nama;
-        $kelasupdate->pengguna_id=$request->guru_kelas;
+        $kelasupdate->guru_id=$request->guru_kelas;
         $kelasupdate->waktu_mulai=$request->waktu_mulai;
         $kelasupdate->waktu_selesai=$request->waktu_selesai;
         $kelasupdate->save();

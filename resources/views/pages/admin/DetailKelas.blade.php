@@ -37,7 +37,7 @@
                     <label for="guru_kelas"  class="text-xl text-black">Guru</label>
                     <select id="peran" name="guru_kelas" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50">
                         @foreach ($dataGuru as $d)
-                        <option value="{{$d->pengguna_id}}" @if($d->pengguna_id == $dataKelas->pengguna_id) selected @endif>{{$d->punyaUser->pengguna_nama}}</option>
+                        <option value="{{$d->guru_id}}" @if($d->guru_id == $dataKelas->guru_id) selected @endif>{{$d->punyaUser->pengguna_nama}}</option>
                         @endforeach
 
 
