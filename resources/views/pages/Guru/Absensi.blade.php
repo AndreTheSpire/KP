@@ -32,6 +32,12 @@
         </tr>
     </thead>
     <tbody>
+        @if(count($dataMurid)==0)
+        <tr>
+
+            <td colspan="{{$dataKelas->kategori->kategorikelas_pertemuan+1}}" class="px-6 py-4 border border-slate-200 whitespace-nowrap text-sm font-medium text-gray-900">Tidak ada Data</td>
+        </tr>
+        @else
         @for ($i=0;$i< sizeOf($dataMurid);$i++)
         <tr>
             <th class="border border-slate-600 text-center w-32 p-4">{{$dataMurid[$i]->punyaUser->pengguna_nama}}</th>
@@ -46,7 +52,7 @@
             @endforeach
             </tr>
         @endfor
-
+        @endif
     </tbody>
 </table>
 </div>

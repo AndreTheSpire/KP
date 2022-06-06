@@ -574,5 +574,10 @@ class AdminController extends Controller
         $user = Pengguna::find($request->id);
         return Storage::disk('local')->download("DataUser/$user->pengguna_CV_KTP");
     }
+    public function downloadfilebuktitf(Request $request)
+    {
+        $register = PendaftaranMurid::find($request->id);
+        return Storage::disk('local')->download("DataRegistrasi/$register->pendaftaranmurid_buktibayar");
+    }
 
 }

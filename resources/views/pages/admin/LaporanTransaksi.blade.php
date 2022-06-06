@@ -47,11 +47,18 @@
                             <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">{{$d->PunyaKategori->kategorikelas_nama}}</td>
                             <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">Rp. {{ number_format($d->PunyaKategori->kategorikelas_harga, 2) }}</td>
                             <td class="text-sm text-gray-900 border border-slate-500 font-light px-6 py-4 whitespace-nowrap">
-                                <a href="{{ url("/murid/downloadbuktitf/$d->pendaftaranmurid_id") }}">
+                                @if($d->pendaftaranmurid_buktibayar=="kosong")
+                                <a href="{{ url("/downloadbuktitf/$d->pendaftaranmurid_id") }}">
+                                    Tidak ada File
+                                </a>
+                                @else
+                                <a href="{{ url("/downloadbuktitf/$d->pendaftaranmurid_id") }}">
                                     <button class="bg-red-500 hover:bg-gray-700 text-white py-2 px-4 mx-4 rounded">
                                         Download
                                     </button>
                                 </a>
+                                @endif
+
                             </td>
                         </tr>
                     @endforeach

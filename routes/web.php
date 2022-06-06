@@ -127,3 +127,4 @@ Route::prefix('guru')->middleware('is_login')->middleware('is_guru')->group(func
 });
 Route::get('download/{id}/{namafile}','EssentianController@downloadfile');
 Route::get('downloadall/{id}/{id_tugas}','EssentianController@downloadallfile');
+Route::get('downloadbuktitf/{id}','AdminController@downloadfilebuktitf');
